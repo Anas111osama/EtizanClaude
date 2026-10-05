@@ -7,3 +7,4 @@ series/**/build/tmp/
 series/**/build/frames/
 series/**/out/
 series/**/build/mix.wav
+series/**/build/*.jpg
