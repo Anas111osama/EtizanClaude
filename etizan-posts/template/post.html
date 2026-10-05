@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Etizan posts</title>
+<link rel="stylesheet" href="assets/fontawesome/all.min.css">
+<style>
+@font-face { font-family: 'Cairo'; src: url('assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root { --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD; --ink: #123161; --ink-2: #4A6690; --sticky: #F5E6A3; --green: #1FA971; --red: #E5484D;
+  --shadow-card: 0 18px 40px rgba(4,30,80,.35), 0 3px 8px rgba(4,30,80,.18); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--blue-900); }
+body { font-family: 'Cairo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#p { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(165deg, #0A3D91 0%, #0265B5 55%, #1E88D4 100%); }
+#p::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.10) 2.4px, transparent 2.6px); background-size: 54px 54px; }
+.glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(24,177,254,.45), rgba(24,177,254,0) 65%); pointer-events: none; }
+.vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 55%, rgba(4,22,60,.4) 100%); }
+.top { position: absolute; top: 56px; right: 60px; left: 60px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+.badge { display: flex; align-items: center; gap: 14px; padding: 10px 26px 10px 20px; border-radius: 999px; background: rgba(255,255,255,.14); border: 2px solid rgba(255,255,255,.28); font-weight: 800; font-size: 30px; white-space: nowrap; }
+.badge .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--sky-400); box-shadow: 0 0 12px var(--sky-400); }
+.badge .ep { padding: 0 14px; border-radius: 999px; background: #fff; color: var(--blue-700); font-weight: 900; font-size: 26px; }
+.logo { height: 64px; padding: 10px 22px; background: #fff; border-radius: 22px; box-shadow: var(--shadow-card); }
+.logo img { height: 44px; display: block; }
+.bot { position: absolute; bottom: 52px; right: 60px; left: 60px; display: flex; align-items: center; justify-content: space-between; z-index: 5; font-weight: 800; font-size: 30px; }
+.pager { display: flex; gap: 12px; align-items: center; }
+.pager i { width: 18px; height: 18px; border-radius: 9px; background: rgba(255,255,255,.3); display: block; }
+.pager i.on { width: 52px; background: var(--sticky); }
+.swipe { display: flex; align-items: center; gap: 14px; padding: 14px 30px; border-radius: 999px; background: var(--sticky); color: var(--ink); font-weight: 900; font-size: 32px; box-shadow: var(--shadow-card); }
+.handle { opacity: .75; font-size: 28px; font-weight: 700; direction: ltr; }
+.c { position: absolute; left: 70px; right: 70px; z-index: 3; }
+h1 { font-weight: 1000; font-size: 92px; line-height: 1.2; text-shadow: 0 8px 30px rgba(4,22,60,.35); }
+h1 .y, .y { color: var(--sticky); }
+h2 { font-weight: 900; font-size: 64px; line-height: 1.25; text-shadow: 0 6px 24px rgba(4,22,60,.3); }
+p.lead { font-weight: 700; font-size: 40px; line-height: 1.55; opacity: .95; }
+.card { background: #fff; color: var(--ink); border-radius: 48px; box-shadow: var(--shadow-card); padding: 50px 56px; }
+.sticky { background: var(--sticky); color: var(--ink); border-radius: 10px; padding: 40px 46px; font-weight: 900; box-shadow: 0 22px 40px rgba(4,30,80,.4); position: relative; }
+.sticky::before { content: ''; position: absolute; top: -20px; left: 50%; width: 170px; height: 44px; margin-left: -85px; background: rgba(217,240,253,.8); transform: rotate(-3deg); }
+.chip { display: inline-flex; align-items: center; gap: 14px; padding: 16px 32px; border-radius: 999px; font-weight: 900; font-size: 38px; box-shadow: var(--shadow-card); white-space: nowrap; }
+.chip.white { background: #fff; color: var(--blue-700); } .chip.ink { background: var(--ink); color: #fff; } .chip.sticky2 { background: var(--sticky); color: var(--ink); } .chip.ghost { background: rgba(255,255,255,.12); color: #fff; border: 3px dashed rgba(255,255,255,.45); box-shadow: none; }
+.num { width: 150px; height: 150px; border-radius: 46px; background: var(--sky-400); color: #fff; font-weight: 1000; font-size: 100px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-card); transform: rotate(-6deg); flex-shrink: 0; }
+.row { display: flex; align-items: center; gap: 24px; }
+.ico { width: 110px; height: 110px; border-radius: 32px; display: flex; align-items: center; justify-content: center; font-size: 56px; flex-shrink: 0; }
+.strike { position: relative; display: inline-block; }
+.strike::after { content: ''; position: absolute; left: -10px; right: -10px; top: 52%; height: 12px; border-radius: 8px; background: var(--red); transform: rotate(-4deg); }
+.strike.thin::after { height: 5px; top: 50%; opacity: .9; }
+.q { font-size: 300px; line-height: .6; color: var(--sticky); font-weight: 1000; opacity: .9; height: 150px; }
+.phone { position: absolute; width: 500px; height: 1060px; border-radius: 76px; background: linear-gradient(150deg, #fff, #dfe9f8 45%, #b9cbe6); box-shadow: 0 50px 90px rgba(3,20,60,.5); }
+.phone > div { position: absolute; inset: 14px; border-radius: 62px; overflow: hidden; background: #EEF5FD; }
+.phone img { width: 100%; display: block; }
+.phone::after { content: ''; position: absolute; top: 30px; left: 50%; width: 130px; height: 36px; margin-left: -65px; border-radius: 20px; background: #0b1730; }
+</style>
+</head>
+<body>
+<div id="p"><div class="glow" style="width:1200px;height:1200px;left:-420px;top:-360px"></div><div class="glow" style="width:1000px;height:1000px;left:460px;top:760px"></div><div class="vig"></div><div id="root"></div></div>
+<script src="posts.js"></script>
+<script>
+const AR = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const id = new URLSearchParams(location.search).get('id');
+const S = window.POSTS.find(x => x.id === id);
+const R = document.getElementById('root');
+const topHtml = (S.ep ? '<div class="badge"><span class="dot"></span>اللي محدش بيقولهولك<span class="ep">' + AR(S.ep) + '</span></div>' : '<div class="badge"><span class="dot"></span>' + (S.kicker || 'اتزان') + '</div>') + '<div class="logo"><img src="assets/logo-full.png"></div>';
+let bot = '<span class="handle">Etizan · اتزان</span>';
+if (S.of) bot = '<div class="pager">' + Array.from({ length: S.of }, (_, i) => '<i class="' + (i + 1 === S.n ? 'on' : '') + '"></i>').join('') + '</div>' +
+  (S.n === 1 ? '<div class="swipe">اسحب<i class="fa-solid fa-arrow-left"></i></div>' : S.n === S.of ? '<div class="swipe"><i class="fa-solid fa-bookmark"></i>احفظ البوست</div>' : '<span class="handle">Etizan · اتزان</span>');
+R.innerHTML = '<div class="top">' + topHtml + '</div>' + S.html + '<div class="bot">' + bot + '</div>';
+window.READY = document.fonts.load('900 60px Cairo').then(() => document.fonts.load('1000 60px Cairo')).then(() => document.fonts.load('700 40px Cairo')).then(() => document.fonts.ready).then(() => Promise.all([...document.images].map(im => im.complete ? 1 : new Promise(r => im.onload = im.onerror = r))));
+</script>
+</body>
+</html>
