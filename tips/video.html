@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Etizan tips reel</title>
+<link rel="stylesheet" href="assets/fontawesome/all.min.css">
+<style>
+@font-face { font-family: 'Cairo'; src: url('assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root { --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD; --ink: #123161; --ink-2: #4A6690; --sticky: #F5E6A3;
+  --shadow-card: 0 18px 40px rgba(4,30,80,.35), 0 3px 8px rgba(4,30,80,.18); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-900); }
+body { font-family: 'Cairo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(165deg, #0A3D91 0%, #0265B5 55%, #1E88D4 100%); }
+#grid { position: absolute; inset: -80px; background-image: radial-gradient(rgba(255,255,255,.10) 2.4px, transparent 2.6px); background-size: 54px 54px; }
+.glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(24,177,254,.45), rgba(24,177,254,0) 65%); }
+#vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 55%, rgba(4,22,60,.45) 100%); }
+
+/* شارة السلسلة */
+#series { position: absolute; top: 150px; left: 50%; display: flex; align-items: center; gap: 16px; padding: 12px 30px 12px 22px; border-radius: 999px;
+  background: rgba(255,255,255,.14); border: 2px solid rgba(255,255,255,.28); font-weight: 800; font-size: 34px; white-space: nowrap; opacity: 0; z-index: 40; }
+#series .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--sky-400); box-shadow: 0 0 14px var(--sky-400); }
+#series .ep { padding: 2px 16px; border-radius: 999px; background: #fff; color: var(--blue-700); font-weight: 900; font-size: 28px; }
+
+.scene { position: absolute; inset: 0; opacity: 0; }
+.card { position: absolute; background: #fff; color: var(--ink); border-radius: 48px; box-shadow: var(--shadow-card); opacity: 0; }
+.tile { position: absolute; width: 360px; height: 360px; background: #fff; border-radius: 64px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--blue-700); opacity: 0; }
+.tile i { font-size: 170px; }
+.tile b { font-size: 44px; font-weight: 900; color: var(--ink); }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 16px; padding: 18px 36px; border-radius: 999px; font-weight: 900; font-size: 46px; box-shadow: var(--shadow-card); opacity: 0; white-space: nowrap; }
+.chip.white { background: #fff; color: var(--blue-700); } .chip.ink { background: var(--ink); color: #fff; } .chip.sky { background: var(--sky-400); color: #fff; }
+.chip.sticky { background: var(--sticky); color: var(--ink); } .chip.ghost { background: transparent; color: rgba(255,255,255,.55); border: 4px dashed rgba(255,255,255,.45); box-shadow: none; }
+.sticky { position: absolute; background: var(--sticky); color: var(--ink); border-radius: 8px; padding: 46px 50px; font-weight: 900; text-align: center; box-shadow: 0 22px 40px rgba(4,30,80,.4); opacity: 0; }
+.sticky::before { content: ''; position: absolute; top: -20px; left: 50%; width: 170px; height: 44px; margin-left: -85px; background: rgba(217,240,253,.8); transform: rotate(-3deg); }
+.bubble { position: absolute; padding: 28px 46px; background: #fff; color: var(--ink); border-radius: 40px; font-weight: 900; font-size: 64px; box-shadow: var(--shadow-card); white-space: nowrap; opacity: 0; }
+.bubble::after { content: ''; position: absolute; bottom: -24px; right: 80px; border: 24px solid transparent; border-top-color: #fff; border-bottom: 0; }
+.bubble.l::after { right: auto; left: 80px; }
+.big { position: absolute; left: 60px; right: 60px; text-align: center; font-weight: 900; line-height: 1.25; color: #fff; text-shadow: 0 8px 30px rgba(4,22,60,.35); }
+.big .w { display: inline-block; opacity: 0; }
+.big .sky { color: var(--sticky); }
+.strike { position: absolute; height: 18px; border-radius: 10px; background: #FF6B6B; transform-origin: 100% 50%; box-shadow: 0 4px 10px rgba(0,0,0,.25); z-index: 5; }
+.step { position: absolute; left: 110px; right: 110px; background: #fff; color: var(--ink); border-radius: 52px; box-shadow: var(--shadow-card); padding: 50px 56px; opacity: 0; }
+.step .n { position: absolute; top: -56px; right: 60px; width: 112px; height: 112px; border-radius: 50%; background: var(--sky-400); color: #fff; font-size: 64px; font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(4,30,80,.3); }
+.step h2 { font-size: 72px; font-weight: 900; line-height: 1.2; margin-top: 20px; }
+.ring { position: absolute; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .lab { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--ink); direction: ltr; font-variant-numeric: tabular-nums; }
+.icon-c { position: absolute; display: flex; align-items: center; justify-content: center; border-radius: 50%; opacity: 0; }
+
+/* الكابشن: كلام كبير في شنكات */
+#cap { position: absolute; left: 50px; right: 50px; top: 1330px; height: 260px; z-index: 50; }
+#cap .chunk { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; flex-wrap: wrap; align-content: center; gap: 0 28px; text-align: center; }
+#cap .w { display: inline-block; font-weight: 900; font-size: 78px; line-height: 1.3; color: rgba(255,255,255,.38); text-shadow: 0 6px 22px rgba(4,22,60,.45); }
+#end { position: absolute; inset: 0; opacity: 0; z-index: 45; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div class="glow" id="g1" style="width:1300px;height:1300px;left:-420px;top:-260px"></div>
+  <div class="glow" id="g2" style="width:1100px;height:1100px;left:420px;top:1000px"></div>
+  <div id="vig"></div>
+  <div id="series"><span class="dot"></span><span>اللي محدش بيقولهولك</span><span class="ep" id="epn"></span></div>
+  <div id="scenes"></div>
+  <div id="cap"></div>
+  <div id="end"></div>
+  <div id="flash"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const EP = new URLSearchParams(location.search).get('ep') || 'ep01';
+// ?nocap=1 ← نسخة من غير كابشن
+if (new URLSearchParams(location.search).get('nocap')) document.write('<style>#cap{display:none!important}</style>');
+document.write('<script src="../' + EP + '/times.js"><\/script><script src="../' + EP + '/scenes.js"><\/script>');
+</script>
+<script>
+const AR = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+function BUILD() {
+  const $ = id => document.getElementById(id);
+  const tl = gsap.timeline({ paused: true }), SFX = [], DYN = [];
+  const T = window.TIMES.lines, VO = window.TIMES.duration, END = window.EPISODE.endCard || 3.2, DUR = VO + END;
+  const LN = T.map((l, i) => ({ t: l.t, t0: l.start, t1: l.end, wt: l.w, next: T[i + 1] ? T[i + 1].start : VO }));
+  const W = (i, k) => { const a = LN[i], v = a.wt && a.wt[k]; return v != null ? v : a.t0 + (a.t1 - a.t0) * k / a.t.split(/\s+/).length; };
+  const fx = (name, t, gain = 1) => SFX.push({ t: +t.toFixed(3), name, gain });
+  const px = v => v + 'px';
+  const el = (tag, cls, html, parent, style) => { const d = document.createElement(tag); if (cls) d.className = cls; if (html != null) d.innerHTML = html; if (style) Object.assign(d.style, style); (parent || document.body).appendChild(d); return d; };
+  const scene = (a, b) => { const sc = el('div', 'scene', null, $('scenes')); tl.fromTo(sc, { opacity: 0 }, { opacity: 1, duration: 0.3 }, a); if (b != null) tl.to(sc, { opacity: 0, duration: 0.3 }, b); return sc; };
+  const pop = (node, t, rot = 0, s = 'pop', g = 0.7) => { tl.fromTo(node, { opacity: 0, scale: 0.5, rotation: 0 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.8)' }, t); if (s) fx(s, t, g); return node; };
+  const out = (node, t, d = 0.3) => tl.to(node, { opacity: 0, scale: 0.85, duration: d, ease: 'power2.in' }, t);
+  const tile = (sc, icon, label, x, y, size = 360) => { const n = el('div', 'tile', '<i class="' + icon + '"></i>' + (label ? '<b>' + label + '</b>' : ''), sc, { left: px(x), top: px(y), width: px(size), height: px(size) }); n.querySelector('i').style.fontSize = px(size * 0.44); return n; };
+  const chip = (sc, html, cls, x, y) => el('div', 'chip ' + cls, html, sc, { left: px(x), top: px(y) });
+  const center = (node, y) => { node.style.left = '50%'; node.style.top = px(y); gsap.set(node, { xPercent: -50 }); return node; };
+  const sticky = (sc, html, x, y, w, size, t, rot = -3) => { const s = el('div', 'sticky', html, sc, { left: px(x), top: px(y), width: px(w), fontSize: px(size) });
+    tl.fromTo(s, { opacity: 0, scale: 1.5, rotation: rot * 3 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.4)' }, t); fx('slap', t + 0.15, 0.7); return s; };
+  function strike(target, t, pad = 14) {
+    const p = target.offsetParent, r = target.getBoundingClientRect(), pr = p.getBoundingClientRect();
+    const s = el('div', 'strike', null, p, { left: px(r.left - pr.left - pad), top: px(r.top - pr.top + r.height * 0.5 - 9), width: px(r.width + pad * 2) });
+    tl.fromTo(s, { scaleX: 0, rotation: -4 }, { scaleX: 1, rotation: -4, duration: 0.3, ease: 'power2.out' }, t); fx('marker', t, 0.9); return s;
+  }
+  function bigText(sc, html, y, size, t0, at) {   // كلام كبير كلمة بكلمة؛ at = أوقات الكلمات
+    const b = el('div', 'big', null, sc, { top: px(y), fontSize: px(size) });
+    b.innerHTML = html.split(/\s+/).map(w => '<span class="w">' + w + '</span>').join(' ');
+    b.querySelectorAll('.w').forEach((w, j) => tl.fromTo(w, { opacity: 0, y: 40, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(2)' }, (at ? at[j] : t0 + j * 0.12) - 0.05));
+    return b;
+  }
+  function ring(sc, x, y, size, color, stroke = 26) {    // حلقة تايمر؛ set(p) من ٠ لـ١
+    const r = (size - stroke) / 2, c = 2 * Math.PI * r;
+    const n = el('div', 'ring', '<svg viewBox="0 0 ' + size + ' ' + size + '"><circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="#fff" stroke="#E3EEFB" stroke-width="' + stroke + '"/><circle class="arc" cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="' + stroke + '" stroke-linecap="round" stroke-dasharray="' + c + '" stroke-dashoffset="0"/></svg><div class="lab"></div>', sc, { left: px(x), top: px(y), width: px(size), height: px(size), opacity: 0 });
+    n.style.filter = 'drop-shadow(0 18px 30px rgba(4,30,80,.35))';
+    n.set = p => { n.querySelector('.arc').setAttribute('stroke-dashoffset', c * (1 - p)); };
+    n.lab = n.querySelector('.lab'); n.lab.style.fontSize = px(size * 0.24); return n;
+  }
+  // عدّاد: fn(t) بتتنادي كل فريم (حتمية مع seek)
+  const dyn = f => DYN.push(f);
+  const lerp = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
+
+  // ── الكابشن: شنكات ≤٤ كلمات، الكلمة الحالية صفرا ──
+  LN.forEach((a, i) => {
+    const ws = a.t.split(/\s+/), chunks = []; let cur = [];
+    ws.forEach((w, k) => { cur.push(k); if (cur.length >= 4 || /([.،,؟?:!»…]|\.\.\.)[«»]?$/.test(w) && cur.length >= 2) { chunks.push(cur); cur = []; } });
+    if (cur.length) { if (cur.length === 1 && chunks.length && chunks[chunks.length - 1].length < 4) chunks[chunks.length - 1].push(...cur); else chunks.push(cur); }
+    chunks.forEach((ks, c) => {
+      const box = el('div', 'chunk', null, $('cap'));
+      box.innerHTML = ks.map(k => '<span class="w">' + ws[k].replace(/[«»]/g, '').replace(/(\.\.\.|…|[.:،,])+$/, '') + '</span>').join('');
+      const t0 = W(i, ks[0]) - 0.12, t1 = c < chunks.length - 1 ? W(i, chunks[c + 1][0]) - 0.12 : a.next - 0.12;
+      tl.set(box, { display: 'flex' }, t0); tl.fromTo(box, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out' }, t0);
+      box.querySelectorAll('.w').forEach((w, j) => {
+        const tw = W(i, ks[j]) - 0.03;
+        tl.fromTo(w, { color: 'rgba(255,255,255,.38)', scale: 1 }, { color: '#F5E6A3', scale: 1.08, duration: 0.12 }, tw);
+        tl.to(w, { color: '#ffffff', scale: 1, duration: 0.15 }, j < ks.length - 1 ? W(i, ks[j + 1]) - 0.03 : Math.min(t1, tw + 0.5));
+      });
+      tl.set(box, { display: 'none' }, t1);
+    });
+  });
+  tl.to('#g1', { x: 160, y: 120, duration: DUR, ease: 'sine.inOut' }, 0); tl.to('#g2', { x: -200, y: -160, duration: DUR, ease: 'sine.inOut' }, 0);
+  tl.to('#grid', { y: 54 * 3, duration: DUR, ease: 'none' }, 0);
+  $('epn').textContent = AR(window.EPISODE.n);
+  gsap.set('#series', { xPercent: -50, opacity: 0 });
+  if (!window.EPISODE.seriesReveal) tl.fromTo('#series', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.5 }, 0.3);
+
+  window.EPISODE.build({ tl, fx, el, px, $, W, LN, scene, pop, out, tile, chip, center, sticky, strike, bigText, ring, dyn, lerp, VO, DUR, AR });
+
+  // ── الكارت الأخير ──
+  { const e = $('end'), t = VO + 0.05, nx = window.EPISODE.next;
+    tl.to('#cap', { opacity: 0, duration: 0.2 }, t); tl.fromTo(e, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t);
+    const logo = el('div', null, '<img src="assets/logo-full.png" style="height:150px;display:block">', e, { position: 'absolute', padding: '30px 60px', background: '#fff', borderRadius: '60px', boxShadow: 'var(--shadow-card)' });
+    center(logo, 560); pop(logo, t + 0.1, 0, 'whoosh', 0.8);
+    tl.to('#series', { top: 820, scale: 1.25, duration: 0.6, ease: 'power3.inOut' }, t + 0.25);
+    if (nx) { const n = el('div', 'chip white', '<span style="color:var(--ink-2);font-weight:800">الحلقة الجاية:</span> ' + nx, e, {}); center(n, 1010); pop(n, t + 0.7, -2, 'pop', 0.7); }
+    tl.to({}, { duration: 0.01 }, DUR - 0.01);
+  }
+  window.SFX = SFX;
+  window.seek = t => { tl.seek(t, false); DYN.forEach(f => f(t)); };
+  window.DURATION = DUR;
+  window.seek(0);
+}
+window.READY = document.fonts.load('900 60px Cairo').then(() => document.fonts.load('800 60px Cairo')).then(() => document.fonts.ready).then(() => BUILD());
+</script>
+</body>
+</html>

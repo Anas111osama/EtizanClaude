@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Etizan ADHD guide promo</title>
+<link rel="stylesheet" href="assets/fontawesome/all.min.css">
+<style>
+@font-face { font-family: 'Cairo'; src: url('assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root { --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD; --ink: #123161; --ink-2: #4A6690; --sticky: #F5E6A3; --paper: #F7F9FE;
+  --shadow-card: 0 12px 28px rgba(10,61,145,0.18); --shadow-paper: 0 24px 50px rgba(10,40,100,0.22), 0 2px 6px rgba(10,40,100,0.12); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+body { font-family: 'Cairo', sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: var(--paper); }
+/* ورقة كشكول: سطور زرقا خفيفة + خط الهامش */
+#paper { position: absolute; inset: -40px; background:
+  repeating-linear-gradient(180deg, transparent 0 70px, rgba(24,177,254,.16) 70px 72px),
+  radial-gradient(ellipse at 50% 40%, #fff 0%, var(--paper) 70%, #e9f0fb 100%); }
+#margin { position: absolute; top: 0; bottom: 0; right: 120px; width: 3px; background: rgba(2,101,181,.18); }
+#glow { position: absolute; left: 50%; top: 42%; width: 1200px; height: 1200px; margin: -600px 0 0 -600px; border-radius: 50%; background: radial-gradient(circle, rgba(24,177,254,.18), rgba(24,177,254,0) 65%); }
+#logo { position: absolute; top: 56px; right: 160px; height: 70px; z-index: 40; }
+#tag { position: absolute; top: 66px; left: 60px; padding: 8px 24px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 800; font-size: 28px; z-index: 40; opacity: 0; }
+
+.scene { position: absolute; inset: 0; opacity: 0; }
+.big { position: absolute; left: 70px; right: 150px; text-align: center; font-weight: 900; line-height: 1.3; color: var(--ink); }
+.bubble { position: absolute; padding: 26px 40px; background: #fff; border-radius: 34px; font-weight: 900; font-size: 58px; box-shadow: var(--shadow-card); white-space: nowrap; opacity: 0; color: var(--ink); }
+.bubble::after { content: ''; position: absolute; bottom: -22px; right: 70px; border: 22px solid transparent; border-top-color: #fff; border-bottom: 0; }
+.sticky { position: absolute; background: var(--sticky); color: var(--ink); border-radius: 6px; padding: 40px 44px; font-weight: 900; box-shadow: 0 18px 30px rgba(18,49,97,.22); opacity: 0; }
+.sticky::before { content: ''; position: absolute; top: -18px; left: 50%; width: 150px; height: 40px; margin-left: -75px; background: rgba(217,240,253,.85); transform: rotate(-3deg); }
+.strike { position: absolute; height: 16px; border-radius: 10px; background: var(--blue-700); transform-origin: 100% 50%; opacity: .92; }
+.hl { position: absolute; background: rgba(245,230,163,.85); mix-blend-mode: multiply; border-radius: 8px; transform-origin: 100% 50%; }
+.page { position: absolute; background: #fff; box-shadow: var(--shadow-paper); border-radius: 6px; overflow: hidden; opacity: 0; }
+.page img { display: block; width: 100%; }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 14px; padding: 16px 30px; border-radius: 999px; font-weight: 900; font-size: 40px; box-shadow: var(--shadow-card); opacity: 0; white-space: nowrap; }
+.chip.blue { background: var(--blue-700); color: #fff; } .chip.white { background: #fff; color: var(--blue-700); } .chip.ink { background: var(--ink); color: #fff; }
+.w { display: inline-block; opacity: 0; }
+/* الكتاب 3D */
+.book { position: absolute; transform-style: preserve-3d; opacity: 0; }
+.book .front { position: absolute; inset: 0; border-radius: 4px 10px 10px 4px; overflow: hidden; box-shadow: 0 40px 80px rgba(10,40,100,.35); }
+.book .front img { width: 100%; display: block; }
+.book .spine { position: absolute; top: 0; bottom: 0; right: -26px; width: 26px; background: linear-gradient(90deg, #dfe7f5, #fff 40%, #cfd9ea); transform: rotateY(-90deg); transform-origin: 0 50%; }
+/* كروت الأجزاء */
+.part { position: absolute; width: 440px; height: 330px; background: #fff; border-radius: 26px; box-shadow: var(--shadow-card); overflow: hidden; opacity: 0; }
+.part .th { height: 200px; overflow: hidden; background: #eef4fd; } .part .th img { width: 100%; }
+.part .lb { padding: 18px 22px; display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 34px; }
+.part .n { width: 58px; height: 58px; border-radius: 50%; background: var(--blue-700); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; }
+.mess { position: absolute; padding: 18px 26px; border-radius: 18px; background: #fff; color: #8a9bb8; font-weight: 800; font-size: 32px; box-shadow: 0 8px 18px rgba(10,40,100,.12); opacity: 0; border: 2px dashed #c9d6ea; white-space: nowrap; }
+/* الطابعة */
+#printer { position: absolute; left: 50%; width: 640px; margin-left: -320px; height: 230px; opacity: 0; }
+#printer .body { position: absolute; inset: 0; border-radius: 40px; background: linear-gradient(#fff, #e6eefb); box-shadow: var(--shadow-paper); }
+#printer .slot { position: absolute; left: 70px; right: 70px; top: 46px; height: 18px; border-radius: 9px; background: #123161; }
+#printer .led { position: absolute; left: 60px; bottom: 50px; width: 22px; height: 22px; border-radius: 50%; background: #1FA971; box-shadow: 0 0 14px #1FA971; }
+/* الموبايل */
+.phone { position: absolute; width: 520px; height: 1060px; border-radius: 74px; padding: 12px; background: linear-gradient(145deg, #c9dcf5, #6f8fbf 40%, #1d3f73); box-shadow: 0 40px 80px rgba(10,40,100,.35); opacity: 0; }
+.phone::before { content: ''; position: absolute; inset: 5px; border-radius: 69px; background: #0b1730; }
+.phone .scr { position: absolute; left: 22px; top: 22px; right: 22px; bottom: 22px; border-radius: 56px; overflow: hidden; background: #fff; }
+.phone .isl { position: absolute; top: 18px; left: 50%; width: 140px; height: 38px; margin-left: -70px; border-radius: 20px; background: #070d1c; z-index: 5; }
+.dl { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; background: #F4F7FE; }
+.dl .file { width: 170px; height: 210px; border-radius: 18px; background: #fff; box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; font-size: 80px; color: var(--blue-700); }
+.dl b { font-size: 36px; } .dl .bar { width: 340px; height: 18px; border-radius: 9px; background: var(--sky-100); overflow: hidden; } .dl .bar i { display: block; height: 100%; width: 100%; background: var(--blue-700); transform-origin: 100% 50%; }
+.pin { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0; }
+.pin i { font-size: 54px; color: var(--blue-700); filter: drop-shadow(0 6px 8px rgba(10,40,100,.25)); }
+.pin span { padding: 6px 18px; border-radius: 999px; background: #fff; font-weight: 800; font-size: 28px; box-shadow: var(--shadow-card); }
+/* الكابشن */
+#cap { position: absolute; left: 60px; right: 60px; bottom: 90px; min-height: 180px; display: flex; align-items: center; justify-content: center; z-index: 50; }
+#cap .line { display: none; padding: 24px 40px; border-radius: 30px; background: rgba(255,255,255,.94); box-shadow: 0 14px 34px rgba(10,40,100,.16); text-align: center; font-weight: 800; font-size: 46px; line-height: 1.5; color: var(--ink); }
+#cap .w { opacity: 1; color: #b8c6dd; margin: 0 5px; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="paper"></div><div id="margin"></div><div id="glow"></div>
+  <img id="logo" src="assets/logo-full.png">
+  <div id="tag">دليل اتزان المتكامل</div>
+  <div id="scenes"></div>
+  <div id="cap"></div>
+  <div id="flash"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="script.js"></script>
+<script src="times.js"></script>
+<script>
+function BUILD() {
+  const $ = id => document.getElementById(id);
+  const tl = gsap.timeline({ paused: true }), SFX = [];
+  const DUR = window.TIMES.duration, T = window.TIMES.lines;
+  const LN = SCRIPT.flatMap(s => s.lines).map((l, i) => ({ t: l.t, t0: T[i].start, t1: T[i].end, wt: T[i].w, next: T[i + 1] ? T[i + 1].start : DUR }));
+  const W = (i, k) => { const a = LN[i], v = a.wt && a.wt[k]; return v != null ? v : a.t0 + (a.t1 - a.t0) * k / a.t.split(/\s+/).length; };
+  const fx = (name, t, gain = 1) => SFX.push({ t, name, gain });
+  const el = (tag, cls, html, parent, style) => { const d = document.createElement(tag); if (cls) d.className = cls; if (html != null) d.innerHTML = html; if (style) Object.assign(d.style, style); (parent || document.body).appendChild(d); return d; };
+  const scene = () => el('div', 'scene', null, $('scenes'));
+  const enter = (sc, a, b) => { tl.fromTo(sc, { opacity: 0 }, { opacity: 1, duration: 0.35 }, a); tl.to(sc, { opacity: 0, duration: 0.35 }, b); };
+  const px = v => v + 'px';
+  function wordsIn(node, text, i, k0, opts = {}) {
+    const ws = text.split(/\s+/);
+    node.innerHTML = ws.map(w => '<span class="w">' + w + '</span>').join(' ');
+    node.querySelectorAll('.w').forEach((w, j) => tl.fromTo(w, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }, (opts.at ? opts.at[j] : W(i, k0 + j)) - 0.05));
+  }
+  function strike(target, t, pad = 10) {   // خط ماركر على كلام
+    const r = target.getBoundingClientRect(), s = el('div', 'strike', null, target.parentElement);
+    const pr = target.parentElement.getBoundingClientRect();
+    Object.assign(s.style, { left: px(r.left - pr.left - pad), top: px(r.top - pr.top + r.height * 0.52 - 8), width: px(r.width + pad * 2) });
+    tl.fromTo(s, { scaleX: 0, rotation: -3 }, { scaleX: 1, rotation: -3, duration: 0.35, ease: 'power2.out' }, t); fx('marker', t, 0.9);
+  }
+  function hl(parent, box, t, color) {      // هايلايتر على صفحة (box بنسب من الصفحة)
+    const h = el('div', 'hl', null, parent, { left: box[0] * 100 + '%', top: box[1] * 100 + '%', width: box[2] * 100 + '%', height: box[3] * 100 + '%' });
+    if (color) h.style.background = color;
+    tl.fromTo(h, { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: 'power2.out' }, t); fx('marker', t, 0.8); return h;
+  }
+  function page(sc, n, x, y, w, rot = 0) { const p = el('div', 'page', '<img src="../hi/p' + String(n).padStart(2, '0') + '.png">', sc, { left: px(x), top: px(y), width: px(w) }); p.dataset.rot = rot; return p; }
+  function showPage(p, t, from = {}) { tl.fromTo(p, Object.assign({ opacity: 0, y: 120, rotation: (+p.dataset.rot) * 3, scale: 0.92 }, from), { opacity: 1, y: 0, rotation: +p.dataset.rot, scale: 1, duration: 0.6, ease: 'power3.out' }, t); fx('flip', t, 0.9); }
+  function chip(sc, html, cls, x, y, t, rot = 0) { const c = el('div', 'chip ' + cls, html, sc, { left: px(x), top: px(y) }); tl.fromTo(c, { opacity: 0, scale: 0.6, rotation: 0 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.7)' }, t); fx('pop', t, 0.6); return c; }
+  function sticky(sc, html, x, y, w, size, t, rot) { const s = el('div', 'sticky', html, sc, { left: px(x), top: px(y), width: px(w), fontSize: px(size) }); tl.fromTo(s, { opacity: 0, scale: 1.4, rotation: rot * 3 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.4)' }, t); fx('slap', t + 0.15, 0.7); return s; }
+  function book(sc, x, y, w, t, ry = -18) {
+    const h = w * 842.25 / 595.5, b = el('div', 'book', '<div class="front"><img src="../hi/p01.png"></div><div class="spine"></div>', sc, { left: px(x), top: px(y), width: px(w), height: px(h) });
+    sc.style.perspective = '1800px';
+    tl.fromTo(b, { opacity: 0, rotationY: -60, rotationX: 8, scale: 0.7, y: 80 }, { opacity: 1, rotationY: ry, rotationX: 4, scale: 1, y: 0, duration: 0.9, ease: 'power3.out' }, t);
+    return b;
+  }
+
+  // ── الكابشن: الكلمة بتغمق وهي بتتقال ──
+  LN.forEach((a, i) => {
+    const box = el('div', 'line', null, $('cap')); if (a.t.length > 70) box.style.fontSize = '40px';
+    box.innerHTML = a.t.split(/\s+/).map(w => '<span class="w">' + w + '</span>').join(' ');
+    tl.set(box, { display: 'block' }, a.t0 - 0.15); tl.fromTo(box, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25 }, a.t0 - 0.15);
+    box.querySelectorAll('.w').forEach((w, k) => tl.to(w, { color: '#123161', duration: 0.18 }, W(i, k) - 0.04));
+    tl.set(box, { display: 'none' }, a.next - 0.05);
+  });
+  tl.fromTo('#logo', { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.2);
+
+  // ═══ ١ · نفس الجمل كل يوم ═══
+  { const sc = scene(); enter(sc, 0, LN[2].t0 - 0.3);
+    const B = [['«روح ذاكر كويس»', 150, 470, -5, 0], ['«كم مرة قلتلك؟»', 430, 720, 4, 3], ['«ركّز شوية!»', 210, 980, -3, 6]];
+    const bs = B.map(([txt, x, y, r, k]) => { const b = el('div', 'bubble', txt, sc, { left: px(x), top: px(y) });
+      tl.fromTo(b, { opacity: 0, scale: 0.5, rotation: 0 }, { opacity: 1, scale: 1, rotation: r, duration: 0.4, ease: 'back.out(1.8)' }, W(0, k) - 0.05); fx('pop', W(0, k), 0.8); return b; });
+    // التكرار: نسخ باهتة بتتراكم
+    const C = [['«روح ذاكر كويس»', 520, 380, 6], ['«ركّز!»', 640, 1150, -7], ['«كم مرة؟»', 90, 1230, 5], ['«ذاكر!»', 700, 560, -4], ['«قلتلك!»', 60, 820, 7], ['«ركّز شوية»', 470, 1020, -2]];
+    C.forEach(([txt, x, y, r], j) => { const b = el('div', 'bubble', txt, sc, { left: px(x), top: px(y), fontSize: '44px', opacity: 0 });
+      const at = W(1, 0) + j * ((W(1, 4) - W(1, 0)) / C.length);
+      tl.fromTo(b, { opacity: 0, scale: 0.6, rotation: 0 }, { opacity: 0.55, scale: 1, rotation: r, duration: 0.3, ease: 'back.out(1.6)' }, at); fx('pop', at, 0.35); });
+    const head = el('div', 'big', '', sc, { top: '250px', fontSize: '76px' }); wordsIn(head, 'نفس الجمل… كل يوم', 1, 0, { at: [W(1, 0), W(1, 1), W(1, 2), W(1, 3)] });
+    tl.to(sc.querySelectorAll('.bubble'), { x: 'random(-14,14)', duration: 0.06, repeat: 5, yoyo: true }, W(1, 4));
+    tl.to(sc.querySelectorAll('.bubble'), { opacity: 0.18, filter: 'grayscale(1)', duration: 0.5 }, W(1, 6));
+  }
+
+  // ═══ ٢ · مش مقصّرين… مش كسلان ═══
+  { const sc = scene(); enter(sc, LN[2].t0 - 0.3, LN[4].t0 - 0.3);
+    const a1 = el('div', 'big', '<span id="s1">إنكم مقصّرين</span>', sc, { top: '520px', fontSize: '96px' });
+    const a2 = el('div', 'big', '<span id="s2">طفلكم كسلان</span>', sc, { top: '700px', fontSize: '96px' });
+    tl.fromTo(a1, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4 }, W(2, 2) - 0.2);
+    tl.fromTo(a2, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4 }, W(2, 6) - 0.2);
+    strike(a1.firstChild, W(2, 3) + 0.15); strike(a2.firstChild, W(2, 7) + 0.15);
+    tl.to([a1, a2], { y: -360, scale: 0.6, opacity: 0, duration: 0.5, ease: 'power2.in' }, LN[3].t0 - 0.2);
+    const p = page(sc, 7, 200, 330, 680, -2); showPage(p, LN[3].t0 + 0.1);
+    hl(p, [0.30, 0.115, 0.65, 0.075], W(3, 4) - 0.05);
+    const lb = el('div', 'big', '', sc, { top: '1340px', fontSize: '60px' }); wordsIn(lb, 'محتاج طريقة كلام مختلفة', 3, 9);
+  }
+
+  // ═══ ٣ · بدل… قولوا ═══
+  { const sc = scene(); enter(sc, LN[4].t0 - 0.3, LN[6].t0 - 0.3);
+    const lab1 = chip(sc, 'بدل', 'ink', 790, 360, W(4, 1) - 0.1, -3);
+    const old = el('div', 'bubble', '<span>«روح ذاكر»</span>', sc, { left: '260px', top: '420px', fontSize: '76px' });
+    tl.fromTo(old, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.4, ease: 'back.out(1.7)' }, W(4, 2) - 0.1);
+    strike(old.firstChild, W(4, 4) - 0.1);
+    const lab2 = chip(sc, 'قولوا', 'blue', 790, 700, W(4, 4) - 0.05, 3);
+    const st = el('div', 'sticky', '', sc, { left: '120px', top: '780px', width: '840px', fontSize: '70px', lineHeight: '1.35', textAlign: 'center' });
+    tl.fromTo(st, { opacity: 0, scale: 1.3, rotation: 6 }, { opacity: 1, scale: 1, rotation: 2, duration: 0.45, ease: 'back.out(1.4)' }, W(4, 5) - 0.25); fx('slap', W(4, 5) - 0.1, 0.8);
+    wordsIn(st, '«افتح كتاب الرياضيات، وابدأ بأول سؤالين بس»', 4, 5);
+    // من الدليل: صفحة «بدلاً من / استخدم»
+    tl.to([old, lab1, lab2], { opacity: 0, y: -80, duration: 0.4 }, LN[5].t0 - 0.2);
+    tl.to(st, { y: -440, scale: 0.78, duration: 0.6, ease: 'power3.inOut' }, LN[5].t0 - 0.2);
+    const p = page(sc, 40, 170, 760, 740, 1.5); showPage(p, LN[5].t0);
+    hl(p, [0.05, 0.385, 0.92, 0.07], W(5, 2) - 0.1, 'rgba(24,177,254,.28)');
+  }
+
+  // ═══ ٤ · الدليل: الغلاف · ٤ أجزاء · كله في مكان واحد ═══
+  { const sc = scene(); enter(sc, LN[6].t0 - 0.3, LN[9].t0 - 0.3);
+    const b = book(sc, 300, 360, 480, W(6, 1) - 0.2); fx('rise', W(6, 1) - 1.1, 0.8); fx('lowhit', W(6, 1) + 0.2, 0.5);
+    tl.to(b, { rotationY: -8, duration: LN[6].t1 - W(6, 1), ease: 'sine.inOut' }, W(6, 1) + 0.7);
+    tl.to('#tag', { opacity: 1, duration: 0.4 }, W(6, 2));
+    // الأجزاء الأربعة
+    tl.to(b, { x: 170, y: -160, scale: 0.42, rotationY: -14, duration: 0.6, ease: 'power3.inOut' }, LN[7].t0 - 0.2);
+    const P = [[6, 'فهم العقل', 560, 600, 3], [15, 'ليه البداية صعبة', 80, 600, 5], [25, 'حلول من غير أدوية', 560, 980, 9], [35, 'البيت والمدرسة', 80, 980, 14]];
+    const cards = P.map(([pg, txt, x, y, k], j) => { const c = el('div', 'part', '<div class="th"><img src="../hi/p' + String(pg).padStart(2, '0') + '.png"></div><div class="lb"><span class="n">' + '١٢٣٤'[j] + '</span>' + txt + '</div>', sc, { left: px(x), top: px(y) });
+      tl.fromTo(c, { opacity: 0, y: 80, rotation: j % 2 ? 3 : -3 }, { opacity: 1, y: 0, rotation: 0, duration: 0.5, ease: 'back.out(1.5)' }, W(7, k) - 0.1); fx('flip', W(7, k), 0.6); return c; });
+    // نصايح متفرّقة حوالين ← بتطير، والأجزاء بتدخل الكتاب
+    const M = [['نصيحة من جروب', 40, 470, -8], ['فيديو ٣٠ ثانية', 620, 430, 6], ['بوست', 80, 1340, 5], ['كومنت', 760, 1350, -6], ['مقال مترجم', 380, 1430, 3], ['رأي قريبة', 700, 1250, -4]];
+    const ms = M.map(([txt, x, y, r], j) => { const m = el('div', 'mess', txt, sc, { left: px(x), top: px(y) });
+      const at = W(8, 6) + j * 0.12; tl.fromTo(m, { opacity: 0, scale: 0.7, rotation: 0 }, { opacity: 1, scale: 1, rotation: r, duration: 0.3 }, at); return m; });
+    tl.to(ms, { x: (j) => (j % 2 ? 900 : -900), opacity: 0, rotation: 30, duration: 0.6, ease: 'power2.in', stagger: 0.05 }, W(8, 11) - 0.1); fx('whoosh', W(8, 11) - 0.1, 0.6);
+    tl.to(cards, { x: (j) => 300 - [560, 80, 560, 80][j], y: (j) => 380 - [600, 600, 980, 980][j], scale: 0.3, opacity: 0, duration: 0.6, ease: 'power3.in', stagger: 0.06 }, W(8, 0) - 0.1);
+    tl.to(b, { x: 0, y: 40, scale: 0.9, rotationY: -16, duration: 0.6, ease: 'power3.out' }, W(8, 2));
+    const jar = el('div', 'chip white', '<span>Executive Dysfunction</span>', sc, { left: '90px', top: '1160px', fontFamily: 'Cairo', direction: 'ltr' });
+    tl.fromTo(jar, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.35 }, W(8, 13) - 0.2);
+    strike(jar.firstChild, W(8, 14) + 0.05);
+    sticky(sc, 'كلام بسيط', 640, 1150, 340, 52, W(8, 15) - 0.05, 4);
+  }
+
+  // ═══ ٥ · صفحتين في القعدة · قوايم تتطبع · خطة ٧ أيام ═══
+  { const sc = scene(); enter(sc, LN[9].t0 - 0.3, LN[11].t0 - 0.3);
+    const L = page(sc, 26, 545, 420, 450, -1.5), R = page(sc, 27, 85, 420, 450, 1.5);
+    showPage(R, W(9, 0) - 0.1); showPage(L, W(9, 0) + 0.15);
+    sticky(sc, 'صفحتين = قعدة واحدة', 230, 1130, 620, 54, W(9, 2) - 0.05, -2);
+    // الطابعة
+    tl.to([L, R], { opacity: 0, y: -120, duration: 0.4 }, LN[10].t0 - 0.2); tl.to(sc.querySelectorAll('.sticky'), { opacity: 0, duration: 0.3 }, LN[10].t0 - 0.2);
+    const pr = el('div', null, '<div class="body"></div><div class="slot"></div><div class="led"></div>', sc, { top: '1050px' }); pr.id = 'printer';
+    tl.fromTo(pr, { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.45 }, LN[10].t0 - 0.1);
+    const pp = page(sc, 39, 290, 300, 500, 0); pp.style.zIndex = 2; pr.style.zIndex = 3;
+    tl.fromTo(pp, { opacity: 1, y: 760, scaleY: 0.2, transformOrigin: '50% 100%' }, { y: 0, scaleY: 1, duration: 1.1, ease: 'power1.inOut' }, W(10, 2)); fx('print', W(10, 2), 0.8);
+    tl.to(pp, { x: -150, y: -30, rotation: -5, scale: 0.62, duration: 0.5, ease: 'power3.out' }, W(10, 4)); fx('slap', W(10, 4) + 0.3, 0.6);
+    tl.to(pr, { opacity: 0, y: 100, duration: 0.4 }, W(10, 4) + 0.1);
+    // خطة ٧ أيام
+    const p7 = page(sc, 41, 330, 520, 640, 1.5); showPage(p7, W(10, 5) - 0.15);
+    for (let k = 0; k < 7; k++) { const at = W(10, 8) + k * Math.max(0.12, (LN[10].t1 - W(10, 8)) / 7.5);
+      hl(p7, [0.04, 0.355 + 0.064 * k, 0.92, 0.058], at, 'rgba(24,177,254,.22)'); fx('pencil', at, 0.6); }
+  }
+
+  // ═══ ٦ · PDF على الموبايل في أي مكان في مصر ═══
+  { const sc = scene(); enter(sc, LN[11].t0 - 0.3, LN[13].t0 - 0.3);
+    const ph = el('div', 'phone', '<div class="scr"><div class="isl"></div><div class="dl"><div class="file"><i class="fa-solid fa-file-pdf"></i></div><b>دليل اتزان.pdf</b><div class="bar"><i></i></div></div><img class="cv" src="../hi/p01.png" style="position:absolute;inset:0;width:100%;opacity:0"><img class="pg" src="../hi/p26.png" style="position:absolute;left:0;top:0;width:100%;opacity:0"></div>', sc, { left: '280px', top: '330px' });
+    tl.fromTo(ph, { opacity: 0, y: 200 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, LN[11].t0 - 0.1); fx('whoosh', LN[11].t0 - 0.1, 0.6);
+    tl.fromTo(ph.querySelector('.bar i'), { scaleX: 0 }, { scaleX: 1, duration: W(11, 4) - W(11, 0), ease: 'power1.inOut' }, W(11, 0));
+    tl.to(ph.querySelector('.cv'), { opacity: 1, duration: 0.35 }, W(11, 4)); tl.to(ph.querySelector('.dl'), { opacity: 0, duration: 0.2 }, W(11, 4) + 0.3); fx('pop', W(11, 4), 0.9); fx('lowhit', W(11, 4), 0.4);
+    const C = [['الإسكندرية', 90, 470], ['القاهرة', 820, 560], ['المنصورة', 60, 820], ['أسيوط', 840, 900], ['أسوان', 140, 1180]];
+    C.forEach(([n, x, y], j) => { const p = el('div', 'pin', '<i class="fa-solid fa-location-dot"></i><span>' + n + '</span>', sc, { left: px(x), top: px(y) });
+      const at = W(11, 9) + j * 0.22; tl.fromTo(p, { opacity: 0, y: -60 }, { opacity: 1, y: 0, duration: 0.4, ease: 'bounce.out' }, at); fx('pop', at, 0.5); });
+    // ترجعوا لها · تطبعوا منها
+    tl.to(sc.querySelectorAll('.pin'), { opacity: 0, duration: 0.3 }, LN[12].t0 - 0.2);
+    tl.to(ph.querySelector('.cv'), { opacity: 0, duration: 0.3 }, W(12, 0)); tl.fromTo(ph.querySelector('.pg'), { opacity: 0, y: 0 }, { opacity: 1, duration: 0.3 }, W(12, 0));
+    tl.to(ph.querySelector('.pg'), { y: -120, duration: W(12, 4) - W(12, 0), ease: 'sine.inOut' }, W(12, 0) + 0.2); fx('flip', W(12, 0), 0.6);
+    chip(sc, '<i class="fa-solid fa-magnifying-glass"></i> وقت ما تحتاجوا', 'white', 560, 1200, W(12, 2) - 0.1, -3);
+    const mini = page(sc, 39, 60, 1080, 330, -6); tl.fromTo(mini, { opacity: 0, y: 100, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, rotation: -6, duration: 0.6, ease: 'power3.out' }, W(12, 5)); fx('print', W(12, 5) - 0.3, 0.6);
+  }
+
+  // ═══ ٧ · بصراحة: مش علاج · مكمّل للتطبيق ═══
+  { const sc = scene(); enter(sc, LN[13].t0 - 0.3, LN[15].t0 - 0.3);
+    const p = page(sc, 2, 160, 330, 760, -1); showPage(p, LN[13].t0);
+    hl(p, [0.10, 0.39, 0.80, 0.17], W(13, 3) - 0.05, 'rgba(24,177,254,.22)');
+    chip(sc, 'مش علاج', 'ink', 640, 1200, W(13, 5) - 0.05, -4);
+    chip(sc, 'مش بديل للدكتور', 'ink', 120, 1290, W(13, 8) - 0.05, 3);
+    sticky(sc, 'دعم ليكم', 300, 1050, 480, 64, W(13, 10) - 0.05, -2);
+    // مكمّل للتطبيق
+    tl.to(sc.querySelectorAll('.page, .chip, .sticky'), { opacity: 0, y: -100, duration: 0.4 }, LN[14].t0 - 0.25);
+    const b = book(sc, 120, 560, 380, W(14, 0) - 0.1, -14);
+    const ph = el('div', 'phone', '<div class="scr"><div class="isl"></div><img src="../../App%20Video/screens/home.png" style="width:100%"></div>', sc, { left: '580px', top: '470px', width: '400px', height: '820px' });
+    ph.querySelector('.scr').style.borderRadius = '46px';
+    tl.fromTo(ph, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out' }, W(14, 1) - 0.1); fx('whoosh', W(14, 1) - 0.1, 0.5);
+    const plus = el('div', 'big', '+', sc, { top: '760px', left: '470px', right: 'auto', width: '120px', fontSize: '140px', color: '#0265B5' });
+    tl.fromTo(plus, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(2)' }, W(14, 2)); fx('pop', W(14, 2), 0.7);
+    tl.to(plus, { opacity: 0, duration: 0.3 }, W(14, 4) - 0.1);
+    tl.to(b, { x: 300, y: 560, rotationY: 0, rotationX: 62, scale: 1.05, duration: 0.7, ease: 'power3.inOut' }, W(14, 4) - 0.1);   // الكتاب يبقى قاعدة
+    tl.to(ph, { x: -250, y: -120, duration: 0.7, ease: 'power3.inOut' }, W(14, 4) - 0.1); fx('lowhit', W(14, 5), 0.5);
+    chip(sc, 'الأساس', 'blue', 400, 1360, W(14, 5), 0);
+  }
+
+  // ═══ ٨ · عقله مش مكسور · ابدأوا بصفحة ═══
+  { const sc = scene(); enter(sc, LN[15].t0 - 0.3, DUR + 1);
+    const p = page(sc, 44, 140, 330, 800, 1); showPage(p, LN[15].t0);
+    hl(p, [0.33, 0.30, 0.42, 0.11], W(15, 1) - 0.1);
+    chip(sc, 'نظام أوضح', 'blue', 620, 1150, W(15, 6) - 0.05, -4);
+    chip(sc, 'خطوة أصغر', 'white', 140, 1210, W(15, 8) - 0.05, 3);
+    chip(sc, 'حد فاهمه', 'ink', 420, 1310, W(15, 10) - 0.05, -2);
+    // النهاية
+    tl.to(sc.querySelectorAll('.page, .chip'), { opacity: 0, y: -100, duration: 0.4 }, LN[16].t0 - 0.25);
+    const b = book(sc, 330, 380, 420, LN[16].t0 - 0.05, -16); fx('rise', LN[16].t0 - 0.9, 0.7);
+    sticky(sc, 'ابدأوا بصفحة واحدة', 150, 1030, 560, 50, W(16, 0) - 0.05, -4);
+    const cta = el('div', 'chip blue', 'اطلبوا الدليل من اتزان', sc, { left: '0', right: '0', margin: '0 auto', width: 'max-content', top: '1210px', fontSize: '54px', padding: '26px 54px', boxShadow: '0 0 0 5px #D9F0FD, 0 20px 40px rgba(2,101,181,.35)' });
+    tl.fromTo(cta, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.8)' }, W(16, 4) - 0.05); fx('lowhit', W(16, 4), 0.6); fx('pop', W(16, 4), 0.8);
+    // تلميح السعر: على الشاشة بس (الصوت مابيقولوش) — ٣٠٠ بتتشطب، و٢٠٠ جنيه جنب الغلاف
+    const tag = el('div', 'sticky', '<span class="old" style="color:#8a9bb8;font-size:46px">٣٠٠</span><div style="font-size:74px;line-height:1.1">٢٠٠ <small style="font-size:40px">جنيه</small></div>', sc,
+      { left: '96px', top: '640px', width: '300px', textAlign: 'center', padding: '30px 20px', background: '#fff', boxShadow: '0 0 0 4px #F5E6A3, 0 18px 30px rgba(18,49,97,.22)' });
+    tl.fromTo(tag, { opacity: 0, scale: 1.4, rotation: -18 }, { opacity: 1, scale: 1, rotation: -7, duration: 0.45, ease: 'back.out(1.5)' }, W(16, 5) - 0.05); fx('slap', W(16, 5) + 0.1, 0.8);
+    strike(tag.querySelector('.old'), W(16, 5) + 0.45, 14);
+    const ship = el('div', 'chip white', '<i class="fa-solid fa-file-pdf"></i> PDF · من غير مصاريف شحن', sc, { left: '0', right: '0', margin: '0 auto', width: 'max-content', top: '1360px', fontSize: '36px' });
+    tl.fromTo(ship, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, W(16, 6)); fx('pop', W(16, 6), 0.5);
+    tl.to('#cap', { opacity: 0, duration: 0.4 }, LN[16].t1 + 0.4);
+  }
+  tl.to('#stage', { opacity: 0, duration: 0.6 }, DUR - 0.6);
+  tl.set({}, {}, DUR);
+  window.SFX_EVENTS = SFX.sort((a, b) => a.t - b.t);
+  window.seek = t => { tl.seek(t, false); };
+  window.seek(0);
+}
+window.READY = Promise.all([document.fonts.load('900 76px Cairo'), document.fonts.load('800 46px Cairo')]).then(() => { BUILD(); return Promise.all([...document.images].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))); });
+</script>
+</body>
+</html>

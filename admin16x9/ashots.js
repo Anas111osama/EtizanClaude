@@ -1,0 +1,35 @@
+// شاشات فيديو لوحة المؤسسات. type: school | speech | behavior · role: admin (أخصائي) | manager | null (تسجيل الدخول)
+const W = (ms) => `await new Promise(r=>setTimeout(r,${ms}));`;
+const sheet = (code) => `(async()=>{const c=await import('/assets/js/admin/core.js'); await c.loadMembers(); const m=c.memberById('mem0'); const s=await import('/assets/js/admin/sheets.js'); ${code}; ${W(1000)}})()`;
+const clickText = (t, sel = 'button, a') => `(async()=>{const e=[...document.querySelectorAll('${sel}')].filter(x=>x.offsetParent!==null&&(x.innerText||'').includes('${t}')).sort((a,b)=>a.innerText.length-b.innerText.length)[0]; e&&e.click(); ${W(900)}})()`;
+module.exports = [
+  { name: 'login', role: null, targets: { card: '$.login-card, form@div', email: '$#lg-email' } },
+  { name: 'today', targets: { kpis: '$.kpis', queue: '$.card.queue', codes: 'أكواد الانضمام@.card', newTask: 'مهمة جديدة@button, a', ibtn: '&.info-i:2' } },
+  { name: 'today_speech', type: 'speech', hash: '#/today', targets: { kpis: '$.kpis' } },
+  { name: 'members', hash: '#/members', targets: { table: '$table', rows: '&tbody tr:4', seen: 'col:آخر ظهور:5', week: 'col:الأسبوع:5' } },
+  { name: 'members_sel', hash: '#/members', act: `(async()=>{const b=[...document.querySelectorAll('.sel input, .sel-cell input, input[type=checkbox]')].slice(1,4); b.forEach(x=>x.click()); ${W(800)}})()`, targets: { bulk: '$.bulk', rows: '&tbody tr:4' } },
+  { name: 'm_overview', hash: '#/member/mem0', targets: { hero: '$.card.hero', tabs: '$.tabs', usage: '%main .card.chart|1' } },
+  { name: 'm_progress', hash: '#/member/mem0/progress', targets: { charts: '&.card.chart:2', tabs: '$.tabs' } },
+  { name: 'm_plan', hash: '#/member/mem0/plan', targets: { goals: '&.goal:2', tabs: '$.tabs', planTab: '$.tabs .on, .tabs [aria-selected=true]' } },
+  { name: 'm_plan_center', type: 'speech', hash: '#/member/mem0/plan', targets: { tabs: '$.tabs', goals: '&.goal:2', planTab: '$.tabs .on, .tabs [aria-selected=true]' } },
+  { name: 'goal_sheet', hash: '#/member/mem0/plan', act: sheet(`s.goalSheet(m, ()=>{})`), targets: { sheet: '$.sheet, [role=dialog]' } },
+  { name: 'm_sessions', type: 'behavior', hash: '#/member/mem0/sessions', targets: { tabs: '$.tabs', list: '%main .card:not(.hero)|0' } },
+  { name: 'session_sheet', type: 'behavior', hash: '#/member/mem0/sessions', act: sheet(`s.sessionSheet(m, ()=>{})`), targets: { sheet: '$.sheet, [role=dialog]' } },
+  { name: 'm_tasks', hash: '#/member/mem0/tasks', targets: { tabs: '$.tabs', list: '$main .card.queue' } },
+  { name: 'task_sheet', hash: '#/member/mem0/tasks', act: sheet(`s.taskSheet(['mem0'], ()=>{})`), targets: { sheet: '$.sheet, [role=dialog]' } },
+  { name: 'm_behavior', hash: '#/member/mem0/behavior', targets: { tabs: '$.tabs', card: '$main .card.chart' } },
+  { name: 'm_behavior_abc', type: 'behavior', hash: '#/member/mem0/behavior', targets: { tabs: '$.tabs', card: '%main .card.chart|1', bcard: '$main .card.chart' } },
+  { name: 'abc_sheet', type: 'behavior', hash: '#/member/mem0/behavior', act: sheet(`s.abcSheet(m, ()=>{})`), targets: { sheet: '$.sheet, [role=dialog]' } },
+  { name: 'zanto_sheet', hash: '#/member/mem0', act: sheet(`s.messageSheet(m, null, ()=>{})`), targets: { sheet: '$.sheet, [role=dialog]' } },
+  { name: 'm_reports', hash: '#/member/mem0/reports', targets: { tabs: '$.tabs', card: '$[class*=paper]', note: '$main .card.pad' } },
+  { name: 'm_notes', hash: '#/member/mem0/notes', targets: { tabs: '$.tabs', card: '&main .card:not(.hero):2' } },
+  { name: 'requests', hash: '#/requests', targets: { join: 'طلبات الانضمام@.card, section', help: 'طلبات المساعدة@.card, section' } },
+  { name: 'info', hash: '#/today', act: `(async()=>{const b=[...document.querySelectorAll('.info-i')][1]||document.querySelector('.info-i'); b&&b.click(); ${W(900)}})()`, targets: { box: '$[role=dialog]' } },
+  { name: 'guide', hash: '#/today', act: `(async()=>{const h=await import('/assets/js/admin/help.js'); h.guide(); ${W(900)}})()`, targets: { box: '$[role=dialog], .overlay .box, .modal' } },
+  { name: 'mg_summary', role: 'manager', hash: '#/summary', targets: { kpis: '$.kpis', charts: '&.card.chart:2' } },
+  { name: 'mg_requests', role: 'manager', caseload: true, hash: '#/requests', targets: { join: 'طلبات الانضمام@.card, section' } },
+  { name: 'mg_roster', role: 'manager', caseload: true, hash: '#/roster', targets: { table: '$table', kpis: '$.kpis' } },
+  { name: 'mg_team', role: 'manager', hash: '#/team', targets: { cards: '&.card.pad:4' } },
+  { name: 'mg_report', role: 'manager', hash: '#/reports', wait: 3000, targets: { paper: '$[data-paper]' } },
+  { name: 'caseload_staff', caseload: true, hash: '#/members', targets: { table: '$table' } },
+];
