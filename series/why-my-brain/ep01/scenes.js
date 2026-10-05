@@ -47,7 +47,7 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
     const lap = laptop(sc, 0, P(2).next - 0.1, { zoom: [1.0, 1.16], focus: [0.5, 0.42], fadeIn: 0.6, shade: true, box: L(undefined, { x: 0, y: 330, w: 1080, h: 608 }) });
     const t12 = T(2, 12) - 0.1, t14 = T(2, 14) + 0.25;
     lap.tabs(t => t < t12 ? 1 : Math.min(17, 1 + Math.floor(16 * lerp(t, t12, t14) ** 1.3 + 0.0001)));
-    sticky(sc, 'المطلوب:<br>حاجة واحدة', L(300, 230), L(560, 320), L(290, 300), L(40, 42), T(1, 1) - 0.05, -5);
+    const stk = sticky(sc, 'المطلوب:<br>حاجة واحدة', L(300, 230), L(560, 320), L(290, 300), L(40, 42), T(1, 1) - 0.05, -5);
     const clk = label(sc, '<i class="fa-regular fa-clock" style="color:var(--blue-700)"></i>مفتوح من الصبح', L(1560, 760), L(560, 1010), T(1, 9) - 0.1, 'ink', L(34, 36)); fx('pop', T(1, 9), 0.6);
     out(clk, T(2, 5) - 0.2);
     capWords(sc, 1, 0, 6, { ...CAP, hl: [1, 2], end: T(1, 7) - 0.1 });
@@ -70,6 +70,7 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
     const fz = T(4, 0);
     const r4 = foot(sc, 'R04b', T(3, 14) - 0.1, T4 + 0.25, { from: 6.0, freeze: fz, focus: [0.49, 0.45], zoom: [1.0, 1.08], fadeIn: 0.25, shade: true });
     capWords(sc, 3, 14, 18, { ...CAP, hl: [16, 17, 18], end: fz - 0.1 });
+    out(stk, fz - 0.1, 0.2);
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r4.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
     tl.to(r4.tint, { opacity: 0.82, duration: 0.7 }, fz + 0.15);
@@ -205,7 +206,7 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
 
   // ════════ ١٥ · رجوع للواقع ════════
   { const sc = scene(P(15).t0 - 0.45, P(16).t0 - 0.9, 'real');
-    const r = foot(sc, 'R04b', P(15).t0 - 0.45, P(16).t0 - 0.9, { from: 0.5, speed: 0.85, focus: [0.5, 0.62], zoom: [1.18, 1.28], fadeIn: 0.4, shade: true });
+    const r = foot(sc, 'R04b', P(15).t0 - 0.45, P(16).t0 - 0.9, { from: 0.5, speed: 0.85, focus: L([0.5, 0.36], [0.5, 0.4]), zoom: [1.04, 1.1], fadeIn: 0.4, shade: true });
     tl.fromTo(r.tint, { opacity: 0.85 }, { opacity: 0, duration: 0.9, immediateRender: false }, P(15).t0 - 0.3); fx('reverse', P(15).t0 - 0.9, 0.5); fx('whoosh', P(15).t0 - 0.3, 0.6);
     capWords(sc, 15, 7, 13, { ...CAP, hl: [11, 12], end: T(15, 14) - 0.1 });
     capWords(sc, 15, 14, 20, { ...CAP, hl: [16] });
@@ -250,9 +251,9 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
     capWords(sc, 19, 0, 6, { y: L(170, 230), size: L(64, 66), color: 'var(--ink)', shadow: false, hl: [5, 6], hlCls: 'hl' });
     const C = [['R06', 'غيّر مكانك', 'fa-location-dot', 7], ['R07', 'اشتغل وصاحبك معاك', 'fa-video', 9], ['R08', 'قبل ما الشاي يبرد', 'fa-mug-hot', 17]];
     const BX = L([{ x: 1290, y: 380, w: 520, h: 293 }, { x: 700, y: 380, w: 520, h: 293 }, { x: 110, y: 380, w: 520, h: 293 }],
-                 [{ x: 90, y: 420, w: 900, h: 330 }, { x: 90, y: 860, w: 900, h: 330 }, { x: 90, y: 1300, w: 900, h: 330 }]);
+                 [{ x: 110, y: 400, w: 860, h: 420 }, { x: 110, y: 880, w: 860, h: 420 }, { x: 110, y: 1360, w: 860, h: 420 }]);
     C.forEach(([id, tx, ic, k], j) => { const b = BX[j], t = T(19, k) - 0.15;
-      const f = foot(sc, id, t, P(20).t0 - 0.3, { box: b, radius: 30, focus: id === 'R07' ? [0.5, 0.35] : [0.5, 0.5], zoom: [1.05, 1.12], fadeIn: 0.3, fadeOut: false });
+      const f = foot(sc, id, t, P(20).t0 - 0.3, { box: b, radius: 30, focus: { R06: [0.62, 0.3], R07: [0.5, 0.22], R08: [0.5, 0.5] }[id], zoom: [1.0, 1.05], fadeIn: 0.3, fadeOut: false });
       tl.fromTo(f, { y: 60 }, { y: 0, duration: 0.45, ease: 'power3.out', immediateRender: false }, t); fx('whoosh', t, 0.6);
       const c = chip(sc, '<i class="fa-solid ' + ic + '"></i>' + tx, 'sticky', b.x + b.w / 2, b.y + b.h + L(10, -20), L(36, 38)); c.style.zIndex = 4; pop(c, t + 0.25, j % 2 ? 2 : -2, 'pop', 0.6); });
   }
@@ -287,7 +288,7 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
 
   // ════════ ٢٢ · الواقع: السؤال الصح ════════
   { const sc = scene(P(22).t0 - 0.45, P(23).t0 - 0.3, 'real');
-    foot(sc, 'R10', P(22).t0 - 0.45, P(23).t0 - 0.3, { from: 0.5, speed: 0.9, focus: [0.42, 0.5], zoom: [1.0, 1.1], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.5, 0.6);
+    foot(sc, 'R10', P(22).t0 - 0.45, P(23).t0 - 0.3, { from: 4.0, speed: 0.85, focus: L([0.3, 0.3], [0.2, 0.3]), zoom: [1.0, 1.03], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.5, 0.6);
     const q1 = chip(sc, '«أنا ليه كده؟»', 'glass', CX, L(760, 1450), L(64, 68)); q1.style.background = 'rgba(6,16,36,.55)';
     pop(q1, T(22, 14) - 0.1, -2, 'pop', 0.6); strike(q1, T(22, 17) - 0.1); tl.to(q1, { opacity: 0, y: -40, duration: 0.3 }, T(22, 17) + 0.35);
     const q2 = words(sc, '«إيه *أصغر* *خطوة* أقدر أعملها دلوقتي؟»', { y: L(800, 1440), size: L(76, 76), at: [18, 19, 20, 21, 22, 23].map(k => T(22, k)) });
