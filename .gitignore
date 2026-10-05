@@ -2,3 +2,8 @@ node_modules
 __pycache__/
 series/**/stock/*.mp4
 series/**/build/*.log
+series/**/build/parts/
+series/**/build/tmp/
+series/**/build/frames/
+series/**/out/
+series/**/build/mix.wav

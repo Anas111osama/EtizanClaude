@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ليه دماغي بتعمل كده؟ — engine</title>
+<link rel="stylesheet" href="../../../etizan-explainer-video/pipeline/assets/fontawesome/all.min.css">
+<script>
+// video.html?ep=ep01&o=h|v  — h = 1920×1080 · v = 1080×1920
+const Q = new URLSearchParams(location.search), EP_ID = Q.get('ep') || 'ep01', O = Q.get('o') === 'v' ? 'v' : 'h';
+const SW = O === 'h' ? 1920 : 1080, SH = O === 'h' ? 1080 : 1920;
+document.write('<style>html,body{width:' + SW + 'px;height:' + SH + 'px}</style>');
+</script>
+<style>
+@font-face { font-family: 'Cairo'; src: url('../../../etizan-explainer-video/pipeline/assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root { --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD; --cyan-dot: #04F1FF;
+  --surface-soft: #F4F7FE; --ink: #123161; --ink-2: #4A6690; --sticky: #F5E6A3; --red: #E5484D; --strike: #FF6B6B; --green: #1FA971;
+  --shadow-card: 0 18px 40px rgba(4,30,80,.30), 0 3px 8px rgba(4,30,80,.14); --shadow-float: 0 40px 80px rgba(2,30,80,.40); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow: hidden; background: #071a3d; }
+body { font-family: 'Cairo', sans-serif; -webkit-font-smoothing: antialiased; color: #fff; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+.bg { position: absolute; inset: 0; }
+#bgBlue { background: linear-gradient(160deg, #0A3D91 0%, #0265B5 60%, #1E88D4 100%); }
+#bgBlue .dots, #bgLight .dots { position: absolute; inset: -60px; background-size: 56px 56px; }
+#bgBlue .dots { background-image: radial-gradient(rgba(255,255,255,.09) 2.4px, transparent 2.6px); }
+#bgLight { background: var(--surface-soft); opacity: 0; }
+#bgLight .dots { background-image: radial-gradient(rgba(18,49,97,.07) 2.4px, transparent 2.6px); }
+.glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(24,177,254,.45), rgba(24,177,254,0) 65%); }
+.scene { position: absolute; inset: 0; opacity: 0; }
+.abs { position: absolute; }
+/* واقع */
+.foot { position: absolute; overflow: hidden; }
+.src { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.src > img { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+.tint { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(10,61,145,.92), rgba(2,101,181,.85)); opacity: 0; }
+.shade { position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(180deg, rgba(4,14,34,0), rgba(4,14,34,.78)); }
+/* كتابة */
+.w { display: inline-block; }
+.cap { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; line-height: 1.25; padding: 0 80px; }
+.cap .w { opacity: 0; margin: 0 .12em; }
+.y { color: var(--sticky); }
+.k { color: var(--sky-400); }
+.hl { background: linear-gradient(transparent 58%, var(--sticky) 58%, var(--sticky) 92%, transparent 92%); padding: 0 6px; }
+.big { position: absolute; left: 0; right: 0; text-align: center; font-weight: 1000; line-height: 1.2; padding: 0 60px; }
+.pill { position: absolute; display: inline-flex; align-items: center; gap: 14px; padding: 10px 28px 10px 22px; border-radius: 999px; font-weight: 800; font-size: 30px; white-space: nowrap; }
+.pill .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan-dot); box-shadow: 0 0 12px var(--cyan-dot); }
+.pill.glass { background: rgba(255,255,255,.13); border: 2px solid rgba(255,255,255,.35); color: #fff; }
+.pill.ink { background: #fff; color: var(--ink); box-shadow: var(--shadow-card); }
+.pill.dark { background: rgba(6,16,36,.55); border: 2px solid rgba(255,255,255,.25); color: #fff; }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 16px; padding: 18px 40px; border-radius: 999px; font-weight: 900; font-size: 48px; white-space: nowrap; box-shadow: var(--shadow-card); opacity: 0; }
+.chip.white { background: #fff; color: var(--blue-700); } .chip.ink { background: var(--ink); color: #fff; } .chip.sticky { background: var(--sticky); color: var(--ink); }
+.chip.ghost { background: transparent; color: var(--ink-2); border: 4px dashed rgba(18,49,97,.35); box-shadow: none; }
+.chip.glass { background: rgba(255,255,255,.12); color: #fff; border: 2px solid rgba(255,255,255,.4); box-shadow: none; }
+.sticky { position: absolute; background: var(--sticky); color: var(--ink); border-radius: 6px; font-weight: 900; text-align: center; box-shadow: 0 22px 40px rgba(4,30,80,.35); padding: 28px 34px; opacity: 0; line-height: 1.25; }
+.sticky::before { content: ''; position: absolute; top: -18px; left: 50%; width: 140px; height: 38px; margin-left: -70px; background: rgba(217,240,253,.85); transform: rotate(-3deg); }
+.strike { position: absolute; height: 16px; border-radius: 10px; background: var(--strike); transform-origin: 100% 50%; box-shadow: 0 4px 10px rgba(0,0,0,.18); z-index: 5; }
+.card { position: absolute; background: #fff; color: var(--ink); border-radius: 44px; box-shadow: var(--shadow-card); opacity: 0; }
+.glasscard { position: absolute; border-radius: 40px; background: rgba(255,255,255,.10); border: 2px solid rgba(255,255,255,.35); box-shadow: var(--shadow-float); opacity: 0; }
+.step { position: absolute; background: #fff; color: var(--ink); border-radius: 48px; box-shadow: var(--shadow-card); padding: 54px 60px 50px; opacity: 0; }
+.step .n { position: absolute; top: -52px; right: 60px; width: 104px; height: 104px; border-radius: 50%; background: var(--sticky); color: var(--ink); font-size: 60px; font-weight: 1000; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(4,30,80,.25); }
+.node { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border-radius: 34px; font-weight: 900; box-shadow: var(--shadow-card); opacity: 0; text-align: center; }
+.node i { font-size: .95em; }
+.node.w { background: #fff; color: var(--blue-700); } .node.g { background: rgba(255,255,255,.12); color: #fff; border: 2px solid rgba(255,255,255,.45); box-shadow: none; } .node.s { background: var(--sticky); color: var(--ink); }
+.phone { position: absolute; width: 380px; height: 790px; border-radius: 62px; background: linear-gradient(145deg, #c9dcf5, #6f8fbf 40%, #1d3f73); padding: 10px; box-shadow: var(--shadow-float), 0 0 60px rgba(24,177,254,.35); opacity: 0; }
+.phone > div { width: 100%; height: 100%; border-radius: 52px; overflow: hidden; background: #fff; }
+.phone img { width: 100%; display: block; }
+.qmark { position: absolute; font-weight: 1000; line-height: 1; color: transparent; -webkit-text-stroke: 6px rgba(217,240,253,.22); }
+/* المتصفّح جوّه اللابتوب */
+.browser { position: absolute; background: #eef1f6; overflow: hidden; direction: ltr; font-family: 'Cairo', sans-serif; }
+.browser .tabs { display: flex; gap: 3px; padding: 10px 10px 0; background: #d3d9e3; height: 50px; }
+.browser .tab { flex: 1 1 0; min-width: 0; height: 40px; border-radius: 10px 10px 0 0; background: #e3e8ef; display: flex; align-items: center; gap: 6px; padding: 0 8px; font-size: 15px; color: #4a5568; white-space: nowrap; overflow: hidden; }
+.browser .tab b { width: 14px; height: 14px; border-radius: 4px; flex: none; }
+.browser .tab.on { background: #fff; color: #1a202c; }
+.browser .bar { height: 46px; background: #fff; border-bottom: 1px solid #dde3ea; display: flex; align-items: center; padding: 0 16px; }
+.browser .bar span { flex: 1; height: 28px; border-radius: 14px; background: #eef1f6; }
+.browser .page { position: absolute; left: 14%; right: 14%; top: 120px; bottom: 0; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,.06); direction: rtl; padding: 50px 60px; }
+.browser .page .ttl { font-size: 26px; font-weight: 800; color: #9aa6b8; }
+.browser .page .cur { display: inline-block; width: 4px; height: 44px; background: #1a202c; vertical-align: middle; margin-top: 30px; }
+#hud { position: absolute; inset: 0; pointer-events: none; z-index: 40; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg" id="bgBlue"><div class="dots"></div><div class="glow" id="g1"></div><div class="glow" id="g2"></div></div>
+  <div class="bg" id="bgLight"><div class="dots"></div></div>
+  <div id="scenes"></div>
+  <div id="hud"></div>
+  <div id="flash"></div>
+</div>
+<script src="../../../etizan-explainer-video/pipeline/node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+document.write(['../' + EP_ID + '/build/times.js', '../' + EP_ID + '/build/frames/info.js', '../' + EP_ID + '/scenes.js'].map(s => '<script src="' + s + '"><\/script>').join(''));
+</script>
+<script>
+const AR = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+function BUILD() {
+  gsap.ticker.lagSmoothing(0);
+  const $ = id => document.getElementById(id);
+  const E = window.EPISODE, FPS = 30;
+  const tl = gsap.timeline({ paused: true }), SFX = [], DYN = [], WORLD = [];
+  const L = (h, v) => (O === 'h' ? h : v), px = v => v + 'px';
+  // ── التوقيت: الصوت + فواصل بنضيفها بعد فقرات معيّنة (gaps) ──
+  const RAW = window.TIMES.lines, G = E.gaps || {};
+  let off = 0; const LN = RAW.map((l, i) => { const o = off; off += G[i + 1] || 0; return { t: l.t, t0: l.start + o, t1: l.end + o, w: l.w.map(x => x == null ? null : x + o), off: o }; });
+  LN.forEach((l, i) => l.next = LN[i + 1] ? LN[i + 1].t0 : l.t1 + (G[LN.length] || 0));
+  const DUR = LN[LN.length - 1].t1 + (G[LN.length] || 0) + (E.tail || 0);
+  const CUTS = []; RAW.forEach((l, i) => { if (G[i + 1]) CUTS.push({ at: RAW[i + 1] ? (l.end + RAW[i + 1].start) / 2 : l.end + 0.05, gap: G[i + 1] }); });
+  const norm = s => s.replace(/[ً-ْـ«»"'.,،؟?:!…\-]/g, '').replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
+  const P = n => LN[n - 1];
+  const T = (n, k) => { const l = LN[n - 1], ws = l.t.split(/\s+/);
+    if (typeof k === 'string') { const q = norm(k); k = ws.findIndex(w => norm(w).includes(q)); if (k < 0) { console.error('word not found', n, q); k = 0; } }
+    const v = l.w[k]; return v != null ? v : l.t0 + (l.t1 - l.t0) * k / ws.length; };
+  const fx = (name, t, gain = 1) => SFX.push({ t: +Math.max(0, t).toFixed(3), name, gain });
+  const dyn = f => DYN.push(f);
+  const lerp = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
+  const ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+  const el = (tag, cls, html, parent, style) => { const d = document.createElement(tag); if (cls) d.className = cls; if (html != null) d.innerHTML = html; if (style) Object.assign(d.style, style); (parent || $('scenes')).appendChild(d); return d; };
+  // العوالم: blue | light | real — بنعدّي بينها بـ crossfade للخلفية
+  const world = (w, t, d = 0.4) => { WORLD.push({ t, w }); tl.to('#bgLight', { opacity: w === 'light' ? 1 : 0, duration: d }, t); };
+  const scene = (a, b, w) => { const sc = el('div', 'scene'); tl.fromTo(sc, { opacity: 0 }, { opacity: 1, duration: 0.35 }, a); if (b != null) tl.to(sc, { opacity: 0, duration: 0.35 }, b); if (w) world(w, a); return sc; };
+  const pop = (node, t, rot = 0, s = 'pop', g = 0.7, from = 0.5) => { tl.fromTo(node, { opacity: 0, scale: from, rotation: 0 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.8)' }, t); if (s) fx(s, t, g); return node; };
+  const rise = (node, t, dy = 40, d = 0.45, s = null, g = 0.6) => { tl.fromTo(node, { opacity: 0, y: dy }, { opacity: 1, y: 0, duration: d, ease: 'power3.out' }, t); if (s) fx(s, t, g); return node; };
+  const out = (node, t, d = 0.3) => tl.to(node, { opacity: 0, duration: d, ease: 'power1.in' }, t);
+  const center = (node, x, y) => { Object.assign(node.style, { left: px(x), top: px(y) }); gsap.set(node, { xPercent: -50, yPercent: -50 }); return node; };
+  // ── الكابشن الانتقائي: كلمات فقرة n من a لـ b، كل كلمة مع نطقها ──
+  function capWords(parent, n, a, b, o = {}) {
+    const ws = P(n).t.split(/\s+/); b = b == null ? ws.length - 1 : b;
+    const c = el('div', 'cap', null, parent, { top: px(o.y), fontSize: px(o.size || 64), color: o.color || '#fff', textShadow: o.shadow === false ? 'none' : '0 6px 28px rgba(0,0,0,.45)' });
+    if (o.x != null) Object.assign(c.style, { left: px(o.x), right: 'auto', width: px(o.width), padding: 0, textAlign: o.align || 'center' });
+    for (let k = a; k <= b; k++) {
+      const s = el('span', 'w' + ((o.hl || []).includes(k) ? (o.hlCls ? ' ' + o.hlCls : ' y') : ''), ws[k].replace(/[«»]/g, '').replace(/(\.\.\.|…)$/, ''), c);
+      tl.fromTo(s, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out' }, T(n, k) - 0.06);
+      c.appendChild(document.createTextNode(' '));
+    }
+    if (o.end !== false) tl.to(c, { opacity: 0, duration: 0.25 }, o.end != null ? o.end : P(n).next - 0.25);
+    return c;
+  }
+  // كلام كبير (نص حر) بيظهر كلمة كلمة على أوقات معيّنة. *كلمة* = أصفر · ~كلمة~ = هايلايت · | = سطر جديد
+  function words(parent, text, o) {
+    const c = el('div', o.cls || 'big', null, parent, { top: px(o.y), fontSize: px(o.size), color: o.color || '#fff' });
+    if (o.x != null) Object.assign(c.style, { left: px(o.x), right: 'auto', width: px(o.width), padding: 0 });
+    let j = 0;
+    text.split(/\s+/).forEach(tok => {
+      if (tok === '|') { c.appendChild(document.createElement('br')); return; }
+      let cls = 'w'; if (/^\*.*\*$/.test(tok)) { cls += ' y'; tok = tok.slice(1, -1); } else if (/^~.*~$/.test(tok)) { cls += ' hl'; tok = tok.slice(1, -1); }
+      const s = el('span', cls, tok, c); c.appendChild(document.createTextNode(' '));
+      tl.fromTo(s, { opacity: 0, y: 36, scale: .85 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'back.out(2)' }, (o.at ? o.at[Math.min(j, o.at.length - 1)] : o.t + j * 0.1) - 0.05); j++;
+    });
+    return c;
+  }
+  // شطب أحمر جوّه العنصر نفسه (لازم يكون position absolute/relative)
+  function strike(target, t, pad = 18, rot = -4) {
+    if (getComputedStyle(target).position === 'static') target.style.position = 'relative';
+    const s = el('div', 'strike', null, target, { left: px(-pad), right: px(-pad), top: '50%', marginTop: '-8px' });
+    tl.fromTo(s, { scaleX: 0, rotation: rot }, { scaleX: 1, rotation: rot, duration: 0.3, ease: 'power2.out' }, t); fx('marker', t, 0.9); return s;
+  }
+  // ── الواقع: لقطة stock فريم فريم. box = مكانها على الشاشة؛ focus = مركز القص في اللقطة (0..1) ──
+  const BOX_REAL = L({ x: 0, y: 0, w: 1920, h: 1080 }, { x: 0, y: 0, w: 1080, h: 1350 });
+  function foot(parent, id, t0, t1, o = {}) {
+    const box = o.box || BOX_REAL, f = el('div', 'foot', null, parent, { left: px(box.x), top: px(box.y), width: px(box.w), height: px(box.h), opacity: 0, borderRadius: px(o.radius || 0) });
+    if (o.radius) f.style.boxShadow = 'var(--shadow-float)';
+    const src = el('div', 'src', null, f), N = window.FOOT[id] || 0;
+    const img = id === 'R01' ? null : el('img', null, null, src);
+    const focus = o.focus || [0.5, 0.5], z = o.zoom || [1, 1.06], from = o.from || 0, speed = o.speed == null ? 1 : o.speed;
+    const fr = o.freeze, tint = el('div', 'tint', null, src);   // جوّه اللقطة: خطوط trace بتترسم فوقه
+    if (o.shade) el('div', 'shade', null, f);
+    let cur = -1;
+    const place = t => { const p = ease(lerp(fr != null ? Math.min(t, fr) : t, t0, t1)), zz = z[0] + (z[1] - z[0]) * p;
+      const s = Math.max(box.w / 1920, box.h / 1080) * zz, w = 1920 * s, h = 1080 * s;
+      const x = Math.min(0, Math.max(box.w - w, box.w / 2 - focus[0] * w)), y = Math.min(0, Math.max(box.h - h, box.h / 2 - focus[1] * h));
+      src.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + s + ')'; };
+    dyn(t => { if (t < t0 - 0.5 || t > t1 + 0.6) return; place(t);
+      if (!img) return; const tt = fr != null ? Math.min(t, fr) : t;
+      const n = Math.max(1, Math.min(N, Math.floor((from + Math.max(0, tt - t0) * speed) * FPS) + 1));
+      if (n !== cur) { cur = n; img.src = '../' + EP_ID + '/build/frames/' + id + '/' + String(n).padStart(5, '0') + '.jpg'; return img.decode().catch(() => {}); } });
+    tl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: o.fadeIn == null ? 0.25 : o.fadeIn }, t0);
+    if (o.fadeOut !== false) tl.to(f, { opacity: 0, duration: o.fadeOut || 0.25 }, t1);
+    f.src = src; f.tint = tint; return f;
+  }
+  // R01: اللابتوب (فريم ثابت والشاشة الخضرا اتشالت) + متصفّح بتابات بنتحكم في عددها
+  const TABS = ['تقرير_الشغل.docx', 'YouTube', 'WhatsApp', 'Gmail', 'أخبار', 'Wikipedia', 'Amazon', 'وصفات', 'Netflix', 'Maps', 'Twitter', 'كورس', 'Reddit', 'Pinterest', 'Drive', 'Facebook', 'Instagram'];
+  const TC = ['#2b6cb0', '#e53e3e', '#38a169', '#d69e2e', '#805ad5', '#4a5568', '#dd6b20', '#319795', '#c53030', '#3182ce', '#1a202c', '#6b46c1', '#e05d2b', '#b83280', '#2f855a', '#2c5282', '#c05621'];
+  function laptop(parent, t0, t1, o = {}) {
+    const f = foot(parent, 'R01', t0, t1, o), S = window.FOOT.R01.screen;
+    const br = el('div', 'browser', null, f.src, { left: px(S.x - 6), top: px(S.y - 6), width: px(S.w + 12), height: px(S.h + 12) });
+    br.innerHTML = '<div class="tabs"></div><div class="bar"><span></span></div><div class="page"><div class="ttl">تقرير الشغل — مطلوب بكرة</div><span class="cur"></span></div>';
+    const tabs = br.querySelector('.tabs');
+    const ts = TABS.map((t, i) => el('div', 'tab' + (i === 0 ? ' on' : ''), '<b style="background:' + TC[i] + '"></b>' + t, tabs, { display: i === 0 ? 'flex' : 'none' }));
+    el('img', null, null, f.src).src = '../' + EP_ID + '/build/frames/R01_key.png';
+    const cur = br.querySelector('.cur');
+    f.tabs = fn => dyn(t => { const n = fn(t); ts.forEach((x, i) => { x.style.display = i < n ? 'flex' : 'none'; x.classList.toggle('on', i === (n > 1 ? n - 1 : 0)); }); cur.style.opacity = (Math.floor(t * 1.6) % 2) ? 0 : 1; });
+    f.screen = S; return f;
+  }
+  // رسم خطوط سماوي فوق اللقطة (إحداثيات اللقطة 1920×1080) — توقيع الانتقال للأزرق
+  function trace(f, paths, t, d = 0.9) {
+    const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width', 1920); svg.setAttribute('height', 1080); svg.setAttribute('viewBox', '0 0 1920 1080'); svg.style.cssText = 'position:absolute;left:0;top:0;overflow:visible';
+    f.src.appendChild(svg);
+    return paths.map((dd, i) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', dd); p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#18B1FE'); p.setAttribute('stroke-width', 7);
+      p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round'); p.style.filter = 'drop-shadow(0 0 10px #18B1FE)'; svg.appendChild(p);
+      const len = p.getTotalLength(); p.style.strokeDasharray = len; tl.fromTo(p, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease: 'power2.inOut' }, t + i * 0.12); return p; });
+  }
+  const chip = (parent, html, cls, x, y, size) => { const c = el('div', 'chip ' + cls, html, parent, size ? { fontSize: px(size) } : null); return center(c, x, y); };
+  const sticky = (parent, html, x, y, w, size, t, rot = -3) => { const s = el('div', 'sticky', html, parent, { width: px(w), fontSize: px(size) }); center(s, x, y);
+    tl.fromTo(s, { opacity: 0, scale: 1.5, rotation: rot * 3 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.45, ease: 'back.out(1.4)' }, t); fx('slap', t + 0.15, 0.7); return s; };
+  // شارة الفصل فوق
+  function chapter(text, t0, t1, look = 'glass', dot = 'var(--cyan-dot)') {
+    const c = el('div', 'pill ' + look, '<span class="dot" style="background:' + dot + ';box-shadow:0 0 12px ' + dot + '"></span>' + text, $('hud'), { opacity: 0, fontSize: px(L(30, 32)) });
+    if (O === 'h') Object.assign(c.style, { top: '64px', right: '110px' }); else center(c, 540, 90);
+    tl.fromTo(c, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.4 }, t0); tl.to(c, { opacity: 0, duration: 0.3 }, t1); return c;
+  }
+  // ── حركة الخلفية الزرقا ──
+  Object.assign($('g1').style, { width: px(L(1400, 1300)), height: px(L(1400, 1300)), left: px(L(-300, -500)), top: px(L(-500, -300)) });
+  Object.assign($('g2').style, { width: px(L(1200, 1200)), height: px(L(1200, 1200)), left: px(L(1000, 300)), top: px(L(400, 1100)) });
+  tl.to('#g1', { x: 220, y: 160, duration: DUR, ease: 'sine.inOut' }, 0); tl.to('#g2', { x: -240, y: -180, duration: DUR, ease: 'sine.inOut' }, 0);
+  tl.to('#bgBlue .dots, #bgLight .dots', { y: 56 * 4, duration: DUR, ease: 'none' }, 0);
+
+  E.build({ O, SW, SH, L, px, $, tl, fx, dyn, lerp, ease, el, world, scene, pop, rise, out, center, capWords, words, strike, foot, laptop, trace, chip, sticky, chapter, T, P, LN, DUR, AR, BOX_REAL });
+
+  tl.to({}, { duration: 0.01 }, DUR - 0.01);
+  window.PLAN = { duration: +DUR.toFixed(3), sfx: SFX.sort((a, b) => a.t - b.t), cuts: CUTS, worlds: WORLD.sort((a, b) => a.t - b.t), tailStart: LN[LN.length - 1].t1 };
+  window.DURATION = DUR;
+  window.seek = async t => { tl.seek(t, false); await Promise.all(DYN.map(f => f(t)).filter(Boolean)); };
+  return window.seek(0);
+}
+window.READY = document.fonts.load('900 60px Cairo').then(() => document.fonts.load('800 60px Cairo')).then(() => document.fonts.ready).then(() => BUILD());
+</script>
+</body>
+</html>
