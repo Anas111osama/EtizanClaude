@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <base href="/">
+  <!--  EmailJS وهمي: writable عشان لو المكتبة الحقيقية اتحمّلت ماترميش إيرور في الكونسول  -->
+  <script>Object.defineProperty(window,"emailjs",{value:{init(){},send:async()=>({status:200,text:"mock"})},writable:true,configurable:true});</script>
+  <script type="importmap">{"imports":{"/supabase-client.js":"/.design/mock-admin.js"}}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>اتزان | لوحة المؤسسة</title>
+  <meta name="description" content="لوحة الأخصائيين وإدارة المدارس ومراكز التخاطب وتعديل السلوك على اتزان">
+  <!--
+    ═══════════════════════════════════════════════════════════════════════
+    admin.html — لوحة المؤسسة
+    ───────────────────────────────────────────────────────────────────────
+    الأخصائي والمدير بيدخلوا من هنا بالإيميل، والدور بيحدد اللوحة.
+    الكود في assets/js/admin/ (موديولز) والتصميم في assets/admin-ui.css.
+    النسخة القديمة محفوظة في design-src/legacy-admin.
+    ═══════════════════════════════════════════════════════════════════════
+  -->
+  <script src="assets/js/theme.js"></script>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/fontawesome/all.min.css">
+  <link rel="stylesheet" href="assets/admin-ui.css">
+  <script src="assets/js/org-terms.js"></script>
+  <script src="assets/js/etizan-dialog.js"></script>
+</head>
+<body>
+  <div id="app" aria-live="polite"></div>
+  <noscript>اللوحة محتاجة JavaScript.</noscript>
+
+  <!--  زرار الرجوع في الموبايل (nav.js) — الشاشات هنا بالـ hash فالرجوع طبيعي  -->
+  <script src="assets/js/age-gate.js"></script>
+  <script src="assets/js/nav.js"></script>
+  <script type="module" src="assets/js/admin/app.js"></script>
+  
+</body>
+</html>

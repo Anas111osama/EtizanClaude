@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer-core'); const path = require('path'); const
 const FPS = 30;
 const [a, b, outFile] = [+process.argv[2], +process.argv[3], process.argv[4]];
 (async () => {
-  const br = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--allow-file-access-from-files', '--disable-gpu-vsync', '--force-color-profile=srgb'] });
+  const br = await puppeteer.launch({ executablePath: process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--allow-file-access-from-files', '--disable-gpu-vsync', '--force-color-profile=srgb'] });
   const p = await br.newPage(); await p.setViewport({ width: 1080, height: 1920, deviceScaleFactor: 1 });
   p.on('pageerror', e => console.log('ERR', e.message));
   await p.goto('file:///' + path.resolve('video.html').split(path.sep).join('/') + '?ep=' + (process.env.EP || 'ep01') + (process.env.NOCAP ? '&nocap=1' : ''));

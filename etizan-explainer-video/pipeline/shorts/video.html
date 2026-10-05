@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Etizan short</title>
+<style>
+@font-face { font-family: 'Cairo'; src: url('assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root { --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD; --cyan: #04F1FF; --ink: #123161; --sticky: #F5E6A3;
+  --shadow-card: 0 12px 28px rgba(10,61,145,0.28); --shadow-float: 0 30px 60px rgba(2,40,100,0.40); --shadow-text: 0 0 18px rgba(255,255,255,0.45); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #020816; }
+body { font-family: 'Cairo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+#bright { position: absolute; inset: 0; background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-500) 100%); }
+#bright .glow { position: absolute; width: 1500px; height: 1500px; left: -210px; top: 250px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(24,177,254,0.7) 0%, rgba(24,177,254,0.22) 35%, rgba(24,177,254,0) 65%); }
+#bright .grid { position: absolute; inset: 0; opacity: .07; background-image: linear-gradient(rgba(255,255,255,.9) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,.9) 1.5px, transparent 1.5px);
+  background-size: 90px 90px; -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 70%); }
+#dark { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, #0b2a63 0%, #04122e 45%, #020816 100%); }
+#ambient { position: absolute; left: 50%; top: 44%; width: 820px; height: 1100px; margin: -550px 0 0 -410px; border-radius: 60px; overflow: hidden; opacity: 0; filter: blur(22px); }
+#ambient img { width: 100%; }
+.orb { position: absolute; border-radius: 50%; background: #fff url('assets/logo-mark.png') center/78% no-repeat; filter: blur(10px); }
+#vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,.55) 100%); z-index: 60; }
+
+/* الهيدر */
+#logo { position: absolute; top: 64px; right: 64px; height: 88px; filter: brightness(0) invert(1); opacity: 0; z-index: 30; }
+#head { position: absolute; top: 190px; left: 50px; right: 50px; text-align: center; opacity: 0; z-index: 30; }
+#badge { display: inline-flex; align-items: center; gap: 14px; padding: 10px 30px; border-radius: 999px; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.45); font-weight: 800; font-size: 34px; line-height: 1.4; }
+#badge .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); }
+#title { margin-top: 16px; font-weight: 900; font-size: 76px; line-height: 1.15; text-shadow: var(--shadow-text); white-space: nowrap; }
+
+/* الموبايل */
+#cam { position: absolute; inset: 0; z-index: 20; }
+#phone { position: absolute; width: 560px; height: 1212px; left: 260px; top: 400px; border-radius: 76px; opacity: 0;
+  background: linear-gradient(145deg, #c9dcf5, #6f8fbf 40%, #1d3f73); padding: 12px; box-shadow: var(--shadow-float), 0 0 80px rgba(24,177,254,0.55); }
+#phone::before { content: ''; position: absolute; inset: 5px; border-radius: 71px; background: #0b1730; }
+#screen { position: absolute; left: 22px; top: 22px; width: 516px; height: 1168px; border-radius: 58px; overflow: hidden; background: #fff; }
+#island { position: absolute; top: 18px; left: 50%; width: 150px; height: 40px; margin-left: -75px; border-radius: 22px; background: #070d1c; z-index: 20; }
+.shot { position: absolute; left: 0; top: 0; width: 516px; opacity: 0; }
+#spot { position: absolute; border-radius: 26px; border: 5px solid var(--sky-400); opacity: 0; z-index: 10;
+  box-shadow: 0 0 0 3000px rgba(6,24,66,0.50), 0 0 36px rgba(24,177,254,0.95), inset 0 0 22px rgba(24,177,254,0.45); }
+#mag { position: absolute; overflow: hidden; border-radius: 30px; background: #fff; opacity: 0; z-index: 35;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 11px var(--sky-400), 0 30px 70px rgba(2,30,80,0.55), 0 0 60px rgba(24,177,254,0.9); }
+#mag img { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+/* اللوحات الزجاجية (B) */
+#world { position: absolute; inset: 0; perspective: 1700px; perspective-origin: 50% 45%; z-index: 20; }
+.panel { position: absolute; left: 50%; top: 50%; width: 780px; height: 980px; margin: -490px 0 0 -390px; border-radius: 56px; overflow: hidden; opacity: 0; background: #fff;
+  box-shadow: 0 0 0 3px rgba(217,240,253,.55), 0 0 80px rgba(24,177,254,.6), 0 50px 120px rgba(0,0,0,.45); }
+.panel img { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.panel .gloss { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(125deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 35%); }
+.panel .sweep { position: absolute; top: -20%; bottom: -20%; width: 220px; left: -300px; transform: skewX(-18deg); background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45), rgba(255,255,255,0)); }
+
+/* كروت المهارات */
+.chip { position: absolute; display: flex; align-items: center; justify-content: center; width: 270px; height: 150px; border-radius: 14px; font-weight: 900; font-size: 50px; box-shadow: var(--shadow-card); opacity: 0; z-index: 40; }
+.chip.blue { background: linear-gradient(145deg, var(--blue-500), var(--blue-700)); color: #fff; }
+.chip.white { background: linear-gradient(145deg, #fff, var(--sky-100)); color: var(--blue-700); }
+
+/* الكلام */
+#capbg { position: absolute; left: 0; right: 0; bottom: 0; height: 460px; opacity: 0; z-index: 44;
+  background: linear-gradient(180deg, rgba(10,61,145,0) 0%, rgba(8,45,110,0.88) 42%, rgba(7,38,95,0.96) 100%); }
+#cap { position: absolute; left: 70px; right: 70px; bottom: 100px; min-height: 200px; z-index: 45; display: flex; align-items: center; justify-content: center; text-align: center; }
+#cap .line { font-weight: 800; font-size: 52px; line-height: 1.55; display: none; }
+.w { display: inline-block; opacity: 0; margin: 0 5px; }
+.big { position: absolute; left: 60px; right: 60px; text-align: center; font-weight: 900; z-index: 50; line-height: 1.3;
+  text-shadow: 0 0 22px rgba(24,177,254,.85), 0 0 60px rgba(24,177,254,.45), 0 4px 18px rgba(0,0,0,.5); }
+.big .w { margin: 0 9px; }
+.ribbon { display: inline-block; padding: 26px 70px; font-weight: 900; color: var(--blue-700); background: linear-gradient(90deg, #fff, var(--sky-100)); clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%); text-shadow: none; }
+.sticky { display: inline-block; padding: 34px 44px; background: var(--sticky); color: var(--ink); border-radius: 8px; font-weight: 900; box-shadow: 0 18px 30px rgba(2,30,80,0.45); text-shadow: none; }
+
+/* الكارت الأخير */
+#end { position: absolute; inset: 0; opacity: 0; z-index: 55; }
+#endLogo { position: absolute; left: 50%; top: 520px; width: 680px; margin-left: -340px; filter: brightness(0) invert(1); }
+#endCta { position: absolute; left: 0; right: 0; top: 960px; text-align: center; }
+.cta { display: inline-block; padding: 30px 74px; border-radius: 999px; background: var(--blue-700); font-weight: 900; font-size: 62px; box-shadow: inset 0 0 0 4px var(--sky-400), 0 0 50px rgba(24,177,254,0.8); }
+#endSub { position: absolute; left: 60px; right: 60px; top: 1135px; text-align: center; font-weight: 900; font-size: 58px; text-shadow: 0 0 22px rgba(24,177,254,.8); }
+#endSub .w { margin: 0 7px; }
+#endStore { position: absolute; left: 0; right: 0; top: 1300px; text-align: center; }
+.store { display: inline-flex; align-items: center; gap: 22px; padding: 18px 44px; border-radius: 30px; border: 3px solid rgba(255,255,255,0.75); direction: ltr; }
+.store small { display: block; font-size: 30px; font-weight: 600; line-height: 1.2; direction: rtl; text-align: left; }
+.store b { display: block; font-size: 52px; font-weight: 700; line-height: 1.1; }
+#flash { position: absolute; inset: 0; background: #e8f6ff; opacity: 0; z-index: 70; mix-blend-mode: screen; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bright"><div class="glow"></div><div class="grid"></div><div id="orbs"></div></div>
+  <div id="dark"><div id="ambient"><img id="ambImg"></div></div>
+  <div id="world"></div>
+  <div id="cam">
+    <div id="phone"><div id="screen"><div id="island"></div><div id="shots"></div><div id="spot"></div></div></div>
+  </div>
+  <div id="chips"></div>
+  <div id="mag"><img id="magImg"></div>
+  <img id="logo" src="assets/logo-full.png">
+  <div id="head"><div id="badge"><span class="dot"></span><span id="badgeTxt"></span></div><br><div id="title"></div></div>
+  <div id="bigs"></div>
+  <div id="capbg"></div>
+  <div id="cap"></div>
+  <div id="end">
+    <img id="endLogo" src="assets/logo-full.png">
+    <div id="endCta"><span class="cta" id="ctaTxt"></span></div>
+    <div id="endSub"></div>
+    <div id="endStore"><span class="store">
+      <svg width="64" height="70" viewBox="0 0 32 35"><path d="M2 1.5 L18.5 17.5 L2 33.5 Z" fill="#fff" opacity=".95"/><path d="M2 1.5 L24 13.6 L18.5 17.5 Z" fill="#D9F0FD"/><path d="M2 33.5 L24 21.4 L18.5 17.5 Z" fill="#9fd7fb"/><path d="M24 13.6 L30 17 Q31 17.5 30 18 L24 21.4 L18.5 17.5 Z" fill="#18B1FE"/></svg>
+      <span><small>متوفر الآن على</small><b>Google Play</b></span></span></div>
+  </div>
+  <div id="vignette"></div>
+  <div id="flash"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="plan.js"></script>
+<script src="../screens/rects.js"></script>
+<script>
+function BUILD() {
+  const $ = id => document.getElementById(id);
+  const P = window.PLAN, tl = gsap.timeline({ paused: true }), F = P.fmt;
+  const PH = { x: 282, y: 422, w: 516, h: 1168 }, K = PH.w / 390, VIEW_H = PH.h / K;
+
+  // ── الخلفية ──
+  [[-80, 380, 260, .18], [880, 520, 220, .2], [930, 1480, 300, .16], [-120, 1350, 240, .18]].forEach(([x, y, s, o], i) => {
+    const d = document.createElement('div'); d.className = 'orb'; Object.assign(d.style, { left: x + 'px', top: y + 'px', width: s + 'px', height: s + 'px', opacity: o }); $('orbs').appendChild(d);
+    tl.to(d, { y: (i % 2 ? -60 : 60), duration: P.end, ease: 'sine.inOut' }, 0); });
+  $('ambImg').src = '../screens/' + P.ambient + '.png';
+  const I = P.impact;
+  if (F === 'C') {
+    tl.set('#bright', { opacity: 0 }, 0);
+    tl.fromTo('#ambient', { opacity: 0, scale: 1.15 }, { opacity: 0.35, scale: 1, duration: 1.6, ease: 'power2.out' }, 0.1);
+    tl.set(['#dark'], { opacity: 0 }, I); tl.set('#bright', { opacity: 1 }, I);
+  } else if (F === 'B') {
+    tl.set('#dark', { opacity: 1 }, 0); tl.set('#bright', { opacity: 0 }, 0);
+    tl.fromTo('#ambient', { opacity: 0 }, { opacity: 0.25, duration: 1 }, 0);
+    tl.to('#dark', { opacity: 0, duration: 0.5 }, I - 0.1); tl.to('#bright', { opacity: 1, duration: 0.5 }, I - 0.1);
+  } else { tl.set('#dark', { opacity: 0 }, 0); }
+
+  function hit(t, k = 1) {
+    tl.fromTo('#flash', { opacity: 0.5 * k }, { opacity: 0, duration: 0.3 * k + 0.1, ease: 'power2.out' }, t);
+    tl.to('#stage', { x: 12 * k, y: -8 * k, duration: 0.04, ease: 'none' }, t);
+    tl.to('#stage', { x: -9 * k, y: 6 * k, duration: 0.05, ease: 'none' }, t + 0.04);
+    tl.to('#stage', { x: 0, y: 0, duration: 0.1, ease: 'power1.out' }, t + 0.09);
+  }
+  P.sfx.forEach(s => { if (s.name === 'impact') hit(s.t, 1); if (s.name === 'lowhit') hit(s.t, 0.4); });
+
+  // ── كلام كبير كلمة كلمة ──
+  function bigText(text, wt, t0, t1, top, size, kind) {
+    const d = document.createElement('div'); d.className = 'big'; d.style.top = top + 'px'; d.style.fontSize = size + 'px';
+    const words = text.split(/\s+/);
+    const inner = words.map(w => '<span class="w">' + w + '</span>').join(' ');
+    d.innerHTML = kind === 'ribbon' ? '<span class="ribbon">' + inner + '</span>' : kind === 'sticky' ? '<span class="sticky">' + inner + '</span>' : inner;
+    $('bigs').appendChild(d);
+    const box = d.firstElementChild;
+    if (kind) tl.fromTo(box, { opacity: 0, scale: kind === 'sticky' ? 1.5 : 0.6, rotation: kind === 'sticky' ? -9 : 0 }, { opacity: 1, scale: 1, rotation: kind === 'sticky' ? -3 : 0, duration: 0.4, ease: 'back.out(1.5)' }, t0 - 0.1);
+    d.querySelectorAll('.w').forEach((w, k) => tl.fromTo(w, { opacity: 0, y: 30, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.3, ease: 'power3.out' }, (wt[k] ?? t0) - 0.04));
+    tl.to(d, { opacity: 0, y: -30, filter: 'blur(12px)', duration: 0.3 }, t1);
+  }
+  // ── كابشن تحت ──
+  function caption(text, wt, t0, t1) {
+    const box = document.createElement('div'); box.className = 'line'; if (text.length > 70) box.style.fontSize = '46px';
+    const words = text.split(/\s+/);
+    box.innerHTML = words.map(w => '<span class="w">' + w + '</span>').join(' '); $('cap').appendChild(box);
+    tl.set(box, { display: 'block' }, t0 - 0.15); tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t0 - 0.15);
+    box.querySelectorAll('.w').forEach((w, k) => tl.fromTo(w, { opacity: 0.12, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, (wt[k] ?? t0) - 0.05));
+    tl.set(box, { display: 'none' }, t1);
+  }
+
+  // ── الهيدر ──
+  function head(t) {
+    $('badgeTxt').textContent = P.label; $('title').textContent = P.title;
+    const m = document.createElement('span'); m.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:900 76px Cairo'; m.textContent = P.title; document.body.appendChild(m);
+    $('title').style.fontSize = Math.min(76, Math.floor(76 * 960 / m.getBoundingClientRect().width)) + 'px'; m.remove();
+    tl.to(['#head', '#logo'], { opacity: 1, duration: 0.01 }, t);
+    tl.fromTo('#badge', { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, t);
+    tl.fromTo('#title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, t + 0.08);
+    tl.fromTo('#logo', { opacity: 0 }, { opacity: 1, duration: 0.4 }, t);
+  }
+
+  // ── الموبايل + التعليم + المكبّر ──
+  const shots = {}; let cur = { shot: null, scroll: null, spot: false }, magOn = false;
+  function shotEl(name) {
+    if (!shots[name]) { const img = document.createElement('img'); img.className = 'shot'; img.src = '../screens/' + name + '.png'; $('shots').appendChild(img); shots[name] = { el: img, ...window.RECTS[name] }; }
+    return shots[name];
+  }
+  function scrollFor(s, r) { const maxS = Math.max(0, s.H - VIEW_H); if (!r) return 0; const cy = r.y + r.h / 2; return Math.max(0, Math.min(maxS, r.h > VIEW_H * 0.8 ? r.y - 60 : cy - VIEW_H * 0.46)); }
+  function show(name, t) {
+    if (cur.shot === name) return; const s = shotEl(name);
+    if (cur.shot) tl.to(shots[cur.shot].el, { opacity: 0, duration: 0.3 }, t);
+    tl.fromTo(s.el, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'power2.out', transformOrigin: '50% 30%' }, t);
+    cur.shot = name; cur.scroll = null;
+  }
+  function magnify(name, r, scroll, t) {
+    if (magOn) { tl.to('#mag', { opacity: 0, scale: 0.9, duration: 0.2 }, t - 0.45); magOn = false; }
+    if (!r) return;
+    const p = 6, M = Math.min(2.5, 940 / (r.w + p * 2), 600 / (r.h + p * 2)); if (M < K * 1.25) return;
+    const w = (r.w + p * 2) * M, h = (r.h + p * 2) * M, cy = PH.y + (r.y - scroll + r.h / 2) * K;
+    const top = Math.max(470, Math.min(1480 - h, cy - h / 2 + (cy < 900 ? 170 : -170)));
+    tl.set('#mag', { left: 540 - w / 2, top, width: w, height: h }, t - 0.2);
+    tl.set('#magImg', { attr: { src: '../screens/' + name + '.png' }, width: 390 * M, x: -(r.x - p) * M, y: -(r.y - p) * M }, t - 0.2);
+    tl.fromTo('#mag', { opacity: 0, scale: 0.6, y: cy - (top + h / 2) }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'back.out(1.5)', transformOrigin: '50% 50%' }, t);
+    magOn = true;
+  }
+  function focusOn(name, key, t, dur = 0.8) {
+    const s = shotEl(name), r = key ? s.rects[key] : null; const scroll = scrollFor(s, r);
+    if (cur.scroll === null) tl.set(s.el, { y: -scroll * K }, t); else tl.to(s.el, { y: -scroll * K, duration: dur, ease: 'power3.inOut' }, t);
+    cur.scroll = scroll;
+    if (r) { const pad = 8, box = { left: (r.x - pad) * K, top: (r.y - scroll - pad) * K, width: (r.w + pad * 2) * K, height: (r.h + pad * 2) * K };
+      if (!cur.spot) { tl.set('#spot', box, t); tl.fromTo('#spot', { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(2)', transformOrigin: '50% 50%' }, t + dur * 0.55); }
+      else tl.to('#spot', { ...box, duration: dur, ease: 'power3.inOut' }, t);
+      cur.spot = true; } else if (cur.spot) { tl.to('#spot', { opacity: 0, duration: 0.3 }, t); cur.spot = false; }
+    magnify(name, r, scroll, t + dur * 0.7);
+  }
+  // ── لوحات زجاج (B): نفس الشاشة متكبّرة على الجزء المعلَّم ──
+  let lastPanel = null, pi = 0;
+  function panel(name, key, t0, t1) {
+    const s = shotEl(name), r = key ? s.rects[key] : { x: 0, y: 0, w: 390, h: 500 };
+    const p = document.createElement('div'); p.className = 'panel';
+    const img = document.createElement('img'); img.src = '../screens/' + name + '.png'; p.appendChild(img);
+    ['gloss', 'sweep'].forEach(c => { const e = document.createElement('div'); e.className = c; p.appendChild(e); }); $('world').appendChild(p);
+    const z = Math.max(1, Math.min(2.2, 720 / (2 * (r.w + 24)), 880 / (2 * (r.h + 24)))), sc = z * 780 / 390 / 3;   // الجزء المعلَّم كله جوّه اللوحة
+    const cx = r.x + r.w / 2, cy = r.y + r.h / 2;
+    const pos = k => ({ x: 390 - cx * 3 * sc * k, y: 490 - cy * 3 * sc * k, scale: sc * k });
+    const rot = (pi++ % 2 ? 10 : -10);
+    tl.fromTo(img, pos(0.92), { ...pos(1.06), duration: t1 - t0 + 0.4, ease: 'none' }, t0);
+    tl.fromTo(p, { opacity: 0, rotationY: rot * 2, z: -300, filter: 'blur(18px)' }, { opacity: 1, rotationY: rot * 0.4, z: 0, filter: 'blur(0px)', duration: 0.35, ease: 'power3.out' }, t0);
+    tl.to(p, { opacity: 0, rotationY: -rot, z: 200, filter: 'blur(16px)', duration: 0.25, ease: 'power2.in' }, t1 - 0.12);
+    tl.fromTo(p.querySelector('.sweep'), { left: -300 }, { left: 900, duration: 0.8, ease: 'power2.inOut' }, t0 + 0.15);
+  }
+
+  // ═════ التسلسل ═════
+  const H = P.hook, hEnd = H.t + H.dur;
+  if (F === 'C') bigText(H.text, H.wt, H.t, I - 0.05, 760, 92, null);
+  else if (F === 'A') bigText(H.text, H.wt, H.t, I - 0.1, 760, 76, 'sticky');
+  else { bigText(H.text, H.wt, H.t, I - 0.05, 1500, 80, null);
+         panel(P.ambient, null, 0.05, I + 0.05); }
+  if (F !== 'B') {
+    head(I + 0.05);
+    tl.set('#phone', { opacity: 1, y: 900 }, I + 0.14);
+    tl.to('#phone', { y: 0, duration: 0.9, ease: 'power3.out' }, I + 0.15);
+    show(P.vo[0].shot, I + 0.1);                       // الموبايل يطلع والشاشة جواه
+  } else head(I);
+  tl.to('#capbg', { opacity: 1, duration: 0.3 }, I + 0.2);
+  P.vo.forEach((v, i) => {
+    caption(v.text, v.wt, v.t, (P.vo[i + 1] ? P.vo[i + 1].t - 0.05 : P.cta.t - 0.1));
+    if (F === 'B') {
+      const marks = [{ t: v.t - 0.15, shot: v.shot, focus: v.focus }, ...v.then.map(th => ({ t: th.t, shot: th.shot || v.shot, focus: th.focus }))];
+      marks.forEach((m, k) => panel(m.shot, m.focus, m.t, k + 1 < marks.length ? marks[k + 1].t + 0.1 : (P.vo[i + 1] ? P.vo[i + 1].t - 0.05 : P.cta.t - 0.05)));
+    } else {
+      const t = v.t - 0.35; show(v.shot, t); focusOn(v.shot, v.focus, t);
+      v.then.forEach(th => { if (th.shot) show(th.shot, th.t); focusOn(th.shot || cur.shot, th.focus, th.t, 0.6); });
+    }
+    const POS = [[60, 620, -10], [760, 760, 9], [70, 1120, 8]];
+    v.chips.forEach((c, k) => { const d = document.createElement('div'); d.className = 'chip ' + (k % 2 ? 'white' : 'blue'); d.textContent = c.text; $('chips').appendChild(d);
+      const [x, y, r] = POS[k % 3]; Object.assign(d.style, { left: x + 'px', top: y + 'px' });
+      tl.fromTo(d, { opacity: 0, x: x < 500 ? -150 : 150, scale: 0.7, rotation: 0 }, { opacity: 1, x: 0, scale: 1, rotation: r, duration: 0.5, ease: 'back.out(1.6)' }, c.t - 0.08);
+      tl.to(d, { opacity: 0, scale: 0.85, duration: 0.3 }, (P.vo[i + 1] ? P.vo[i + 1].t : P.cta.t) - 0.4); });
+  });
+
+  // ═════ الكارت الأخير ═════
+  const C = P.cta;
+  tl.to(['#head', '#logo', '#mag', '#capbg', '#cap', '#chips'], { opacity: 0, duration: 0.3 }, C.t - 0.35);
+  tl.to('#phone', { y: 2200, duration: 0.6, ease: 'power3.in' }, C.t - 0.4);
+  tl.to('#phone', { opacity: 0, duration: 0.2 }, C.t + 0.05);
+  tl.to('#world', { opacity: 0, duration: 0.3 }, C.t - 0.35);
+  tl.set('#end', { opacity: 1 }, C.t);
+  $('ctaTxt').textContent = C.text;
+  tl.fromTo('#endLogo', { opacity: 0, scale: 1.3, filter: 'brightness(0) invert(1) blur(30px)' }, { opacity: 1, scale: 1, filter: 'brightness(0) invert(1) blur(0px)', duration: 0.8, ease: 'power3.out' }, C.t);
+  tl.fromTo('#endCta', { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.8)' }, C.wt[0] - 0.05);
+  const rest = (C.rest || '').split(/\s+/).filter(Boolean);
+  $('endSub').innerHTML = rest.map(w => '<span class="w">' + w + '</span>').join(' ');
+  $('endSub').querySelectorAll('.w').forEach((w, k) => tl.fromTo(w, { opacity: 0, y: 24, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.28, ease: 'power3.out' }, (C.wt[3 + k] ?? C.wt[0] + 1) - 0.04));
+  tl.fromTo('#endStore', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, (C.wt[C.wt.length - 1] ?? C.wt[0] + 1.5) + 0.25);
+  tl.to('#stage', { opacity: 0, duration: 0.4 }, P.end - 0.4);
+  tl.set({}, {}, P.end);
+  window.seek = t => { tl.seek(t, false); };
+  window.seek(0);
+}
+window.READY = Promise.all([document.fonts.load('900 76px Cairo'), document.fonts.load('800 52px Cairo')]).then(() => { BUILD(); return Promise.all([...document.images].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))); });
+</script>
+</body>
+</html>

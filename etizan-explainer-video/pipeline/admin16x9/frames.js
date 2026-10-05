@@ -6,7 +6,7 @@ const ts = process.argv.slice(2).map(Number);
   const p = await b.newPage();
   p.on('console', m => console.log('console:', m.text()));
   p.on('pageerror', e => console.log('ERR', e.message));
-  await p.setViewport({ width: 1080, height: 1920, deviceScaleFactor: 1 });
+  await p.setViewport({ width: 1920, height: 1080, deviceScaleFactor: 1 });
   await p.goto('file:///' + path.resolve('video.html').split(path.sep).join('/'));
   await p.evaluate(() => window.READY);
   for (const t of ts) { await p.evaluate(t => window.seek(t), t); await p.screenshot({ path: `tmp/f_${t}.jpg`, type: 'jpeg', quality: 85 }); }

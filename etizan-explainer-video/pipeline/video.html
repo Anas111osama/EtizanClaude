@@ -338,7 +338,7 @@ all.forEach((a, i) => {
     lastScene = sc;
   }
   if (ln.shot) { showShot(ln.shot, t, !sceneStart); focusOn(ln.shot, ln.focus, t); }
-  (ln.then || []).forEach(([f, ch]) => { const tt = a.t0 + (a.t1 - a.t0) * f; if (ch.shot) showShot(ch.shot, tt, true); focusOn(ch.shot || cur.shot, ch.focus, tt, 0.7); });
+  (ln.then || []).forEach(([f, ch]) => { const tt = f >= 1 ? ((a.wt && a.wt[f] != null) ? a.wt[f] - 0.1 : a.t0 + (a.t1 - a.t0) * f / ln.t.split(/\s+/).length) : a.t0 + (a.t1 - a.t0) * f;   /* رقم كلمة أو نسبة */ if (ch.shot) showShot(ch.shot, tt, true); focusOn(ch.shot || cur.shot, ch.focus, tt, 0.7); });
   if (ln.chips) chips(ln.chips, a.t0 + 0.3, a.t1);
   (ln.sfx || []).forEach(([f, name]) => SFX.push({ t: a.t0 + (a.t1 - a.t0) * f, name }));
 });

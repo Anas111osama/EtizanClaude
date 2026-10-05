@@ -7,7 +7,7 @@ const clock = (h, m) => `(() => { const R = Date; const tgt = new R(); tgt.setHo
   class D extends R { constructor(...a){ if(a.length===0) super(R.now()+off); else super(...a); } static now(){ return R.now()+off; } }
   window.Date = D; })();`;
 (async () => {
-  const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args:['--lang=ar','--force-prefers-reduced-motion=false'] });
+  const b = await puppeteer.launch({ executablePath: process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args:['--lang=ar','--force-prefers-reduced-motion=false'] });
   const rects = fs.existsSync('../screens/rects.json') ? JSON.parse(fs.readFileSync('../screens/rects.json','utf8')) : {};
   for (const s of shots) {
     if (only.length && !only.includes(s.name)) continue;

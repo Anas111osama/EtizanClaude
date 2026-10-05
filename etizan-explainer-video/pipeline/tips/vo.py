@@ -17,12 +17,13 @@ if os.path.exists(gp):
         if l.strip(): i, g = l.split(); gaps[int(i)] = float(g)
 LEAD, DEF, TAIL = 0.25, 0.32, 0.6
 
-def load(i):
-    for nm in (f'line_{i:03d}.wav', f'line_{i:03d}_lite.wav'):
-        p = os.path.join(root, 'voice', nm)
-        if os.path.exists(p):
-            w = wave.open(p); assert w.getframerate() == SR
-            return np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
+def load(i):   # أي صيغة وأي sample rate (ملفات AI Studio) ← mono 24 kHz
+    for nm in (f'line_{i:03d}', f'line_{i:03d}_lite'):
+        for ext in ('wav', 'mp3', 'm4a', 'ogg', 'flac'):
+            p = os.path.join(root, 'voice', f'{nm}.{ext}')
+            if os.path.exists(p):
+                raw = subprocess.check_output(['ffmpeg', '-v', 'error', '-i', p, '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'])
+                return np.frombuffer(raw, '<f4').copy()
     sys.exit(f'ناقص السطر {i}')
 
 def trim(y):

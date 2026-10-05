@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Etizan explainer</title>
+<link rel="stylesheet" href="assets/fontawesome/all.min.css">
+<style>
+@font-face { font-family: 'Cairo'; src: url('assets/cairo.woff2') format('woff2'); font-weight: 200 1000; }
+:root {
+  --blue-900: #0A3D91; --blue-700: #0265B5; --blue-500: #1E88D4; --sky-400: #18B1FE; --sky-100: #D9F0FD;
+  --cyan-dot: #04F1FF; --surface: #FFFFFF; --surface-soft: #F4F7FE; --ink: #123161; --sticky: #F5E6A3;
+  --shadow-card: 0 12px 28px rgba(10,61,145,0.28); --shadow-glow: 0 0 32px rgba(24,177,254,0.65);
+  --shadow-float: 0 30px 60px rgba(2,40,100,0.40); --shadow-text: 0 0 18px rgba(255,255,255,0.45);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--blue-900); }
+body { font-family: 'Cairo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden;
+  background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-500) 100%); }
+#glow { position: absolute; width: 1500px; height: 1500px; left: -210px; top: 250px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(24,177,254,0.75) 0%, rgba(24,177,254,0.25) 35%, rgba(24,177,254,0) 65%); }
+#grid { position: absolute; inset: 0; opacity: 0.07;
+  background-image: linear-gradient(rgba(255,255,255,.9) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,255,255,.9) 1.5px, transparent 1.5px);
+  background-size: 90px 90px; -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 70%); }
+.orb { position: absolute; border-radius: 50%; background: #fff url('assets/logo-mark.png') center/78% no-repeat; opacity: .22; filter: blur(10px); }
+
+/* ── المكبّر: نسخة مكبّرة من الجزء المعلَّم ── */
+let magOn = false;
+function magnify(name, r, scroll, t) {
+  if (magOn) { tl.to('#mag', { opacity: 0, scale: 0.9, duration: 0.2, ease: 'power1.in' }, t - 0.45); magOn = false; }
+  if (!r) return;
+  const p = 6, M = Math.min(2.5, 940 / (r.w + p * 2), 600 / (r.h + p * 2));
+  if (M < K * 1.25) return;                         // مش هيفرق عن الموبايل
+  const w = (r.w + p * 2) * M, h = (r.h + p * 2) * M;
+  const cy = PH.y + (r.y - scroll + r.h / 2) * K;
+  const top = Math.max(470, Math.min(1500 - h, cy - h / 2 + (cy < 900 ? 170 : -170)));
+  tl.set('#mag', { left: 540 - w / 2, top, width: w, height: h }, t - 0.2);
+  tl.set('#magImg', { attr: { src: '../screens/' + name + '.png' }, width: 390 * M, x: -(r.x - p) * M, y: -(r.y - p) * M }, t - 0.2);
+  tl.fromTo('#mag', { opacity: 0, scale: 0.6, y: cy - (top + h / 2) }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'back.out(1.5)', transformOrigin: '50% 50%' }, t);
+  SFX.push({ t, name: 'swish', gain: 0.35 });
+  magOn = true;
+}
+
+/* ── الهيدر ── */
+#logo { position: absolute; top: 64px; right: 64px; height: 92px; filter: brightness(0) invert(1); }
+#head { position: absolute; top: 190px; left: 64px; right: 64px; text-align: center; }
+#badge { display: inline-flex; align-items: center; gap: 14px; padding: 10px 30px; border-radius: 999px;
+  background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.45); font-weight: 800; font-size: 34px; line-height: 1.4; }
+#badge .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--cyan-dot); box-shadow: 0 0 14px var(--cyan-dot); }
+#title { margin-top: 18px; font-weight: 900; font-size: 76px; line-height: 1.15; text-shadow: var(--shadow-text); white-space: nowrap; }
+.clipwrap { display: inline-block; overflow: hidden; padding: 0 10px 14px; vertical-align: top; }
+
+/* ── الموبايل ── */
+#cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0; }
+#phone { position: absolute; width: 560px; height: 1212px; left: 260px; top: 400px; border-radius: 76px;
+  background: linear-gradient(145deg, #c9dcf5, #6f8fbf 40%, #1d3f73); padding: 12px;
+  box-shadow: var(--shadow-float), 0 0 80px rgba(24,177,254,0.55); }
+#phone::before { content: ''; position: absolute; inset: 5px; border-radius: 71px; background: #0b1730; }
+#screen { position: absolute; left: 22px; top: 22px; width: 516px; height: 1168px; /* 844 × (516/390) = 1116 + notch area */
+  border-radius: 58px; overflow: hidden; background: #fff; }
+#island { position: absolute; top: 18px; left: 50%; width: 150px; height: 40px; margin-left: -75px; border-radius: 22px; background: #070d1c; z-index: 20; }
+.shot { position: absolute; left: 0; top: 0; width: 516px; opacity: 0; will-change: transform, opacity; }
+#spot { position: absolute; border-radius: 26px; border: 5px solid var(--sky-400); opacity: 0; z-index: 10;
+  box-shadow: 0 0 0 3000px rgba(6,24,66,0.50), 0 0 36px rgba(24,177,254,0.95), inset 0 0 22px rgba(24,177,254,0.45); }
+#mag { position: absolute; overflow: hidden; border-radius: 30px; background: #fff; opacity: 0; z-index: 35;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 11px var(--sky-400), 0 30px 70px rgba(2,30,80,0.55), 0 0 60px rgba(24,177,254,0.9); }
+#mag img { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#ripple { position: absolute; border-radius: 30px; border: 4px solid var(--cyan-dot); opacity: 0; z-index: 11; }
+
+/* ── كروت المهارات ── */
+.chip { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; width: 330px; min-height: 140px; padding: 16px 22px; border-radius: 14px; font-weight: 900; font-size: 40px; line-height: 1.25; box-shadow: var(--shadow-card); opacity: 0; z-index: 30; }
+.chip.blue { background: linear-gradient(145deg, var(--blue-500), var(--blue-700)); color: #fff; }
+.chip.white { background: linear-gradient(145deg, #fff, var(--sky-100)); color: var(--blue-700); }
+
+/* ── الكابشن ── */
+#capbg { position: absolute; left: 0; right: 0; bottom: 0; height: 440px;
+  background: linear-gradient(180deg, rgba(10,61,145,0) 0%, rgba(8,45,110,0.88) 42%, rgba(7,38,95,0.96) 100%); z-index: 40; }
+#cap { position: absolute; left: 70px; right: 70px; bottom: 96px; min-height: 200px; z-index: 41;
+  display: flex; align-items: center; justify-content: center; text-align: center; }
+#cap .line { font-weight: 800; font-size: 50px; line-height: 1.55; }
+#cap .w { display: inline-block; opacity: 0; margin: 0 5px; }
+
+/* ── المقدمة والختام ── */
+.layer { position: absolute; inset: 0; opacity: 0; z-index: 50; }
+.big { position: absolute; left: 60px; right: 60px; text-align: center; font-weight: 900; text-shadow: var(--shadow-text); }
+.sticky { position: absolute; width: 330px; height: 290px; display: flex; align-items: center; justify-content: center; text-align: center;
+  background: var(--sticky); color: var(--ink); border-radius: 8px; font-weight: 900; font-size: 58px; line-height: 1.25; padding: 24px;
+  box-shadow: 0 18px 30px rgba(2,30,80,0.45); }
+.ribbon { display: inline-block; padding: 26px 90px; font-weight: 900; font-size: 88px; color: var(--blue-700);
+  background: linear-gradient(90deg, #fff, var(--sky-100)); clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); }
+.kicker { font-weight: 800; font-size: 60px; color: var(--sky-100); }
+.cta { display: inline-block; padding: 30px 80px; border-radius: 999px; background: var(--blue-700); font-weight: 900; font-size: 60px;
+  box-shadow: inset 0 0 0 4px var(--sky-400), 0 0 50px rgba(24,177,254,0.8); }
+.store { display: inline-flex; align-items: center; gap: 22px; padding: 18px 44px; border-radius: 30px; border: 3px solid rgba(255,255,255,0.75); direction: ltr; }
+.store small { display: block; font-size: 30px; font-weight: 600; line-height: 1.2; font-family: 'Cairo'; direction: rtl; text-align: left; }
+.store b { display: block; font-size: 52px; font-weight: 700; line-height: 1.1; font-family: 'Cairo'; }
+.vc { position: absolute; top: 1080px; width: 430px; height: 300px; border-radius: 26px; background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.45); box-shadow: var(--shadow-float); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; opacity: 0; text-align: center; }
+.vc i { font-size: 60px; color: var(--sky-100); } .vc b { font-size: 48px; font-weight: 900; } .vc small { font-size: 30px; font-weight: 700; color: var(--sky-100); }
+#o2 { right: 90px; } #o3 { left: 90px; }
+#introLogo, #outLogo { position: absolute; left: 50%; filter: brightness(0) invert(1); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+  <div id="grid"></div>
+  <div id="orbs"></div>
+  <div id="cam">
+    <div id="phone"><div id="screen"><div id="island"></div><div id="shots"></div><div id="spot"></div><div id="ripple"></div></div></div>
+    <div id="chips"></div>
+  </div>
+  <div id="mag"><img id="magImg"></div>
+  <img id="logo" src="assets/logo-full.png">
+  <div id="head"><div id="badge"><span class="dot"></span><span id="badgeTxt"></span></div><br><div class="clipwrap"><div id="title"></div></div></div>
+
+  <!-- المقدمة -->
+  <div class="layer" id="intro">
+    <div class="big" id="i1" style="top: 600px; font-size: 96px; line-height: 1.3;"></div>
+    <div id="notes"></div>
+    <div class="big" id="i3" style="top: 1080px;"><span class="ribbon">الفيديو ده ليك</span></div>
+    <div class="big" id="i4" style="top: 900px; font-size: 92px;">التطبيق هو هو</div>
+    <img id="introLogo" src="assets/logo-full.png" style="top: 520px; width: 760px; margin-left: -380px;">
+  </div>
+  <!-- الختام -->
+  <div class="layer" id="outro">
+    <img id="outLogo" src="assets/logo-full.png" style="top: 330px; width: 640px; margin-left: -320px;">
+    <div class="big" id="o1" style="top: 680px; font-size: 80px; line-height: 1.3;">نفس التطبيق<br>ومعاك فريق مؤسستك</div>
+    <div class="vc" id="o2"><i class="fa-solid fa-user"></i><b>فيديو الكبار</b><small>كل أدوات التطبيق</small></div>
+    <div class="vc" id="o3"><i class="fa-solid fa-people-roof"></i><b>فيديو الأهالي</b><small>لو التطبيق لطفلك</small></div></div>
+  </div>
+
+  <div id="capbg"></div>
+  <div id="cap"></div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="script.js"></script>
+<script src="times.js"></script>
+<script src="../screens/rects.js"></script>
+<script>
+function BUILD() {
+gsap.ticker.lagSmoothing(0);
+const $ = id => document.getElementById(id);
+const PH = { x: 260 + 22, y: 400 + 22, w: 516, h: 1168 };   // الشاشة جوّه الموبايل على الستيدج
+const K = PH.w / 390;                                        // CSS px في الأب ← px على الشاشة
+const TOPPAD = 0;
+const tl = gsap.timeline({ paused: true });
+const SFX = [];                                               // [{t, name, gain}]
+const DUR = window.TIMES.duration;
+
+/* ── خلفية: دواير اللوجو المتغبّشة ── */
+const ORBS = [[-80, 380, 260, 0.18], [880, 520, 220, 0.2], [930, 1480, 300, 0.16], [-120, 1350, 240, 0.18], [700, 60, 150, 0.12]];
+ORBS.forEach(([x, y, s, o], i) => { const d = document.createElement('div'); d.className = 'orb'; Object.assign(d.style, { left: x + 'px', top: y + 'px', width: s + 'px', height: s + 'px', opacity: o }); $('orbs').appendChild(d);
+  tl.to(d, { y: (i % 2 ? -1 : 1) * 60, x: (i % 2 ? 30 : -30), duration: DUR, ease: 'sine.inOut' }, 0); });
+
+/* ── الشاشات ── */
+const shots = {};
+Object.keys(window.RECTS).forEach(name => {
+  const img = document.createElement('img'); img.className = 'shot'; img.src = '../screens/' + name + '.png';
+  $('shots').appendChild(img); shots[name] = { el: img, H: window.RECTS[name].H, rects: window.RECTS[name].rects, full: window.RECTS[name].full };
+});
+const VIEW_H = PH.h / K;   // ارتفاع الشاشة بوحدات الصفحة (~883)
+
+/* ── الكابشن: كلمة كلمة ── */
+function caption(line, t0, t1, wt) {
+  const box = document.createElement('div'); box.className = 'line'; if (line.length > 80) box.style.fontSize = '44px';
+  const words = line.split(/\s+/).filter(Boolean);
+  const spans = words.map(w => { const s = document.createElement('span'); s.className = 'w'; s.textContent = w; box.appendChild(s); box.appendChild(document.createTextNode(' ')); return s; });
+  box.style.display = 'none'; $('cap').appendChild(box);
+  const total = words.reduce((a, w) => a + w.length + 2, 0);
+  const span = Math.max(0.4, (t1 - t0) * 0.92);
+  tl.set(box, { display: 'block' }, t0);
+  let acc = 0;
+  spans.forEach((s, i) => { let at = t0 + span * (acc / total); acc += words[i].length + 2;
+    if (wt && wt[i] != null && wt.length === words.length) at = wt[i];
+    tl.fromTo(s, { opacity: 0.12, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' }, at - 0.05); });
+  tl.fromTo(box, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t0 - 0.15);
+  return box;
+}
+
+/* ── الكاميرا والتعليم ── */
+let cur = { shot: null, scroll: 0, cam: { x: 0, y: 0, z: 1 } };
+function scrollFor(s, r) {
+  const maxS = Math.max(0, s.H - VIEW_H);
+  if (!r) return 0;
+  const cy = r.y + r.h / 2;
+  let want = r.h > VIEW_H * 0.8 ? r.y - 60 : cy - VIEW_H * 0.46;
+  return Math.max(0, Math.min(maxS, want));
+}
+function camFor(r, scroll) {
+  if (!r) return { x: 0, y: 0, z: 1 };
+  // مكان العنصر على الستيدج
+  const sx = PH.x + r.x * K, sy = PH.y + (r.y - scroll) * K, sw = r.w * K, sh = r.h * K;
+  const z = Math.max(1, Math.min(1.32, 880 / sw, 1000 / sh));
+  const pcx = sx + sw / 2, pcy = sy + sh / 2;
+  const mx = 540 + (pcx - 540) * 0.15, my = 1000 + (pcy - 1000) * 0.25;   // نقرّبه ناحية النص
+  return { x: mx - z * pcx, y: my - z * pcy, z };
+}
+function showShot(name, t, fast) {
+  if (cur.shot === name) return;
+  const s = shots[name];
+  if (cur.shot) { const o = shots[cur.shot].el; tl.to(o, { opacity: 0, duration: fast ? 0.25 : 0.4, ease: 'power1.out' }, t); }
+  tl.fromTo(s.el, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: fast ? 0.35 : 0.5, ease: 'power2.out', transformOrigin: '50% 30%' }, t);
+  cur.shot = name; cur.scroll = null;
+}
+function focusOn(name, key, t, dur = 0.8) {
+  const s = shots[name]; const r = key ? s.rects[key] : null;
+  if (key && !r) console.warn('missing rect', name, key);
+  const scroll = scrollFor(s, r);
+  if (cur.scroll === null) tl.set(s.el, { y: -scroll * K }, t); else tl.to(s.el, { y: -scroll * K, duration: dur, ease: 'power3.inOut' }, t);
+  cur.scroll = scroll;
+  magnify(name, r, scroll, t + dur * 0.7);
+  if (r) {
+    const pad = 8;
+    const box = { left: (r.x - pad) * K, top: (r.y - scroll - pad) * K, width: (r.w + pad * 2) * K, height: (r.h + pad * 2) * K };
+    const wasOn = cur.spotOn;
+    if (!wasOn) { tl.set('#spot', box, t); tl.fromTo('#spot', { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(2)', transformOrigin: '50% 50%' }, t + dur * 0.55); }
+    else tl.to('#spot', { ...box, duration: dur, ease: 'power3.inOut' }, t);
+    tl.set('#ripple', box, t + dur * 0.6);
+    tl.fromTo('#ripple', { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 1.12, duration: 0.7, ease: 'power2.out', transformOrigin: '50% 50%' }, t + dur * 0.6);
+    SFX.push({ t: t + dur * 0.55, name: 'pop' });
+    cur.spotOn = true;
+  } else if (cur.spotOn) { tl.to('#spot', { opacity: 0, duration: 0.35 }, t); cur.spotOn = false; }
+}
+
+/* ── المكبّر: نسخة مكبّرة من الجزء المعلَّم ── */
+let magOn = false;
+function magnify(name, r, scroll, t) {
+  if (magOn) { tl.to('#mag', { opacity: 0, scale: 0.9, duration: 0.2, ease: 'power1.in' }, t - 0.45); magOn = false; }
+  if (!r) return;
+  const p = 6, M = Math.min(2.5, 940 / (r.w + p * 2), 600 / (r.h + p * 2));
+  if (M < K * 1.25) return;                         // مش هيفرق عن الموبايل
+  const w = (r.w + p * 2) * M, h = (r.h + p * 2) * M;
+  const cy = PH.y + (r.y - scroll + r.h / 2) * K;
+  const top = Math.max(470, Math.min(1500 - h, cy - h / 2 + (cy < 900 ? 170 : -170)));
+  tl.set('#mag', { left: 540 - w / 2, top, width: w, height: h }, t - 0.2);
+  tl.set('#magImg', { attr: { src: '../screens/' + name + '.png' }, width: 390 * M, x: -(r.x - p) * M, y: -(r.y - p) * M }, t - 0.2);
+  tl.fromTo('#mag', { opacity: 0, scale: 0.6, y: cy - (top + h / 2) }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'back.out(1.5)', transformOrigin: '50% 50%' }, t);
+  SFX.push({ t, name: 'swish', gain: 0.35 });
+  magOn = true;
+}
+
+/* ── الهيدر ── */
+let headOn = false;
+function setHead(label, title, t) {
+  if (headOn) { tl.to('#title', { yPercent: 110, duration: 0.3, ease: 'power2.in' }, t - 0.3); tl.to('#badge', { opacity: 0, y: -10, duration: 0.25 }, t - 0.3); }
+  tl.call(() => {}, null, t);
+  const meas = document.createElement('span'); meas.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:900 76px Cairo'; meas.textContent = title; document.body.appendChild(meas);
+  const fs = Math.min(76, Math.floor(76 * 930 / meas.getBoundingClientRect().width)); meas.remove();
+  tl.set('#badgeTxt', { textContent: label }, t); tl.set('#title', { textContent: title, fontSize: fs }, t);
+  tl.fromTo('#badge', { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, t);
+  tl.fromTo('#title', { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: 'power3.out' }, t + 0.08);
+  headOn = true;
+}
+
+/* ── كروت المهارات حوالين الموبايل ── */
+const CHIP_POS = [[24, 560, -10], [726, 700, 9], [30, 1080, 8], [720, 1200, -9]];
+function chips(words, t, t1) {
+  words.forEach((w, i) => {
+    const d = document.createElement('div'); d.className = 'chip ' + (i % 2 ? 'white' : 'blue'); d.textContent = w; $('chips').appendChild(d);
+    const [x, y, rot] = CHIP_POS[i % 4]; Object.assign(d.style, { left: x + 'px', top: y + 'px' });
+    const at = t + i * ((t1 - t) * 0.6 / words.length);
+    tl.fromTo(d, { opacity: 0, x: (x < 500 ? -160 : 160), rotation: 0, scale: 0.7 }, { opacity: 1, x: 0, rotation: rot, scale: 1, duration: 0.6, ease: 'back.out(1.6)' }, at);
+    tl.to(d, { y: '+=' + (i % 2 ? 14 : -14), duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: Math.max(0, Math.floor((t1 - at) / 1.6) - 1) }, at + 0.6);
+    tl.to(d, { opacity: 0, scale: 0.8, duration: 0.35 }, t1 + 0.6);
+    SFX.push({ t: at, name: 'swish', gain: 0.5 });
+  });
+}
+
+/* ── البناء ── */
+const T = window.TIMES.lines;   // [{start,end}] بنفس ترتيب الجمل
+let li = 0;
+const all = []; SCRIPT.forEach(sc => sc.lines.forEach((ln, k) => all.push({ sc, ln, k })));
+if (all.length !== T.length) console.error('lines mismatch', all.length, T.length);
+all.forEach((a, i) => { a.t0 = T[i].start; a.t1 = T[i].end; a.wt = T[i].w; a.next = T[i + 1] ? T[i + 1].start : DUR; });
+
+// المقدمة — كل حركة مع كلمتها
+(() => {
+  const L = all.filter(a => a.sc.id === 1);
+  const W = (li, k) => { const w = L[li].wt; let v = w && w[k]; if (v == null) v = L[li].t0 + (L[li].t1 - L[li].t0) * k / (L[li].ln.t.split(/\s+/).length); return v; };
+  const end = L[1].next;
+  tl.set('#intro', { opacity: 1 }, 0); tl.set(['#phone', '#head', '#logo', '#capbg', '#cap'], { opacity: 0 }, 0);
+  // ١: «لو دخلت اتزان عن طريق مدرستك أو مركزك...» كلمة كلمة، وبعدها «الفيديو ده ليك»
+  const l0 = L[0].ln.t.split(/\s+/).slice(0, 8);
+  const rows = [[0, 3], [3, 6], [6, 8]];
+  $('i1').innerHTML = rows.map(([x, y]) => l0.slice(x, y).map((w, k) => '<span class="w1" data-k="' + (x + k) + '">' + w + '</span>').join(' ')).join('<br>');
+  $('i1').style.fontSize = '86px'; $('i1').style.top = '520px';
+  document.querySelectorAll('#i1 .w1').forEach(w => { w.style.display = 'inline-block';
+    tl.fromTo(w, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, W(0, +w.dataset.k) - 0.05); });
+  tl.fromTo('#i3 .ribbon', { opacity: 0, scaleX: 0.2 }, { opacity: 1, scaleX: 1, duration: 0.5, ease: 'power3.out' }, W(0, 8) - 0.1);
+  SFX.push({ t: W(0, 8) - 0.1, name: 'slap' });
+  tl.to(['#i1', '#i3'], { opacity: 0, y: -60, duration: 0.35 }, L[1].t0 - 0.35);
+  // ٢: اللوجو و«التطبيق هو هو»، وكروت اللي المؤسسة بتضيفه
+  tl.fromTo('#introLogo', { opacity: 0, scale: 0.6, filter: 'brightness(0) invert(1) blur(20px)' }, { opacity: 1, scale: 1, filter: 'brightness(0) invert(1) blur(0px)', duration: 0.8, ease: 'power3.out' }, L[1].t0 - 0.2);
+  SFX.push({ t: L[1].t0 - 0.9, name: 'rise' });
+  $('introLogo').style.top = '470px';
+  tl.fromTo('#i4', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, W(1, 0) - 0.05);
+  tl.to('#i4', { opacity: 0, duration: 0.3 }, W(1, 15) - 0.35);
+  const PP = [['كارت المؤسسة', 110, 960, -7, 15], ['مهام الأخصائي', 560, 1090, 6, 17], ['كارت السلوك', 160, 1250, 5, 19]];
+  PP.forEach(([w, x, y, r, k], j) => { const d = document.createElement('div'); d.className = 'chip ' + (j % 2 ? 'white' : 'blue'); d.textContent = '+ ' + w; d.style.zIndex = 60;
+    d.style.width = '380px'; d.style.fontSize = '44px'; Object.assign(d.style, { left: x + 'px', top: y + 'px' }); $('intro').appendChild(d);
+    const at = W(1, k) - 0.08;
+    tl.fromTo(d, { opacity: 0, y: 80, rotation: 0 }, { opacity: 1, y: 0, rotation: r, duration: 0.45, ease: 'back.out(1.7)' }, at); SFX.push({ t: at, name: 'swish', gain: 0.5 }); });
+  tl.to('#intro', { opacity: 0, duration: 0.45 }, end - 0.35);
+  tl.to(['#logo'], { opacity: 1, duration: 0.5 }, end - 0.1);
+  tl.to(['#phone', '#capbg', '#cap', '#head'], { opacity: 1, duration: 0.01 }, end - 0.1);
+  tl.fromTo('#cam', { y: 900 }, { y: 0, duration: 1.0, ease: 'power3.out' }, end - 0.2);
+  SFX.push({ t: end - 0.25, name: 'whoosh' });
+})();
+
+// المشاهد
+let lastScene = null;
+all.forEach((a, i) => {
+  const { sc, ln } = a;
+  if (sc.kind === 'intro') return;
+  if (ln.outro) return;
+  caption(ln.t, a.t0, a.t1, a.wt);
+  const box = $('cap').lastChild;
+  tl.set(box, { display: 'none' }, a.next - 0.05);
+  const sceneStart = sc !== lastScene;
+  const t = sceneStart ? Math.max(a.t0 - 0.35, 0) : a.t0 - 0.1;
+  if (sceneStart) {
+    if (magOn) { tl.to('#mag', { opacity: 0, duration: 0.25 }, t - 0.3); magOn = false; }
+    setHead(sc.label, sc.title, t);
+    if (lastScene && lastScene.id !== 1) { SFX.push({ t: t - 0.15, name: 'whoosh' });
+      if (cur.shot !== ln.shot) { tl.fromTo('#phone', { x: 0 }, { x: 0, duration: 0.01 }, t); tl.fromTo('#phone', { rotation: 0 }, { keyframes: [{ rotation: -2.5, y: 20, duration: 0.3, ease: 'power2.out' }, { rotation: 0, y: 0, duration: 0.5, ease: 'power2.inOut' }] }, t - 0.2); } }
+    lastScene = sc;
+  }
+  if (ln.shot) { showShot(ln.shot, t, !sceneStart); focusOn(ln.shot, ln.focus, t); }
+  (ln.then || []).forEach(([f, ch]) => { const tt = f >= 1 ? ((a.wt && a.wt[f] != null) ? a.wt[f] - 0.1 : a.t0 + (a.t1 - a.t0) * f / ln.t.split(/\s+/).length) : a.t0 + (a.t1 - a.t0) * f;   /* رقم كلمة أو نسبة */ if (ch.shot) showShot(ch.shot, tt, true); focusOn(ch.shot || cur.shot, ch.focus, tt, 0.7); });
+  if (ln.chips) chips(ln.chips, a.t0 + 0.3, a.t1);
+  (ln.sfx || []).forEach(([f, name]) => SFX.push({ t: a.t0 + (a.t1 - a.t0) * f, name }));
+});
+
+// الختام
+(() => {
+  const L = all.filter(a => a.ln.outro);
+  const t = L[0].t0 - 0.4;
+  const Wd = (a, k) => (a.wt && a.wt[k] != null) ? a.wt[k] : a.t0 + (a.t1 - a.t0) * k / a.ln.t.split(/\s+/).length;
+  tl.to(['#head', '#logo', '#mag'], { opacity: 0, duration: 0.4 }, t);
+  tl.to('#cam', { y: 1800, scale: 1, x: 0, duration: 0.9, ease: 'power3.in' }, t); tl.to('#cam', { opacity: 0, duration: 0.3 }, t + 0.6);
+  SFX.push({ t: t, name: 'whoosh' });
+  tl.set('#outro', { opacity: 1 }, t + 0.5);
+  tl.fromTo('#outLogo', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, t + 0.5);
+  tl.fromTo('#o1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, Wd(L[0], 4) - 0.1);
+  [['#o2', 8], ['#o3', 11]].forEach(([id, k]) => { const at = Wd(L[1], k) - 0.1;
+    tl.fromTo(id, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.55, ease: 'back.out(1.6)' }, at); SFX.push({ t: at, name: 'pop' }); });
+  L.forEach(a => { caption(a.ln.t, a.t0, a.t1, a.wt); const box = $('cap').lastChild; tl.set(box, { display: 'none' }, a.next - 0.05); });
+  tl.to('#stage', { opacity: 0, duration: 0.8 }, DUR - 0.8);
+})();
+
+tl.set({}, {}, DUR);
+window.seek = t => { tl.seek(t, false); };
+window.SFX_EVENTS = SFX.sort((a, b) => a.t - b.t);
+window.seek(0);
+}
+window.READY = Promise.all([document.fonts.load('900 76px Cairo'), document.fonts.load('800 50px Cairo')]).then(() => { BUILD(); return Promise.all([...document.images].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))); });
+</script>
+</body>
+</html>
