@@ -2,17 +2,19 @@
 # الفيديوهات نفسها مش في git (كبيرة)؛ الملف ده + credits.txt هما المرجع.
 import os, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
-PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات)
+PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — رجالة بس أو من غير ناس (مفيش ستات، ولا في الخلفية)
     ('R01', 48285, 'laptop with a green screen (static) — بنركّب عليه شاشة فيها ١٧ تاب', '1-2'),
-    ('R03', 21836, 'woman checking her phone in a cafe, laptop open', '2'),
+    ('R02', 35819, 'man in a suit organizing his office (no face)', '2'),
+    ('R03', 24217, 'man using his phone at his desk at night', '2'),
+    ('R03b', 42750, "man's hands: green-screen phone over a laptop — بنركّب عليه إشعارات", '2'),
     ('R04a', 34198, 'hand hesitating over a laptop trackpad (close-up, no face)', '3'),
     ('R04b', 5572, 'man thinking at his laptop at night, hand to mouth', '3-4, 15'),
     ('R05', 1781, 'typing on a laptop close-up', '17'),
-    ('R06', 43246, 'woman working on her laptop in a coffee shop', '19'),
-    ('R07', 39781, 'woman on a video call by tablet', '19'),
+    ('R06', 8893, 'man sips coffee while working in a cafe', '19'),
+    ('R07', 10446, 'man on a video call with earphones (use the first 10 s)', '19'),
     ('R08', 9267, 'pouring tea in a glass cup', '19'),
     ('R09', 1795, 'black cellphone face down on a wooden table', '21'),
-    ('R10', 4957, 'young woman working calmly, natural light', '22'),
+    ('R10', 5464, 'man working calmly at home, window light', '22'),
 ]
 UA = {'User-Agent': 'Mozilla/5.0'}
 def ok(u):

@@ -25,6 +25,7 @@ Reusable code is in `pipeline/` next to this file. Copy it into `<video folder>/
 ## Fixed decisions (from the user)
 - Vertical **9:16, 1080×1920, 30 fps**. Font **Cairo** (`assets/cairo.woff2` = app's `www/assets/fonts/Cairo-VariableFont_slnt,wght.woff2`).
 - Design system: claude.ai artifact "Etizan — Design System" (https://claude.ai/artifact/R7MpA64RMaqeDGToroCKUm). Blue gradient `#0A3D91→#0265B5→#1E88D4`, sky glow `#18B1FE`, white text, pill badge with cyan dot, tilted skill cards, sticky-note yellow `#F5E6A3` for "problem" notes, slanted white ribbon, blue-tinted shadows only, no emoji in headlines.
+- **No women in any image or footage** (stock, generated or otherwise), not even in the background or as hands: men only, or shots without people (screens, desks, phones, objects). Check every clip at start/middle/end before using it.
 - **No music, no instruments** (user considers music haram). Only voice + natural ambience (wind, birds the user supplies) + noise-based SFX made by `sfx.py` (whoosh/swish/pop/slap/rise). No chimes/bells/dings. Check user-supplied audio with spectrograms and skip anything with a tonal/musical bed.
 - The app code lives in `D:\Anas\Nasieg\ETIZAN\app\V2.2 - TESTING\www`; dev server = launch config `etizan-www` (port 8123).
 
