@@ -36,6 +36,8 @@ for i, l in enumerate(lines):
             nxt = next((wt[x] for x in range(j + 1, len(wt)) if wt[x] is not None), e)
             wt[j] = round((prv + nxt) / 2, 2) if prv is not None and nxt is not None else prv
     res.append({'start': round(s, 2), 'end': round(e, 2), 'cov': round(len(hit) / max(1, len(ks)), 2), 'w': wt, 't': l})
+for i in range(len(res) - 1):                  # نهاية الفقرة ما تعدّيش بداية اللي بعدها
+    res[i]['end'] = min(res[i]['end'], round(res[i + 1]['start'] - 0.05, 2))
 # كلام في التفريغ مالوش مقابل في النص (ممكن tag اتقرا، أو كلمة زيادة)
 extra, run = [], []
 for k, w in enumerate(words):
