@@ -40,7 +40,7 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
   const T4 = T(4, 2) - 0.2;
   { const sc = scene(0, T4 + 0.6, 'real');
     // ١: دخلت المطبخ… ووقفت في نصه — كنت جاي أجيب إيه؟
-    foot(sc, 'H01', 0, P(2).t0 - 0.1, { from: 1.4, speed: 0.7, focus: L([0.55, 0.4], [0.58, 0.4]), zoom: [1.0, 1.08], fadeIn: 0.6, shade: true }); fx('ticktock', 0.2, 0.35);
+    foot(sc, 'H01', 0, P(2).t0 - 0.1, { from: 1.6, speed: 0.5, focus: L([0.55, 0.4], [0.58, 0.4]), zoom: [1.0, 1.08], fadeIn: 0.6, shade: true }); fx('ticktock', 0.2, 0.35);
     capWords(sc, 1, 0, 4, { ...CAP, end: T(1, 5) - 0.1 });
     capWords(sc, 1, 5, 7, { ...CAP, hl: [7], end: T(1, 8) - 0.1 });
     const q = sticky(sc, 'كنت جاي<br>أجيب إيه؟', L(1560, 790), L(300, 330), L(380, 340), L(56, 52), T(1, 8) - 0.05, 4); fx('paper', T(1, 8) - 0.05, 0.8);
@@ -69,8 +69,8 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
     tl.to(r.tint, { opacity: 0.82, duration: 0.7 }, fz + 0.15);
-    trace(r, window.TRACE4 || ['M1180 140 C1180 -20, 1420 -20, 1440 160 C1460 330, 1390 460, 1300 470 C1220 480, 1170 380, 1180 140 Z',
-      'M1360 70 C1500 -40, 1700 40, 1660 170 M1690 110 L1760 70 M1700 190 L1790 200'], fz + 0.25, 0.8);
+    trace(r, ['M330 60 C360 -40, 760 -40, 800 120 C840 260, 800 420, 680 450 C560 470, 420 400, 360 300 C320 220, 310 140, 330 60 Z',
+      'M870 150 L980 100 M890 240 L1010 250 M870 330 L970 390'], fz + 0.25, 0.8);
     fx('swish', fz + 0.3, 0.5);
     capWords(sc, 4, 0, 1, { ...CAP, y: L(470, 1420), size: L(110, 110), hl: [1], end: T4 + 0.05 });
   }
