@@ -1,0 +1,10 @@
+ID | Mixkit id | quality | description | paragraphs | source | license
+H01 | 40525 | 2160p | POV from inside the fridge: man stares, then reaches in | 1 | https://mixkit.co/free-stock-video/-40525/ | Mixkit Free License (https://mixkit.co/license/)
+H02 | 45503 | 720p | man on a blue background points at himself, shrugs ("what was I saying?") | 2 | https://mixkit.co/free-stock-video/-45503/ | Mixkit Free License (https://mixkit.co/license/)
+H03 | 48297 | 720p | light bulb lights up in the dark, then fades out (an idea that slips away) | 2 | https://mixkit.co/free-stock-video/-48297/ | Mixkit Free License (https://mixkit.co/license/)
+H04 | 5507 | 720p | pensive man stroking his beard by the window | 3, 20 | https://mixkit.co/free-stock-video/-5507/ | Mixkit Free License (https://mixkit.co/license/)
+H05 | 25382 | 720p | washing machine drum spinning (no people) | 10 | https://mixkit.co/free-stock-video/-25382/ | Mixkit Free License (https://mixkit.co/license/)
+H06 | 15774 | 720p | man in his living room thinking and writing in a notebook | 14 | https://mixkit.co/free-stock-video/-15774/ | Mixkit Free License (https://mixkit.co/license/)
+H07 | 5416 | 720p | man thinking hard while working on his laptop at home | 16 | https://mixkit.co/free-stock-video/-5416/ | Mixkit Free License (https://mixkit.co/license/)
+H08 | 4830 | 2160p | man working on his laptop in the kitchen | 18 | https://mixkit.co/free-stock-video/-4830/ | Mixkit Free License (https://mixkit.co/license/)
+H09 | 9188 | 720p | man thinks before starting work, then opens his laptop | 6 | https://mixkit.co/free-stock-video/-9188/ | Mixkit Free License (https://mixkit.co/license/)
