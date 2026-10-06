@@ -56,7 +56,7 @@ window.EPISODE = { n: 5, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 11: 0.4, 12: 0.3, 14: 
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
     tl.to(r.tint, { opacity: 0.82, duration: 0.7 }, fz + 0.15);
-    trace(r, window.TRACE5 || ['M900 300 C900 180, 1080 180, 1080 310 C1080 430, 1030 480, 990 480 C950 480, 900 430, 900 300 Z', 'M1120 560 L1460 560 L1500 760 L1080 760 Z'], fz + 0.25, 0.8);
+    trace(r, ['M780 260 C780 90, 1010 80, 1010 250 C1010 400, 940 470, 890 470 C830 470, 780 400, 780 260 Z', 'M1470 490 L1670 480 L1660 790 L1440 810 Z', 'M1135 790 L1440 765 L1445 830 L1150 822 Z'], fz + 0.25, 0.8);
     fx('swish', fz + 0.3, 0.5);
     capWords(sc, 4, 0, 1, { ...CAP, y: L(470, 1420), size: L(110, 110), hl: [1], end: T4 + 0.05 });
   }
