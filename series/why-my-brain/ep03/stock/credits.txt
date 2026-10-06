@@ -13,4 +13,3 @@ G11 | 23073 | 720p | man on a phone call at his desk | 18 | https://mixkit.co/fr
 G12 | 10441 | 2160p | man on a video call with earphones | 18 | https://mixkit.co/free-stock-video/-10441/ | Mixkit Free License (https://mixkit.co/license/)
 G13 | 39825 | 2160p | pedestrian traffic light counting down to zero (no people) | 20 | https://mixkit.co/free-stock-video/-39825/ | Mixkit Free License (https://mixkit.co/license/)
 G14 | 48503 | 720p | young man focused, working at his desk in daylight | 21 | https://mixkit.co/free-stock-video/-48503/ | Mixkit Free License (https://mixkit.co/license/)
-G15 | 4827 | 2160p | man's hands typing on a laptop | 11, 17 | https://mixkit.co/free-stock-video/-4827/ | Mixkit Free License (https://mixkit.co/license/)

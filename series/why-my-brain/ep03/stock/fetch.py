@@ -17,7 +17,6 @@ PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — �
     ('G12', 10441, 'man on a video call with earphones', '18'),
     ('G13', 39825, 'pedestrian traffic light counting down to zero (no people)', '20'),
     ('G14', 48503, 'young man focused, working at his desk in daylight', '21'),
-    ('G15', 4827, "man's hands typing on a laptop", '11, 17'),
 ]
 UA = {'User-Agent': 'Mozilla/5.0'}
 def ok(u):
