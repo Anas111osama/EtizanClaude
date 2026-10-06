@@ -1,0 +1,505 @@
+{
+ "duration": 214.24,
+ "sfx": [
+  {
+   "t": 2.3,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 5.73,
+   "name": "swish",
+   "gain": 0.8
+  },
+  {
+   "t": 7.11,
+   "name": "swish",
+   "gain": 0.8
+  },
+  {
+   "t": 9.22,
+   "name": "glitch",
+   "gain": 0.7
+  },
+  {
+   "t": 11.88,
+   "name": "lowhit",
+   "gain": 0.8
+  },
+  {
+   "t": 11.92,
+   "name": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "t": 18.38,
+   "name": "reverse",
+   "gain": 0.5
+  },
+  {
+   "t": 19.08,
+   "name": "lowhit",
+   "gain": 0.8
+  },
+  {
+   "t": 19.38,
+   "name": "swish",
+   "gain": 0.5
+  },
+  {
+   "t": 23.12,
+   "name": "impact",
+   "gain": 0.9
+  },
+  {
+   "t": 25.82,
+   "name": "whoosh_big",
+   "gain": 0.8
+  },
+  {
+   "t": 27.74,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 29.22,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 31.16,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 33.9,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 37.72,
+   "name": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 37.97,
+   "name": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 41.02,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 47.62,
+   "name": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 48.58,
+   "name": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 49.9,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 51.02,
+   "name": "swish",
+   "gain": 0.6
+  },
+  {
+   "t": 52.02,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 53.5,
+   "name": "swish",
+   "gain": 0.6
+  },
+  {
+   "t": 57.7,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 58.79,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 60.42,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 64.8,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 65.55,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 71.86,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 74.41,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 74.46,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 74.56,
+   "name": "lowhit",
+   "gain": 0.8
+  },
+  {
+   "t": 78.16,
+   "name": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 79.61,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 82.99,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 83.58,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 84.09,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 85.16,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 85.55,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 86.84,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 89.05,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 91.18,
+   "name": "whoosh",
+   "gain": 0.7
+  },
+  {
+   "t": 95.44,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 97.66,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 100.24,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 100.82,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 105.8,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 107.66,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 109.02,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 118.26,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 119.08,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 121.8,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 121.8,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 123.5,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 125.46,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 129.08,
+   "name": "rise",
+   "gain": 0.6
+  },
+  {
+   "t": 132.04,
+   "name": "slap",
+   "gain": 0.6
+  },
+  {
+   "t": 134.46,
+   "name": "whoosh_big",
+   "gain": 0.8
+  },
+  {
+   "t": 134.76,
+   "name": "slap",
+   "gain": 0.6
+  },
+  {
+   "t": 135.51,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 138,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 138.1,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 139.48,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 147.36,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 150.94,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 155.91,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 157.8,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 158.46,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 162.8,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 165.08,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 165.18,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 166.9,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 169.5,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 170.69,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 174.16,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 176.48,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 177.48,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 179.15,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 181.44,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 183.96,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 186.48,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 189.48,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 190.5,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 196.8,
+   "name": "impact",
+   "gain": 0.6
+  },
+  {
+   "t": 200.04,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 201.86,
+   "name": "pop",
+   "gain": 0.7
+  }
+ ],
+ "cuts": [
+  {
+   "at": 23.395000000000003,
+   "gap": 3
+  },
+  {
+   "at": 37.595,
+   "gap": 0.5
+  },
+  {
+   "at": 72.08500000000001,
+   "gap": 0.3
+  },
+  {
+   "at": 124.68,
+   "gap": 0.4
+  },
+  {
+   "at": 130.235,
+   "gap": 1.1
+  },
+  {
+   "at": 181.055,
+   "gap": 0.6
+  },
+  {
+   "at": 191.76,
+   "gap": 0.3
+  },
+  {
+   "at": 200.59,
+   "gap": 7.5
+  }
+ ],
+ "worlds": [
+  {
+   "t": 0,
+   "w": "real"
+  },
+  {
+   "t": 20.12,
+   "w": "blue"
+  },
+  {
+   "t": 26.07,
+   "w": "light"
+  },
+  {
+   "t": 40.769999999999996,
+   "w": "blue"
+  },
+  {
+   "t": 134.46,
+   "w": "light"
+  },
+  {
+   "t": 186.53000000000003,
+   "w": "real"
+  },
+  {
+   "t": 193.96,
+   "w": "blue"
+  }
+ ],
+ "tailStart": 206.73999999999998
+}

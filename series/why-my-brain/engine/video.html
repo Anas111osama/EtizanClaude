@@ -156,10 +156,12 @@ function BUILD() {
     tl.fromTo(s, { scaleX: 0, rotation: rot }, { scaleX: 1, rotation: rot, duration: 0.3, ease: 'power2.out' }, t); fx('marker', t, 0.9); return s;
   }
   // ── الواقع: لقطة stock فريم فريم. box = مكانها على الشاشة؛ focus = مركز القص في اللقطة (0..1) ──
-  const BOX_REAL = L({ x: 0, y: 0, w: 1920, h: 1080 }, { x: 0, y: 0, w: 1080, h: 1350 });
+  // الواقع: في العريض ملء الشاشة؛ في الطولي برواز 4:5 في نص الشاشة لفوق، بزوايا مدوّرة وضل حواليه
+  const BOX_REAL = L({ x: 0, y: 0, w: 1920, h: 1080 }, { x: 80, y: 190, w: 920, h: 1150 });
   function foot(parent, id, t0, t1, o = {}) {
-    const box = o.box || BOX_REAL, f = el('div', 'foot', null, parent, { left: px(box.x), top: px(box.y), width: px(box.w), height: px(box.h), opacity: 0, borderRadius: px(o.radius || 0) });
-    if (o.radius) f.style.boxShadow = 'var(--shadow-float)';
+    const box = o.box || BOX_REAL, rad = o.radius || (!o.box && O === 'v' ? 44 : 0);
+    const f = el('div', 'foot', null, parent, { left: px(box.x), top: px(box.y), width: px(box.w), height: px(box.h), opacity: 0, borderRadius: px(rad) });
+    if (rad) Object.assign(f.style, { boxShadow: '0 40px 90px rgba(2,20,60,.55), 0 0 0 2px rgba(255,255,255,.22)' });
     const src = el('div', 'src', null, f), N = window.FOOT[id] || 0;
     const img = id === 'R01' ? null : el('img', null, null, src);
     const focus = o.focus || [0.5, 0.5], z = o.zoom || [1, 1.06], from = o.from || 0, speed = o.speed == null ? 1 : o.speed;
