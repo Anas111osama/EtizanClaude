@@ -236,7 +236,7 @@ window.EPISODE = { n: 5, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 11: 0.4, 12: 0.3, 14: 
   }
   { const sc = scene(P(23).t0 - 0.2, P(24).t0 - 0.2);
     capWords(sc, 23, 0, 6, { y: L(170, 200), size: L(58, 62), color: 'var(--sky-100)', x: L(960, null), width: L(860, null), end: T(23, 7) - 0.1 });
-    const ph = el('div', 'phone', '<div><img src="../ep05/assets/' + (window.JADWALI || 'jadwali_kids.png') + '"></div>', sc, { width: px(L(320, 380)), height: px(L(692, 822)) });
+    const ph = el('div', 'phone', '<div><img src="../ep05/assets/' + 'jadwali.png' + '"></div>', sc, { width: px(L(320, 380)), height: px(L(692, 822)) });
     center(ph, L(560, 540), L(560, 960)); tl.fromTo(ph, { opacity: 0, y: 160, rotation: 0 }, { opacity: 1, y: 0, rotation: -4, duration: 0.6, ease: 'power3.out' }, T(23, 7) - 0.3); fx('whoosh', T(23, 7) - 0.3, 0.6);
     const lg = el('div', null, '<img src="../../../etizan-explainer-video/pipeline/assets/logo-full.png" style="height:' + px(L(100, 100)) + ';display:block">', sc, { position: 'absolute', padding: '20px 46px', background: '#fff', borderRadius: '52px', boxShadow: 'var(--shadow-card)', opacity: 0 });
     center(lg, L(1320, 540), L(470, 330)); pop(lg, T(23, 9) - 0.2, 0, 'pop', 0.7);
