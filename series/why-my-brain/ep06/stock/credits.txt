@@ -1,0 +1,10 @@
+ID | Mixkit id | quality | description | paragraphs | source | license
+L01 | 43526 | 2160p | man gaming at night, face lit by the screen | 1 | https://mixkit.co/free-stock-video/-43526/ | Mixkit Free License (https://mixkit.co/license/)
+L02 | 5527 | 720p | bearded man deep in an online game at home | 1, 10 | https://mixkit.co/free-stock-video/-5527/ | Mixkit Free License (https://mixkit.co/license/)
+L03 | 48609 | 720p | man in a suit, bored at his laptop | 2 | https://mixkit.co/free-stock-video/-48609/ | Mixkit Free License (https://mixkit.co/license/)
+L04 | 14763 | 720p | tired, bored man in front of his computer | 3 | https://mixkit.co/free-stock-video/-14763/ | Mixkit Free License (https://mixkit.co/license/)
+L05 | 41638 | 2160p | man's hands picking up his phone at the desk | 11 | https://mixkit.co/free-stock-video/-41638/ | Mixkit Free License (https://mixkit.co/license/)
+L06 | 43941 | 2160p | coffee poured into a cup (no people) | 14 | https://mixkit.co/free-stock-video/-43941/ | Mixkit Free License (https://mixkit.co/license/)
+L07 | 49885 | 2160p | man thinking hard (chess) | 16 | https://mixkit.co/free-stock-video/-49885/ | Mixkit Free License (https://mixkit.co/license/)
+L08 | 1795 | 2160p | phone face down on a wooden table (no people) | 18 | https://mixkit.co/free-stock-video/-1795/ | Mixkit Free License (https://mixkit.co/license/)
+L09 | 28902 | 2160p | alarm clock on a wooden table (no people) | 18 | https://mixkit.co/free-stock-video/-28902/ | Mixkit Free License (https://mixkit.co/license/)
