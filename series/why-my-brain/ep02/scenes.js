@@ -25,8 +25,8 @@ window.EPISODE = { n: 2, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 16: 0.4, 17: 1.1, 23: 
     const five = sticky(sc, '٥ دقايق بس', L(330, 300), L(330, 300), L(330, 340), L(54, 52), T(1, 6) - 0.05, -5);
     capWords(sc, 1, 9, 10, { ...CAP, end: P(1).next - 0.1 });
     // ٢: فيديو… وبعده فيديو… وحد بعتلك… ← ساعة عدّت
-    foot(sc, 'E07', T(2, 1) - 0.12, T(2, 3) - 0.12, { from: 2, focus: [0.45, 0.45], zoom: [1.05, 1.12], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 1) - 0.15, 0.8);
-    foot(sc, 'E08', T(2, 3) - 0.12, T(2, 8) - 0.12, { from: 3, focus: [0.55, 0.45], zoom: [1.05, 1.12], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 3) - 0.15, 0.8);
+    foot(sc, 'E15', T(2, 1) - 0.12, T(2, 3) - 0.12, { from: 2, focus: [0.33, 0.45], zoom: [1.25, 1.35], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 1) - 0.15, 0.8);
+    foot(sc, 'E16', T(2, 3) - 0.12, T(2, 8) - 0.12, { from: 0.5, focus: [0.6, 0.4], zoom: [1.1, 1.18], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 3) - 0.15, 0.8);
     out(five, T(2, 1) - 0.2, 0.15);
     capWords(sc, 2, 0, 2, { ...CAP, end: T(2, 3) - 0.1 });
     capWords(sc, 2, 3, 7, { ...CAP, end: T(2, 8) - 0.1 });
@@ -155,7 +155,7 @@ window.EPISODE = { n: 2, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 16: 0.4, 17: 1.1, 23: 
   }
   // ١٤–١٥: «يشدّني» + «يمكن» مع كل سحبة
   { const sc = scene(P(14).t0 - 0.3, P(16).t0 - 0.3);
-    card(sc, 'E07', P(14).t0 - 0.2, P(16).t0 - 0.3, L(SQ(960, 560, 600), SQ(540, 660, 740)), { focus: [0.42, 0.5], from: 1 });
+    card(sc, 'E01', P(14).t0 - 0.2, P(16).t0 - 0.3, L(SQ(960, 560, 600), SQ(540, 660, 740)), { focus: [0.45, 0.2], zoom: [1.7, 1.8], from: 0 });
     const pull = cchip(sc, '«يشدّني»', 'sticky', L(1560, 540), L(240, 200), T(14, 1) - 0.1, L(66, 64), -3, 'slap');
     const tag = label(sc, 'من الحلقة ١', L(1560, 860), L(330, 200), T(14, 2), 'glass', L(28, 28)); tag.style.border = '2px solid rgba(255,255,255,.4)';
     const BP = L([[1530, 520], [390, 420], [400, 760]], [[300, 1160], [780, 1160], [540, 1310]]);
@@ -197,7 +197,7 @@ window.EPISODE = { n: 2, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 16: 0.4, 17: 1.1, 23: 
     const s = step(sc, 1, 'خلّي الوقت <span class="hl">يتشاف</span>', P(18).t0 - 0.05, SB, L(68, 66));
     const r1 = row(s, '<i class="fa-regular fa-clock" style="color:var(--sky-400)"></i>ساعة قدامك على المكتب', L(42, 42), 34), r2 = row(s, '<i class="fa-solid fa-stopwatch" style="color:var(--sky-400)"></i>تايمر برّه الموبايل', L(42, 42), 18);
     rise(r1, T(18, 5) - 0.1, 20, 0.3, 'pop', 0.5); rise(r2, T(18, 9) - 0.1, 20, 0.3, 'pop', 0.5);
-    card(sc, 'E09', T(18, 5) - 0.2, P(20).t0 - 0.3, L(SQ(470, 560, 600), SQ(540, 980, 620)), { focus: [0.5, 0.5] });
+    card(sc, 'E09', T(18, 5) - 0.2, P(20).t0 - 0.3, L({ x: 120, y: 330, w: 700, h: 394 }, { x: 90, y: 720, w: 900, h: 506 }), { focus: [0.5, 0.5], zoom: [1.0, 1.04] });
     capWords(sc, 18, 13, 20, { y: L(740, 1360), size: L(46, 50), color: 'var(--ink)', shadow: false, x: L(880, null), width: L(900, null), hl: [14, 15], hlCls: 'hl', end: P(19).t0 - 0.1 });
     const w = words(sc, 'مش بيتحسّ… بس ~بيتشاف~', { y: L(760, 1450), size: L(66, 70), color: 'var(--ink)', at: [3, 4, 5, 6].map(k => T(19, k)), x: L(880, null), width: L(900, null) });
     strike(w.querySelectorAll('.w')[1], T(19, 5) - 0.1, 10);
