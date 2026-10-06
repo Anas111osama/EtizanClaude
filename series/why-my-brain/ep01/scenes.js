@@ -44,18 +44,18 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
   const T4 = T(4, 2) - 0.2;                                                       // «ليه» التانية: بداية كارت العنوان
   { const sc = scene(0, T4 + 0.6, 'real');
     // R01: اللابتوب والملف مفتوح (ورا كل اللقطات اللي في الفقرة ٢)
-    const lap = laptop(sc, 0, P(2).next - 0.1, { zoom: [1.0, 1.16], focus: [0.5, 0.42], fadeIn: 0.6, shade: true, box: L(undefined, { x: 0, y: 330, w: 1080, h: 608 }) });
+    const lap = laptop(sc, 0, P(2).next - 0.1, { zoom: L([1.0, 1.16], [1.38, 1.5]), focus: [0.5, 0.42], fadeIn: 0.6, shade: true, fit: L(undefined, 'contain'), bg: 'linear-gradient(180deg,#14171d,#07090d)' });
     const t12 = T(2, 12) - 0.1, t14 = T(2, 14) + 0.25;
     lap.tabs(t => t < t12 ? 1 : Math.min(17, 1 + Math.floor(16 * lerp(t, t12, t14) ** 1.3 + 0.0001)));
-    const stk = sticky(sc, 'المطلوب:<br>حاجة واحدة', L(300, 230), L(560, 320), L(290, 300), L(40, 42), T(1, 1) - 0.05, -5);
-    const clk = label(sc, '<i class="fa-regular fa-clock" style="color:var(--blue-700)"></i>مفتوح من الصبح', L(1560, 760), L(560, 1010), T(1, 9) - 0.1, 'ink', L(34, 36)); fx('pop', T(1, 9), 0.6);
+    const stk = sticky(sc, 'المطلوب:<br>حاجة واحدة', L(300, 250), L(560, 330), L(290, 300), L(40, 42), T(1, 1) - 0.05, -5);
+    const clk = label(sc, '<i class="fa-regular fa-clock" style="color:var(--blue-700)"></i>مفتوح من الصبح', L(1560, 760), L(560, 1260), T(1, 9) - 0.1, 'ink', L(34, 36)); fx('pop', T(1, 9), 0.6);
     out(clk, T(2, 5) - 0.2);
     capWords(sc, 1, 0, 6, { ...CAP, hl: [1, 2], end: T(1, 7) - 0.1 });
     // ٢: بيعمل كل حاجة إلا الحاجة دي
     const r2 = foot(sc, 'R02', T(2, 5) - 0.12, T(2, 7) - 0.12, { from: 3, focus: [0.5, 0.45], zoom: [1.05, 1.12], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 5) - 0.15, 0.8);
-    label(sc, '<i class="fa-solid fa-box-archive" style="color:var(--blue-700)"></i>رتّبت الدُّرج', CX, L(140, 160), T(2, 5), 'ink', L(38, 40)).style.zIndex = 3;
+    label(sc, '<i class="fa-solid fa-box-archive" style="color:var(--blue-700)"></i>رتّبت الدُّرج', CX, L(140, 270), T(2, 5), 'ink', L(38, 40)).style.zIndex = 3;
     const r3 = foot(sc, 'R03', T(2, 7) - 0.12, T(2, 12) - 0.12, { from: 5, focus: [0.42, 0.5], zoom: [1.1, 1.18], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 7) - 0.15, 0.8);
-    label(sc, '<i class="fa-solid fa-comment-dots" style="color:var(--blue-700)"></i>رسايل من أسبوع', CX, L(140, 160), T(2, 9), 'ink', L(38, 40)).style.zIndex = 3;
+    label(sc, '<i class="fa-solid fa-comment-dots" style="color:var(--blue-700)"></i>رسايل من أسبوع', CX, L(140, 270), T(2, 9), 'ink', L(38, 40)).style.zIndex = 3;
     sc.querySelectorAll('.pill').forEach(p => { if (/الدُّرج/.test(p.textContent)) out(p, T(2, 7) - 0.15, 0.1); if (/أسبوع/.test(p.textContent)) out(p, T(2, 12) - 0.15, 0.1); });
     fx('glitch', T(2, 12) - 0.12, 0.7);
     const tabsTag = label(sc, '<span style="direction:ltr;color:var(--blue-700)">17</span> تاب مفتوحة', L(960, 540), L(120, 250), T(2, 13), 'ink', L(40, 42)); fx('pop', T(2, 13), 0.8);
@@ -288,7 +288,7 @@ window.EPISODE = { n: 1, gaps: { 4: 3.0, 7: 0.6, 14: 0.6, 15: 1.1, 21: 0.6, 23: 
 
   // ════════ ٢٢ · الواقع: السؤال الصح ════════
   { const sc = scene(P(22).t0 - 0.45, P(23).t0 - 0.3, 'real');
-    foot(sc, 'R10', P(22).t0 - 0.45, P(23).t0 - 0.3, { from: 4.0, speed: 0.85, focus: L([0.3, 0.3], [0.2, 0.3]), zoom: [1.0, 1.03], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.5, 0.6);
+    foot(sc, 'R10', P(22).t0 - 0.45, P(23).t0 - 0.3, { from: 4.4, speed: 0.85, focus: L([0.3, 0.3], [0.2, 0.3]), zoom: [1.0, 1.03], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.5, 0.6);
     const q1 = chip(sc, '«أنا ليه كده؟»', 'glass', CX, L(760, 1450), L(64, 68)); q1.style.background = 'rgba(6,16,36,.55)';
     pop(q1, T(22, 14) - 0.1, -2, 'pop', 0.6); strike(q1, T(22, 17) - 0.1); tl.to(q1, { opacity: 0, y: -40, duration: 0.3 }, T(22, 17) + 0.35);
     const q2 = words(sc, '«إيه *أصغر* *خطوة* أقدر أعملها دلوقتي؟»', { y: L(800, 1440), size: L(76, 76), at: [18, 19, 20, 21, 22, 23].map(k => T(22, k)) });

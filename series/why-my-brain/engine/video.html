@@ -161,6 +161,7 @@ function BUILD() {
   function foot(parent, id, t0, t1, o = {}) {
     const box = o.box || BOX_REAL, rad = o.radius || (!o.box && O === 'v' ? 44 : 0);
     const f = el('div', 'foot', null, parent, { left: px(box.x), top: px(box.y), width: px(box.w), height: px(box.h), opacity: 0, borderRadius: px(rad) });
+    if (o.bg) f.style.background = o.bg;
     if (rad) Object.assign(f.style, { boxShadow: '0 40px 90px rgba(2,20,60,.55), 0 0 0 2px rgba(255,255,255,.22)' });
     const src = el('div', 'src', null, f), N = window.FOOT[id] || 0;
     const img = id === 'R01' ? null : el('img', null, null, src);
@@ -169,8 +170,9 @@ function BUILD() {
     if (o.shade) el('div', 'shade', null, f);
     let cur = -1;
     const place = t => { const p = ease(lerp(fr != null ? Math.min(t, fr) : t, t0, t1)), zz = z[0] + (z[1] - z[0]) * p;
-      const s = Math.max(box.w / 1920, box.h / 1080) * zz, w = 1920 * s, h = 1080 * s;
-      const x = Math.min(0, Math.max(box.w - w, box.w / 2 - focus[0] * w)), y = Math.min(0, Math.max(box.h - h, box.h / 2 - focus[1] * h));
+      const s = (o.fit === 'contain' ? Math.min(box.w / 1920, box.h / 1080) : Math.max(box.w / 1920, box.h / 1080)) * zz, w = 1920 * s, h = 1080 * s;
+      const fit = (bw, sw, fc) => sw <= bw ? (bw - sw) / 2 : Math.min(0, Math.max(bw - sw, bw / 2 - fc * sw));   // contain: في النص · cover: على الـ focus
+      const x = fit(box.w, w, focus[0]), y = fit(box.h, h, focus[1]);
       src.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + s + ')'; };
     dyn(t => { if (t < t0 - 0.5 || t > t1 + 0.6) return; place(t);
       if (!img) return; const tt = fr != null ? Math.min(t, fr) : t;
