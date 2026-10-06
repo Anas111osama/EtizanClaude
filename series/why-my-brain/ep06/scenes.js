@@ -69,7 +69,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
     tl.to(r.tint, { opacity: 0.82, duration: 0.7 }, fz + 0.15);
-    trace(r, window.TRACE6 || ['M880 160 C880 40, 1040 40, 1040 170 C1040 300, 990 340, 960 340 C920 340, 880 300, 880 160 Z'], fz + 0.25, 0.8);
+    trace(r, ['M840 270 C840 80, 1120 80, 1120 270 C1120 420, 1040 470, 980 470 C920 470, 840 420, 840 270 Z', 'M580 965 L1360 965 L1370 1035 L570 1035 Z', 'M300 800 L470 800 L465 950 L305 950 Z'], fz + 0.25, 0.8);
     fx('swish', fz + 0.3, 0.5);
     capWords(sc, 4, 0, 1, { ...CAP, y: L(470, 1420), size: L(110, 110), hl: [1], end: T4 + 0.05 });
   }
@@ -101,7 +101,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
   // ════════ ٧–١٣ · اللي بيحصل جوّه ════════
   chapter('اللي بيحصل جوّه', P(7).t0 - 0.2, P(13).t1 + 0.2);
   const IT = L({ file: [980, 430], game: [1560, 380], phone: [1320, 700], idea: [1720, 760], sound: [1000, 790] },
-               { file: [330, 700], game: [780, 560], phone: [790, 980], idea: [330, 1120], sound: [800, 1380] });
+               { file: [330, 830], game: [780, 690], phone: [790, 1110], idea: [330, 1250], sound: [800, 1470] });
   const OR = L([260, 900], [170, 1700]);
   // ٧–١٢: مش خزان… كشّاف — بيروح للي يشدّه
   { const sc = scene(P(7).t0 - 0.35, P(13).t0 - 0.3, 'blue');
@@ -173,7 +173,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
     const st = cchip(sc, '«يشدّني»', 'sticky', L(1300, 700), L(660, 1040), T(13, 9) - 0.05, L(40, 40), -4, 'slap'); st.style.zIndex = 5;
     tr.go(T(13, 10), L(1300, 700), L(760, 1140), L(140, 130), 0.6); fx('whoosh', T(13, 10), 0.6);
     tl.to(f, { boxShadow: '0 0 60px rgba(255,241,176,.95)', duration: 0.4 }, T(13, 10) + 0.4);
-    words(sc, 'محتاج تحط ~«يشدّني»~ جوّه المهم', { y: L(420, 560), size: L(66, 58), color: 'var(--sky-100)', at: [7, 8, 9, 10, 11].map(k => T(13, k)) });
+    words(sc, 'محتاج تحط *«يشدّني»* جوّه المهم', { y: L(420, 560), size: L(66, 58), color: 'var(--sky-100)', at: [7, 8, 9, 10, 11].map(k => T(13, k)) });
   }
 
   // ════════ ١٤–١٩ · تعمل إيه؟ ════════
@@ -186,7 +186,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
   const RX = L(1330, 540);
   // ١٤–١٥: لبّس المهمة لبس حاجة بتحبها
   { const sc = scene(P(14).t0 - 0.1, P(16).t0 - 0.3);
-    step(sc, 1, 'لبّس المهمة لبس <span class="hl">حاجة بتحبها</span>', P(14).t0 - 0.05, SB, L(58, 56));
+    step(sc, 1, 'لبّس المهمة لبس <span class="hl">حاجة بتحبها</span>', P(14).t0 - 0.05, SB, L(50, 52));
     card(sc, 'L06', T(14, 7) - 0.2, P(16).t0 - 0.3, CB, { focus: [0.5, 0.5], zoom: [1.1, 1.16], from: 1 });
     const PO = L([[RX, 470], [RX, 590], [RX, 710]], [[540, 1180], [540, 1300], [540, 1420]]);
     const cs = [['fa-couch', 'مكان بتحبه', 9], ['fa-mug-hot', 'مشروبك المفضّل', 13], ['fa-flag-checkered', 'تحدّي صغير مع نفسك', 17]].map(([ic, tx, k], j) => cchip(sc, '<i class="fa-solid ' + ic + '"></i>' + tx, 'white', PO[j][0], PO[j][1], T(14, k) - 0.08, L(44, 44), j % 2 ? 2 : -2));
@@ -216,7 +216,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
   }
   // ١٨–١٩: التركيز المفرط — احميه، أو حط له فرامل
   { const sc = scene(P(18).t0 - 0.3, P(20).t0 - 0.5);
-    step(sc, 3, 'التركيز المفرط؟ <span class="hl">اتعامل معاه صح</span>', P(18).t0 - 0.2, SB, L(56, 54));
+    step(sc, 3, 'التركيز المفرط؟ <span class="hl">اتعامل معاه صح</span>', P(18).t0 - 0.2, SB, L(48, 46));
     card(sc, 'L08', T(18, 14) - 0.2, T(18, 24) - 0.1, CB, { focus: [0.45, 0.5], zoom: [1.05, 1.1], from: 1, fadeOut: 0.15 });
     card(sc, 'L09', T(18, 24) - 0.15, P(20).t0 - 0.5, CB, { focus: [0.5, 0.55], zoom: [1.6, 1.66], from: 2 });
     const r1 = el('div', 'card', '<div style="font-size:' + px(L(36, 38)) + ';font-weight:1000;color:var(--ink)"><i class="fa-solid fa-shield-halved" style="color:#1FA971;margin-left:12px"></i>على الحاجة المهمة؟ احميه</div><div style="font-size:' + px(L(30, 32)) + ';font-weight:800;color:var(--ink-2);margin-top:8px">اقفل الإشعارات… وسيبه يشتغل</div>', sc, { width: px(L(820, 900)), padding: '22px 30px', opacity: 0 });
@@ -226,17 +226,17 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
     fx('beep', T(18, 29), 0.6);
     // ١٩: الكشّاف لما يقفل… مش هيسمع صوتك
     tl.to([r1, r2], { opacity: 0.3, duration: 0.3 }, P(19).t0 - 0.1);
-    words(sc, 'لما يقفل على حاجة… *مش* *هيسمع* *صوتك*', { y: L(860, 1600), size: L(56, 56), color: 'var(--ink)', at: [2, 3, 4, 5, 6, 7, 8].map(k => T(19, k)), x: L(880, null), width: L(900, null) });
+    words(sc, 'لما يقفل على حاجة… *مش* *هيسمع* *صوتك*', { y: L(860, 1600), size: L(50, 44), color: 'var(--ink)', at: [2, 3, 4, 5, 6, 7, 8].map(k => T(19, k)), x: L(880, null), width: L(900, null) });
     icon(sc, 'fa-ear-deaf', L(1760, 980), L(1000, 1740), L(56, 60), 'var(--blue-700)', T(19, 7), 'pop');
   }
   // ════════ ٢٠ · الواقع ════════
   { const sc = scene(P(20).t0 - 0.5, P(21).t0 - 0.3, 'real');
     foot(sc, 'L02', P(20).t0 - 0.5, P(21).t0 - 0.3, { from: 0.5, speed: 0.7, focus: L([0.6, 0.4], [0.72, 0.4]), zoom: [1.12, 1.04], fadeIn: 0.5, shade: true }); fx('whoosh', P(20).t0 - 0.55, 0.6);
     capWords(sc, 20, 0, 4, { ...CAP, end: T(20, 5) - 0.1 });
-    const q1 = chip(sc, '«ما إنت بتعرف تركّز لما تحب»', 'glass', L(1300, 540), L(300, 300), L(46, 42)); q1.style.background = 'rgba(6,16,36,.55)'; pop(q1, T(20, 5) - 0.1, -2, 'pop', 0.6);
+    const q1 = chip(sc, '«ما إنت بتعرف تركّز لما تحب»', 'glass', L(1300, 540), L(240, 260), L(46, 42)); q1.style.background = 'rgba(6,16,36,.55)'; pop(q1, T(20, 5) - 0.1, -2, 'pop', 0.6);
     capWords(sc, 20, 5, 10, { ...CAP, end: T(20, 11) - 0.1 });
     tl.to(q1, { opacity: 0.4, duration: 0.3 }, T(20, 11));
-    const ans = sticky(sc, '«أيوه… وده بالظبط<br>اللي بتعلّم أستخدمه»', L(1300, 540), L(470, 470), L(600, 640), L(46, 46), T(20, 12) - 0.1, -3); fx('paper', T(20, 12) - 0.1, 0.8);
+    const ans = sticky(sc, '«أيوه… وده بالظبط<br>اللي بتعلّم أستخدمه»', L(1300, 540), L(520, 540), L(600, 640), L(46, 46), T(20, 12) - 0.1, -3); fx('paper', T(20, 12) - 0.1, 0.8);
     capWords(sc, 20, 11, 17, { ...CAP, hl: [16, 17] });
   }
   // ════════ ٢١–٢٣ ════════
