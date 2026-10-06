@@ -240,13 +240,15 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
     const b = icon(sc, 'fa-brain', CX, L(860, 1300), L(120, 140), 'var(--sticky)', T(21, 8) + 0.1, 'impact'); b.style.filter = 'drop-shadow(0 0 30px rgba(245,230,163,.8))';
   }
   { const sc = scene(P(22).t0 - 0.2, P(23).t0 - 0.2);
-    const lg = el('div', null, '<img src="../../../etizan-explainer-video/pipeline/assets/logo-full.png" style="height:' + px(L(110, 120)) + ';display:block">', sc, { position: 'absolute', padding: '22px 50px', background: '#fff', borderRadius: '56px', boxShadow: 'var(--shadow-card)', opacity: 0 });
-    center(lg, L(1300, 540), L(560, 560)); pop(lg, T(22, 13) - 0.2, 0, 'pop', 0.7);
-    capWords(sc, 22, 0, 8, { y: L(300, 260), size: L(58, 62), color: 'var(--sky-100)', x: L(960, null), width: L(860, null), end: T(22, 9) - 0.1 });
-    const nb = el('div', 'card', '<div style="display:flex;align-items:center;gap:16px;font-size:' + px(L(44, 48)) + ';font-weight:1000;color:var(--ink)"><i class="fa-solid fa-cloud-arrow-down" style="color:var(--blue-700)"></i>تفريغ الأفكار</div>'
-      + ['', '', ''].map((_, j) => '<div style="height:18px;width:' + [86, 70, 78][j] + '%;margin-top:22px;border-radius:9px;background:#E3EAF4"></div>').join(''), sc, { width: px(L(560, 700)), padding: '40px 46px 44px', opacity: 0 });
-    center(nb, L(600, 540), L(560, 1040)); pop(nb, T(22, 10) - 0.15, -3, 'pop', 0.7);
-    const lk = cchip(sc, '<i class="fa-solid fa-lock"></i>محدش بيشوفه غيرك', 'sticky', L(1300, 540), L(760, 1400), T(22, 14) - 0.1, L(42, 44), 2);
+    capWords(sc, 22, 0, 8, { y: L(170, 200), size: L(58, 62), color: 'var(--sky-100)', x: L(960, null), width: L(860, null), end: T(22, 9) - 0.1 });
+    const ph = el('div', 'phone', '<div><img src="../ep04/assets/braindump.png"></div>', sc, { width: px(L(300, 340)), height: px(L(650, 736)) });
+    center(ph, L(560, 540), L(560, 900)); tl.fromTo(ph, { opacity: 0, y: 160, rotation: 0 }, { opacity: 1, y: 0, rotation: -4, duration: 0.6, ease: 'power3.out' }, T(22, 9) - 0.3); fx('whoosh', T(22, 9) - 0.3, 0.6);
+    // تكبير لورقة «تفريغ الأفكار» من الشاشة نفسها
+    const zm = el('div', null, '<img src="../ep04/assets/braindump_sheet.png" style="width:100%;display:block">', sc, { position: 'absolute', width: px(L(660, 900)), borderRadius: '34px', overflow: 'hidden', background: '#fff', boxShadow: '0 40px 90px rgba(2,20,60,.45)', opacity: 0 });
+    center(zm, L(1320, 540), L(600, 1400)); pop(zm, T(22, 10) - 0.15, 0, 'pop', 0.7); fx('paper', T(22, 10), 0.6);
+    const lg = el('div', null, '<img src="../../../etizan-explainer-video/pipeline/assets/logo-full.png" style="height:' + px(L(90, 100)) + ';display:block">', sc, { position: 'absolute', padding: '18px 44px', background: '#fff', borderRadius: '50px', boxShadow: 'var(--shadow-card)', opacity: 0 });
+    center(lg, L(1320, 540), L(220, 330)); pop(lg, T(22, 13) - 0.2, 0, 'pop', 0.7);
+    cchip(sc, '<i class="fa-solid fa-lock"></i>محدش بيشوفه غيرك', 'sticky', L(1320, 540), L(930, 1790), T(22, 14) - 0.1, L(42, 44), 2);
   }
   { const sc = scene(P(23).t0 - 0.2, null);
     const sp = el('div', 'pill glass', '<span class="dot"></span>ليه دماغي بتعمل كده؟', sc, { fontSize: px(L(32, 36)), opacity: 0 }); center(sp, L(1420, 540), L(200, 360)); rise(sp, P(23).t0, -20);
