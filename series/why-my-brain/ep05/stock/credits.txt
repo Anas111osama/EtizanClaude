@@ -1,0 +1,9 @@
+ID | Mixkit id | quality | description | paragraphs | source | license
+K01 | 4793 | 2160p | young man writing a plan at his desk (lamp, papers) | 1 | https://mixkit.co/free-stock-video/-4793/ | Mixkit Free License (https://mixkit.co/license/)
+K02 | 21222 | 720p | man's hands writing a detailed itinerary (close-up) | 1 | https://mixkit.co/free-stock-video/-21222/ | Mixkit Free License (https://mixkit.co/license/)
+K03 | 5608 | 720p | stressed businessman leans back, exhausted at his desk | 2 | https://mixkit.co/free-stock-video/-5608/ | Mixkit Free License (https://mixkit.co/license/)
+K04 | 45922 | 720p | young businessman overwhelmed with paperwork | 12 | https://mixkit.co/free-stock-video/-45922/ | Mixkit Free License (https://mixkit.co/license/)
+K05 | 23073 | 720p | man on a phone call at his desk | 12 | https://mixkit.co/free-stock-video/-23073/ | Mixkit Free License (https://mixkit.co/license/)
+K06 | 8904 | 720p | man at his laptop, then rubs his face, tired | 3 | https://mixkit.co/free-stock-video/-8904/ | Mixkit Free License (https://mixkit.co/license/)
+K08 | 9188 | 720p | man thinks, then opens his laptop and starts | 21 | https://mixkit.co/free-stock-video/-9188/ | Mixkit Free License (https://mixkit.co/license/)
+K09 | 49225 | 720p | man holding his head, overloaded | 11 | https://mixkit.co/free-stock-video/-49225/ | Mixkit Free License (https://mixkit.co/license/)
