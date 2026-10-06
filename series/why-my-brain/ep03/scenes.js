@@ -45,7 +45,8 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     // ١: الساعة حداشر بالليل… والتسليم تسعة الصبح
     foot(sc, 'G01', 0, P(2).t0 - 0.1, { from: 0, focus: L([0.5, 0.45], [0.58, 0.45]), zoom: L([1.0, 1.1], [1.0, 1.04]), fadeIn: 0.6, shade: true });
     capWords(sc, 1, 0, 2, { ...CAP, hl: [1, 2], end: T(1, 3) - 0.1 });
-    const due = sticky(sc, 'التسليم:<br>٩ الصبح', L(330, 290), L(300, 330), L(320, 320), L(52, 50), T(1, 3) - 0.05, -5); fx('slap', T(1, 3), 0.6);
+    const due = sticky(sc, 'التسليم:<br>٩ الصبح', L(330, 290), L(300, 330), L(320, 320), L(52, 50), T(1, 3) - 0.05, -5); fx('paper', T(1, 3) - 0.05, 0.9);
+    fx('ticktock', 0.1, 0.9);
     capWords(sc, 1, 3, 6, { ...CAP, hl: [5, 6], end: P(2).t0 - 0.1 });
     // ٢: أسبوعين… ومفيش سطر — بعدين: بسرعة عمرك ما شفتها
     foot(sc, 'G04', P(2).t0 - 0.12, T(2, 9) - 0.1, { from: 0, focus: L([0.5, 0.4], [0.5, 0.45]), zoom: [1.0, 1.06], fadeIn: 0.1, fadeOut: 0.1, shade: true }); fx('whoosh', P(2).t0 - 0.15, 0.6);
@@ -57,8 +58,8 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     capWords(sc, 2, 5, 8, { ...CAP, hl: [8], end: T(2, 9) - 0.1 });
     out(days, T(2, 9) - 0.2, 0.1); out(zero, T(2, 9) - 0.2, 0.1);
     const tq = T(2, 9) - 0.12;
-    foot(sc, 'G02', tq, T(2, 13) - 0.1, { from: 2.4, speed: 1.2, focus: [0.55, 0.6], zoom: [1.05, 1.15], fadeIn: 0.06, fadeOut: 0.06, shade: true }); fx('glitch', tq, 0.7);
-    foot(sc, 'G03', T(2, 13) - 0.12, T(2, 17) - 0.1, { from: 3, speed: 1.6, focus: [0.55, 0.55], zoom: [1.1, 1.2], fadeIn: 0.06, fadeOut: 0.06, shade: true }); fx('swish', T(2, 13) - 0.15, 0.8);
+    foot(sc, 'G02', tq, T(2, 13) - 0.1, { from: 2.4, speed: 1.2, focus: [0.55, 0.6], zoom: [1.05, 1.15], fadeIn: 0.06, fadeOut: 0.06, shade: true }); fx('glitch', tq, 0.7); fx('typing', tq + 0.05, 0.9);
+    foot(sc, 'G03', T(2, 13) - 0.12, T(2, 17) - 0.1, { from: 3, speed: 1.6, focus: [0.55, 0.55], zoom: [1.1, 1.2], fadeIn: 0.06, fadeOut: 0.06, shade: true }); fx('swish', T(2, 13) - 0.15, 0.8); fx('typing', T(2, 13) - 0.1, 0.7);
     foot(sc, 'G04', T(2, 17) - 0.12, P(3).t0 - 0.1, { from: 15, focus: L([0.5, 0.4], [0.5, 0.45]), zoom: [1.12, 1.2], fadeIn: 0.06, fadeOut: 0.12, shade: true }); fx('swish', T(2, 17) - 0.15, 0.8);
     // عدّاد كلام بيطلع بسرعة
     const cnt = el('div', null, '', sc, { position: 'absolute', fontWeight: 1000, fontSize: px(L(120, 110)), color: '#fff', textShadow: '0 10px 40px rgba(0,0,0,.6)', opacity: 0, whiteSpace: 'nowrap' });
@@ -72,7 +73,7 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     const fz = T(4, 0);
     const r = foot(sc, 'G06', P(3).t0 - 0.15, T4 + 0.25, { from: 0.5, freeze: fz, focus: L([0.5, 0.42], [0.53, 0.42]), zoom: [1.0, 1.06], fadeIn: 0.3, shade: true }); fx('whoosh', P(3).t0 - 0.2, 0.5);
     capWords(sc, 3, 0, 4, { ...CAP, hl: [2, 3, 4], end: T(3, 5) - 0.1 });
-    const note = sticky(sc, '«أنا بشتغل أحسن<br>تحت الضغط»', L(1520, 540), L(300, 330), L(470, 560), L(46, 48), T(3, 7) - 0.1, 4); fx('slap', T(3, 7), 0.6);
+    const note = sticky(sc, '«أنا بشتغل أحسن<br>تحت الضغط»', L(1520, 540), L(300, 330), L(470, 560), L(46, 48), T(3, 7) - 0.1, 4); fx('pen', T(3, 7) - 0.1, 0.9);
     out(note, fz - 0.15, 0.2);
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
@@ -151,7 +152,7 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     const dd = due.querySelector('.d');
     const d7 = T(9, 13) - 0.05, d0 = T(10, 1) - 0.05;
     dyn(t => { dd.textContent = t < d7 ? 'بعد ١٤ يوم' : t < d0 ? 'بعد ٧ أيام' : 'الليلة!'; });
-    tl.fromTo(due, { scale: 1.1 }, { scale: 1, duration: 0.25, immediateRender: false }, T(9, 13) - 0.05); fx('pop', T(9, 13), 0.5);
+    tl.fromTo(due, { scale: 1.1 }, { scale: 1, duration: 0.25, immediateRender: false }, T(9, 13) - 0.05); fx('page', T(9, 13) - 0.1, 0.9);
     capWords(sc, 9, 8, 12, { y: L(150, 320), x: L(260, null), width: L(1100, null), size: L(54, 58), end: T(9, 13) - 0.1 });
     capWords(sc, 9, 13, 17, { y: L(150, 320), x: L(260, null), width: L(1100, null), size: L(54, 58), end: P(10).t0 - 0.1 });
     // ١٠: ليلة التسليم ← بيتنقل لـ«دلوقتي»
@@ -162,7 +163,7 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     capWords(sc, 10, 0, 6, { y: L(150, 320), x: L(260, null), width: L(1100, null), size: L(54, 58), hl: [6], end: T(10, 7) - 0.1 });
     const sw = switcher(sc, CX, L(920, 1700), L(1, 1.1)); pop(sw, T(10, 7) - 0.1, 0, 'pop', 0.6);
     const gz = el('div', 'pill', '<i class="fa-solid fa-stopwatch"></i>الوقت زانقك', sc, { background: 'var(--blue-700)', color: '#fff', fontSize: px(L(30, 34)), opacity: 0 }); center(gz, L(CX + 330, 540), L(920, 1580)); pop(gz, T(10, 7), 0, null);
-    sw.on(T(10, 10) - 0.05); flash(T(10, 10), 0.2); fx('impact', T(10, 10), 0.6);
+    sw.on(T(10, 10) - 0.05); fx('switch', T(10, 10) - 0.05, 1); flash(T(10, 10), 0.2); fx('impact', T(10, 10), 0.6);
     const bolt = icon(sc, 'fa-bolt', L(CX - 300, 860), L(920, 1700), L(80, 90), 'var(--sticky)', T(10, 10) + 0.05, null); bolt.style.filter = 'drop-shadow(0 0 20px rgba(245,200,60,.9))';
     out(tag, T(9, 8), 0.3);
   }
@@ -212,11 +213,11 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
   // ١٤: ميعاد إنت اللي عامله… دماغك بيتجاهله
   { const sc = scene(P(14).t0 - 0.3, P(15).t0 - 0.3);
     words(sc, 'طب ما أحط لنفسي *ميعاد* *بدري؟*', { y: L(200, 330), size: L(82, 78), at: [0, 1, 2, 3, 4, 5].map(k => T(14, k)) });
-    const nt = sticky(sc, 'ميعادي:<br>الخميس', L(1240, 540), L(580, 800), L(380, 420), L(64, 64), T(14, 4) - 0.05, -4);
+    const nt = sticky(sc, 'ميعادي:<br>الخميس', L(1240, 540), L(580, 800), L(380, 420), L(64, 64), T(14, 4) - 0.05, -4); fx('pen', T(14, 4) - 0.05, 0.8);
     const by = label(sc, '<i class="fa-solid fa-user" style="color:var(--blue-700)"></i>إنت اللي عامله', L(1240, 540), L(800, 1050), T(14, 12) - 0.1, 'ink', L(34, 36));
     const br = icon(sc, 'fa-brain', L(600, 540), L(600, 1350), L(200, 210), '#fff', T(14, 8) - 0.1, 'pop');
     const eye = el('div', 'pill glass', '<i class="fa-regular fa-face-rolling-eyes"></i>عارف', sc, { fontSize: px(L(36, 38)), opacity: 0 }); center(eye, L(600, 540), L(780, 1520)); rise(eye, T(14, 9) - 0.1, 20, 0.3);
-    tl.to(nt, { x: L(700, 600), y: L(-260, -400), rotation: 40, opacity: 0, duration: 0.6, ease: 'power2.in' }, T(14, 15) - 0.05); fx('swish', T(14, 15), 0.8);
+    tl.to(nt, { x: L(700, 600), y: L(-260, -400), rotation: 40, opacity: 0, duration: 0.6, ease: 'power2.in' }, T(14, 15) - 0.05); fx('crumple', T(14, 15) - 0.05, 1);
     out(by, T(14, 15), 0.25);
     capWords(sc, 14, 15, 15, { y: L(880, 1680), size: L(70, 74), hl: [15] });
   }
@@ -250,7 +251,7 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     capWords(sc, 16, 4, 7, { y: L(470, 1220), size: L(46, 46), color: 'var(--ink-2)', shadow: false, x: L(880, null), width: L(900, null), end: T(16, 8) - 0.1 });
     const far = cchip(sc, '«البحث يوم ٢٠»', 'ghost', L(1330, 540), L(520, 1240), T(16, 12) - 0.1, L(50, 50), -2);
     strike(far, T(16, 15) - 0.1); tl.to(far, { opacity: 0.4, duration: 0.3 }, T(16, 15) + 0.3);
-    const nr = sticky(sc, '«المقدمة النهارده<br>قبل الساعة ٨»', L(1330, 540), L(720, 1420), L(560, 640), L(50, 52), T(16, 16) - 0.1, 2);
+    const nr = sticky(sc, '«المقدمة النهارده<br>قبل الساعة ٨»', L(1330, 540), L(720, 1420), L(560, 640), L(50, 52), T(16, 16) - 0.1, 2); fx('pen', T(16, 16) - 0.1, 0.9);
     // ١٧: كل يوم فيه «دلوقتي» صغيرة
     tl.to([far, nr], { opacity: 0, y: -30, duration: 0.3 }, P(17).t0 - 0.2);
     const DY = ['السبت', 'الحد', 'الاتنين', 'التلات', 'الأربع'], dw = L(166, 172), dg = L(20, 20), wx0 = L(880, 540 - (5 * 172 + 4 * 20) / 2);
@@ -271,7 +272,7 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
     card(sc, 'G12', T(18, 12) - 0.15, P(20).t0 - 0.3, BX, { focus: [0.5, 0.45], zoom: [1.05, 1.1] });
     const msg = el('div', null, '<div style="font-size:' + px(L(44, 46)) + ';font-weight:900;line-height:1.35">«هبعتلك أول جزء<br>الساعة ٦»</div><div style="text-align:left;font-size:26px;color:#7aa9d6;margin-top:6px">6:00 <i class="fa-solid fa-check-double"></i></div>', sc,
       { position: 'absolute', padding: '26px 34px 16px', borderRadius: '34px 34px 8px 34px', background: '#DCF3FF', color: 'var(--ink)', boxShadow: 'var(--shadow-card)', opacity: 0 });
-    center(msg, L(1330, 540), L(600, 1360)); rise(msg, T(18, 7) - 0.1, 30, 0.4, 'pop', 0.7);
+    center(msg, L(1330, 540), L(600, 1360)); rise(msg, T(18, 7) - 0.1, 30, 0.4, 'msg', 1);
     const call = cchip(sc, '<i class="fa-solid fa-video"></i>نشتغل مع بعض', 'white', L(1330, 540), L(840, 1560), T(18, 13) - 0.1, L(42, 44), 2);
     // ١٩: الميعاد اللي حد مستنيه… دماغك بيصدّقه أكتر
     tl.to([msg, call], { opacity: 0, duration: 0.25 }, P(19).t0 - 0.2);
@@ -289,13 +290,13 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
       { position: 'absolute', width: px(RS), height: px(RS), opacity: 0, filter: 'drop-shadow(0 20px 40px rgba(2,40,100,.18))' });
     center(rg, L(1330, 540), L(620, 1270)); pop(rg, T(20, 8) - 0.15, 0, 'pop', 0.7);
     const arc = rg.querySelector('.arc'), tm = rg.querySelector('.tm'), C = 2 * Math.PI * 88; arc.style.strokeDasharray = C;
-    const r0 = T(20, 10);
+    const r0 = T(20, 10); fx('counter', r0, 0.8);
     dyn(t => { const s = Math.max(0, 1500 - Math.max(0, t - r0) * 9); arc.style.strokeDashoffset = C * (1 - s / 1500); tm.textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(Math.floor(s % 60)).padStart(2, '0'); });
-    const goal = sticky(sc, '«هخلّص الجزء ده<br>قبل ما يخلص»', L(1330, 540), L(900, 1620), L(560, 640), L(48, 50), T(20, 13) - 0.1, -2);
+    const goal = sticky(sc, '«هخلّص الجزء ده<br>قبل ما يخلص»', L(1330, 540), L(900, 1620), L(560, 640), L(48, 50), T(20, 13) - 0.1, -2); fx('paper', T(20, 13) - 0.1, 0.8);
   }
   // ٢١: نفس شغل الزنقة… من غير سهر ولا قلق — زنقة ← راحة ← زنقة
   { const sc = scene(P(21).t0 - 0.3, P(22).t0 - 0.5);
-    card(sc, 'G14', P(21).t0 - 0.2, P(22).t0 - 0.5, L(SQ(470, 560, 600), SQ(540, 640, 560)), { focus: [0.45, 0.45], zoom: [1.1, 1.16], from: 1 });
+    card(sc, 'G14', P(21).t0 - 0.2, P(22).t0 - 0.5, L(SQ(470, 560, 600), SQ(540, 640, 560)), { focus: [0.45, 0.45], zoom: [1.1, 1.16], from: 1 }); fx('typing', P(21).t0, 0.45);
     capWords(sc, 21, 0, 4, { y: L(180, 1000), size: L(58, 58), color: 'var(--ink)', shadow: false, x: L(880, null), width: L(900, null), hl: [4], hlCls: 'hl', end: T(21, 16) - 0.2 });
     const lst = el('div', 'card', null, sc, { width: px(L(820, 900)), padding: '18px 40px 30px', color: 'var(--ink)', opacity: 0 }); center(lst, L(1330, 540), L(480, 1250));
     rise(lst, T(21, 5) - 0.2, 30, 0.35, 'whoosh', 0.5);
@@ -309,12 +310,12 @@ window.EPISODE = { n: 3, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 14: 0.3, 15: 
   }
   // ════════ ٢٢ · الواقع ════════
   { const sc = scene(P(22).t0 - 0.5, P(23).t0 - 0.3, 'real');
-    const r = foot(sc, 'G01', P(22).t0 - 0.5, P(23).t0 - 0.3, { from: 4.2, focus: L([0.5, 0.45], [0.58, 0.45]), zoom: [1.08, 1.0], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.55, 0.6);
+    const r = foot(sc, 'G01', P(22).t0 - 0.5, P(23).t0 - 0.3, { from: 4.2, focus: L([0.5, 0.45], [0.58, 0.45]), zoom: [1.08, 1.0], fadeIn: 0.5, shade: true }); fx('whoosh', P(22).t0 - 0.55, 0.6); fx('ticktock', P(22).t0 - 0.3, 0.8);
     capWords(sc, 22, 0, 7, { ...CAP, hl: [6, 7], end: T(22, 8) - 0.1 });
     capWords(sc, 22, 8, 13, { ...CAP, hl: [12, 13], end: T(22, 14) - 0.1 });
     const big = chip(sc, '<i class="fa-solid fa-moon"></i>ليلة التسليم', 'glass', L(1640, 540), L(230, 330), L(48, 48)); big.style.background = 'rgba(6,16,36,.55)';
     pop(big, T(22, 6) - 0.1, -2, 'pop', 0.6); strike(big, T(22, 12) - 0.1);
-    const nw = sticky(sc, '«دلوقتي» صغيرة:<br>النهارده ٨:٠٠', L(1640, 540), L(250, 340), L(500, 560), L(52, 54), T(22, 15) - 0.1, -3); fx('slap', T(22, 15), 0.6);
+    const nw = sticky(sc, '«دلوقتي» صغيرة:<br>النهارده ٨:٠٠', L(1640, 540), L(250, 340), L(500, 560), L(52, 54), T(22, 15) - 0.1, -3); fx('paper', T(22, 15) - 0.1, 0.9);
     tl.to(big, { opacity: 0, duration: 0.25 }, T(22, 15) - 0.2);
     capWords(sc, 22, 14, 17, { ...CAP, hl: [15, 16] });
   }

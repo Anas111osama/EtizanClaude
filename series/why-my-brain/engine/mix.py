@@ -48,7 +48,8 @@ out += (room * gr[:, None] + drone * gd[:, None]) * duck[:, None]
 names = sorted({e['name'] for e in plan['sfx']})
 S = {n: load(os.path.join(SFXDIR, n + '.wav')) for n in names}
 GAIN = {'whoosh': -13, 'swish': -18, 'pop': -16, 'slap': -12, 'rise': -13, 'marker': -11, 'impact': -8, 'lowhit': -10, 'whoosh_big': -12,
-        'reverse': -12, 'glitch': -16, 'riser': -14, 'stinger': -9, 'boom': -8, 'flip': -12, 'print': -14}
+        'reverse': -12, 'glitch': -16, 'riser': -14, 'stinger': -9, 'boom': -8, 'flip': -12, 'print': -14,
+        'tick': -14, 'ticktock': -17, 'beep': -20, 'typing': -13, 'key': -14, 'pen': -11, 'crumple': -12, 'paper': -10, 'msg': -15, 'page': -12, 'counter': -17, 'switch': -22}
 PRI = {'impact': 0, 'lowhit': 0, 'rise': 0, 'marker': 0, 'whoosh_big': 1, 'whoosh': 1, 'slap': 1, 'reverse': 1, 'glitch': 2, 'pop': 2, 'swish': 3}
 keep, last = [], -9
 for e in sorted(plan['sfx'], key=lambda e: (e['t'], PRI.get(e['name'], 2))):
