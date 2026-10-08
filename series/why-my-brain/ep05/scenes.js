@@ -127,7 +127,7 @@ window.EPISODE = { n: 5, gaps: { 4: 3.0, 6: 0.5, 10: 0.3, 11: 0.4, 12: 0.3, 14: 
   // ١٢: الخطة المثالية هشّة — أول مكالمة… والخطة كلها تقع (واقع)
   { const sc = scene(P(12).t0 - 0.4, P(13).t0 - 0.3, 'real');
     foot(sc, 'K05', P(12).t0 - 0.4, T(12, 16) - 0.1, { from: 0.5, focus: L([0.6, 0.4], [0.68, 0.4]), zoom: [1.05, 1.12], fadeIn: 0.4, fadeOut: 0.1, shade: true }); fx('whoosh', P(12).t0 - 0.45, 0.6);
-    foot(sc, 'K09', T(12, 16) - 0.12, P(13).t0 - 0.3, { from: 2, focus: L([0.5, 0.35], [0.5, 0.38]), zoom: [1.1, 1.18], fadeIn: 0.1, shade: true }); fx('swish', T(12, 16) - 0.15, 0.6);
+    foot(sc, 'K10', T(12, 16) - 0.12, P(13).t0 - 0.3, { from: 1, focus: L([0.42, 0.3], [0.42, 0.32]), zoom: [1.1, 1.18], fadeIn: 0.1, shade: true }); fx('swish', T(12, 16) - 0.15, 0.6);
     const pl = el('div', 'card', null, sc, { width: px(L(420, 600)), padding: '22px 26px 26px', opacity: 0 }); center(pl, L(1480, 540), L(400, 560));
     const C = ['#18B1FE', '#F5A623', '#1FA971', '#7C3AED', '#E5484D'];
     const rows = C.map((c, j) => el('div', null, '<span style="width:64px;font-weight:900;color:var(--ink-2);font-size:20px;direction:ltr">' + (8 + j * 2) + ':00</span><span class="bar" style="flex:1;height:30px;border-radius:10px;background:' + c + ';opacity:.85"></span>', pl, { display: 'flex', alignItems: 'center', gap: '12px', marginTop: j ? '12px' : '0' }));

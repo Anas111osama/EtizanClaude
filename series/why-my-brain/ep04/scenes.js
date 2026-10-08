@@ -40,7 +40,7 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
   const T4 = T(4, 2) - 0.2;
   { const sc = scene(0, T4 + 0.6, 'real');
     // ١: دخلت المطبخ… ووقفت في نصه — كنت جاي أجيب إيه؟
-    foot(sc, 'H01', 0, P(2).t0 - 0.1, { from: 1.6, speed: 0.5, focus: L([0.55, 0.4], [0.58, 0.4]), zoom: [1.0, 1.08], fadeIn: 0.6, shade: true }); fx('ticktock', 0.2, 0.35);
+    foot(sc, 'H11', 0, P(2).t0 - 0.1, { from: 0.9, speed: 0.35, freeze: 4.6, focus: L([0.5, 0.45], [0.5, 0.45]), zoom: [1.0, 1.08], fadeIn: 0.6, shade: true }); fx('ticktock', 0.2, 0.35);
     capWords(sc, 1, 0, 4, { ...CAP, end: T(1, 5) - 0.1 });
     capWords(sc, 1, 5, 7, { ...CAP, hl: [7], end: T(1, 8) - 0.1 });
     const q = sticky(sc, 'كنت جاي<br>أجيب إيه؟', L(1560, 790), L(300, 330), L(380, 340), L(56, 52), T(1, 8) - 0.05, 4); fx('paper', T(1, 8) - 0.05, 0.8);
@@ -226,7 +226,7 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
   }
   // ════════ ٢٠ · الواقع ════════
   { const sc = scene(P(20).t0 - 0.5, P(21).t0 - 0.3, 'real');
-    foot(sc, 'H01', P(20).t0 - 0.5, P(21).t0 - 0.3, { from: 1.6, speed: 0.5, focus: L([0.55, 0.4], [0.58, 0.4]), zoom: [1.08, 1.0], fadeIn: 0.5, shade: true }); fx('whoosh', P(20).t0 - 0.55, 0.6);
+    foot(sc, 'H11', P(20).t0 - 0.5, P(21).t0 - 0.3, { from: 2.52, freeze: P(20).t0 - 0.5, focus: L([0.5, 0.45], [0.5, 0.45]), zoom: [1.08, 1.0], fadeIn: 0.5, shade: true }); fx('whoosh', P(20).t0 - 0.55, 0.6);
     capWords(sc, 20, 0, 10, { ...CAP, hl: [7, 8, 9, 10], end: T(20, 11) - 0.1 });
     const q1 = chip(sc, '«أنا مش مركّز»', 'glass', CX, L(760, 1430), L(64, 66)); q1.style.background = 'rgba(6,16,36,.55)';
     pop(q1, T(20, 13) - 0.1, -2, 'pop', 0.6); strike(q1, T(20, 15) + 0.1); tl.to(q1, { opacity: 0, y: -40, duration: 0.3 }, T(20, 16) - 0.1);
