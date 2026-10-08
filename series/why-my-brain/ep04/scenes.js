@@ -50,7 +50,7 @@ window.EPISODE = { n: 4, gaps: { 4: 3.0, 6: 0.5, 10: 0.4, 11: 0.3, 13: 1.1, 15: 
     foot(sc, 'H09', P(2).t0 - 0.12, T(2, 6) - 0.1, { from: 0, focus: L([0.5, 0.4], [0.5, 0.42]), zoom: [1.0, 1.06], fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', P(2).t0 - 0.15, 0.7);
     capWords(sc, 2, 0, 5, { ...CAP, hl: [5], end: T(2, 6) - 0.1 });
     const ah = cchip(sc, '<i class="fa-solid fa-lightbulb"></i>آه! كوباية', 'sticky', L(1450, 540), L(330, 330), T(2, 5) - 0.05, L(50, 48), -3, 'slap'); out(ah, T(2, 6) - 0.2, 0.1);
-    foot(sc, 'H02', T(2, 6) - 0.12, T(2, 16) - 0.1, { from: 1.5, focus: L([0.5, 0.4], [0.52, 0.42]), zoom: L([1.0, 1.05], [1.2, 1.25]), fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 6) - 0.15, 0.7);
+    foot(sc, 'H10', T(2, 6) - 0.12, T(2, 16) - 0.1, { from: 2, focus: L([0.5, 0.3], [0.5, 0.32]), zoom: L([1.05, 1.1], [1.2, 1.25]), fadeIn: 0.08, fadeOut: 0.08, shade: true }); fx('swish', T(2, 6) - 0.15, 0.7);
     capWords(sc, 2, 6, 12, { ...CAP, end: T(2, 13) - 0.1 });
     const wt = cchip(sc, '«كنت بقول إيه؟»', 'white', L(1420, 540), L(330, 330), T(2, 13) - 0.05, L(56, 52), 3, 'slap'); out(wt, T(2, 16) - 0.2, 0.1);
     capWords(sc, 2, 13, 15, { ...CAP, hl: [13, 14, 15], end: T(2, 16) - 0.1 });

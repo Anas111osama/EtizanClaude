@@ -7,11 +7,15 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); B = os.path.joi
 import sys
 CLIPS = json.load(open(os.path.join(R, 'build', 'clips.json'))) if os.path.exists(os.path.join(R, 'build', 'clips.json')) else {'R02': 20, 'R03': 16.4, 'R04a': 18.8, 'R04b': 10.4, 'R05': 12, 'R06': 10.6, 'R07': 11, 'R08': 16, 'R09': 11.6, 'R10': 13.2}
 info = {}
+# لقطة متصوّرة بالطول: بتتحط في النص على أرضية سودا بدل ما تتمطّ
+def portrait(cid):
+    w, h = map(int, subprocess.check_output(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', os.path.join(R, 'stock', cid + '.mp4')]).decode().split(',')[:2])
+    return h > w
 for cid, dur in CLIPS.items():
     out = os.path.join(B, 'frames', cid); os.makedirs(out, exist_ok=True)
     if not glob.glob(out + '/*.jpg'):
         subprocess.check_call(['ffmpeg', '-v', 'error', '-i', os.path.join(R, 'stock', cid + '.mp4'), '-t', str(dur), '-vf',
-            'fps=30,scale=1920:1080:flags=lanczos,eq=saturation=0.92', '-q:v', '3', os.path.join(out, '%05d.jpg')])
+            'fps=30,' + ('scale=-2:1080:flags=lanczos,pad=1920:1080:(ow-iw)/2:0:black,' if portrait(cid) else 'scale=1920:1080:flags=lanczos,') + 'eq=saturation=0.92', '-q:v', '3', os.path.join(out, '%05d.jpg')])
     info[cid] = len(glob.glob(out + '/*.jpg')); print(cid, info[cid], 'frames', flush=True)
 # R01: فريم ثابت + كيي للأخضر (الحلقة ١ بس)
 if not os.path.exists(os.path.join(R, 'stock', 'R01.mp4')):

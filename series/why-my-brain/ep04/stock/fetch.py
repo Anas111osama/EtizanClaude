@@ -2,9 +2,9 @@
 # الفيديوهات نفسها مش في git (كبيرة)؛ الملف ده + credits.txt هما المرجع.
 import os, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
-PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — رجالة بس أو من غير ناس (مفيش ستات، ولا في الخلفية، ولا على شاشة موبايل)
+PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — رجالة بمظهر محافظ بس أو من غير ناس (مفيش ستات، ولا في الخلفية، ولا على شاشة موبايل؛ ومفيش حلق أو بيرسينج أو خمور)
     ('H01', 40525, 'POV from inside the fridge: man stares, then reaches in', '1'),
-    ('H02', 45503, 'man on a blue background points at himself, shrugs ("what was I saying?")', '2'),
+    ('H10', 4634, 'man in a suit talking, then pauses ("what was I saying?")', '2'),
     ('H03', 48297, 'light bulb lights up in the dark, then fades out (an idea that slips away)', '2'),
     ('H04', 5507, 'pensive man stroking his beard by the window', '3, 20'),
     ('H05', 25382, 'washing machine drum spinning (no people)', '10'),

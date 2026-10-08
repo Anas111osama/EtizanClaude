@@ -49,7 +49,7 @@ window.EPISODE = { n: 6, gaps: { 4: 3.0, 6: 0.5, 9: 0.3, 10: 0.4, 12: 0.3, 13: 1
     capWords(sc, 1, 5, 13, { ...CAP, hl: [9, 10, 12, 13], end: P(2).t0 - 0.1 });
     out(tm, P(2).t0 - 0.2, 0.15); out(ft, P(2).t0 - 0.2, 0.15);
     // ٢: ملف مهم… كل دقيقة كأنها ساعة — نفس السطر تلات مرات
-    foot(sc, 'L03', P(2).t0 - 0.12, P(3).t0 - 0.1, { from: 0.5, speed: 0.8, focus: L([0.5, 0.35], [0.5, 0.35]), zoom: [1.15, 1.25], fadeIn: 0.1, fadeOut: 0.1, shade: true }); fx('swish', P(2).t0 - 0.15, 0.7);
+    foot(sc, 'L11', P(2).t0 - 0.12, P(3).t0 - 0.1, { from: 0.5, speed: 0.8, focus: L([0.32, 0.35], [0.3, 0.35]), zoom: [1.1, 1.18], fadeIn: 0.1, fadeOut: 0.1, shade: true }); fx('swish', P(2).t0 - 0.15, 0.7);
     capWords(sc, 2, 0, 5, { ...CAP, hl: [4, 5], end: T(2, 6) - 0.1 });
     const mn = cchip(sc, '<i class="fa-solid fa-hourglass-half"></i>دقيقة = ساعة', 'white', L(1500, 540), L(260, 300), T(2, 8) - 0.05, L(46, 44), -2);
     capWords(sc, 2, 6, 9, { ...CAP, hl: [7, 9], end: T(2, 10) - 0.1 });

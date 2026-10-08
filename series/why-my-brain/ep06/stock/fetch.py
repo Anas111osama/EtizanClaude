@@ -2,10 +2,10 @@
 # الفيديوهات نفسها مش في git (كبيرة)؛ الملف ده + credits.txt هما المرجع.
 import os, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
-PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — رجالة بس أو من غير ناس (مفيش ستات، ولا في الخلفية، ولا على شاشة موبايل)
+PICKS = [  # (اسم الملف، Mixkit id، الوصف، الفقرات) — رجالة بمظهر محافظ بس أو من غير ناس (مفيش ستات، ولا في الخلفية، ولا على شاشة موبايل؛ ومفيش حلق أو بيرسينج أو خمور)
     ('L01', 43526, 'man gaming at night, face lit by the screen', '1'),
     ('L02', 5527, 'bearded man deep in an online game at home', '1, 10'),
-    ('L03', 48609, 'man in a suit, bored at his laptop', '2'),
+    ('L11', 6378, 'young man stuck and bored at his desk', '2'),
     ('L04', 14763, 'tired, bored man in front of his computer', '3'),
     ('L05', 41638, "man's hands picking up his phone at the desk", '11'),
     ('L06', 43941, 'coffee poured into a cup (no people)', '14'),
