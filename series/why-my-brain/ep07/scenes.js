@@ -52,12 +52,12 @@ window.EPISODE = { n: 7, gaps: { 4: 3.0, 6: 0.5, 9: 0.4, 10: 0.3, 11: 0.3, 13: 1
     foot(sc, 'M04', P(3).t0 - 0.15, T(3, 8) - 0.1, { from: 1, focus: L([0.4, 0.45], [0.3, 0.45]), zoom: [1.05, 1.1], fadeIn: 0.3, fadeOut: 0.1, shade: true }); fx('whoosh', P(3).t0 - 0.2, 0.5); fx('ticktock', P(3).t0, 0.3);
     capWords(sc, 3, 0, 7, { ...CAP, hl: [6, 7], end: T(3, 8) - 0.1 });
     const fz = T(4, 0);
-    const r = foot(sc, 'M03', T(3, 8) - 0.12, T4 + 0.25, { from: 3, freeze: fz, focus: L([0.55, 0.35], [0.6, 0.35]), zoom: [1.0, 1.05], fadeIn: 0.1, shade: true }); fx('swish', T(3, 8) - 0.15, 0.5);
+    const r = foot(sc, 'M03', T(3, 8) - 0.12, T4 + 0.25, { from: 3, freeze: fz, focus: L([0.55, 0.35], [0.7, 0.35]), zoom: [1.0, 1.05], fadeIn: 0.1, shade: true }); fx('swish', T(3, 8) - 0.15, 0.5);
     capWords(sc, 3, 8, 12, { ...CAP, hl: [8, 9, 10, 11, 12], end: fz - 0.1 });
     flash(fz, 0.35); fx('lowhit', fz, 0.8); fx('reverse', fz - 0.7, 0.5);
     tl.to(r.querySelector('.src > img'), { filter: 'grayscale(1) brightness(.8)', duration: 0.4 }, fz);
     tl.to(r.tint, { opacity: 0.82, duration: 0.7 }, fz + 0.15);
-    trace(r, window.TRACE7 || ['M900 200 C900 60, 1120 60, 1120 220 C1120 380, 1040 440, 1000 440 C950 440, 900 380, 900 200 Z'], fz + 0.25, 0.8);
+    trace(r, ['M1100 450 C1080 200, 1300 110, 1500 130 C1700 150, 1780 300, 1740 520 C1700 760, 1560 940, 1400 940 C1240 940, 1120 700, 1100 450 Z', 'M1500 90 L1540 20 M1620 110 L1700 40 M1380 100 L1350 30'], fz + 0.25, 0.8);
     fx('swish', fz + 0.3, 0.5);
     capWords(sc, 4, 0, 1, { ...CAP, y: L(470, 1420), size: L(110, 110), hl: [1], end: T4 + 0.05 });
   }
@@ -180,7 +180,7 @@ window.EPISODE = { n: 7, gaps: { 4: 3.0, 6: 0.5, 9: 0.4, 10: 0.3, 11: 0.3, 13: 1
   // ١٦–١٧: اعمل مسافة قبل ما ترد
   { const sc = scene(P(16).t0 - 0.3, P(18).t0 - 0.3);
     step(sc, 2, 'اعمل <span class="hl">مسافة</span> قبل ما ترد', P(16).t0 - 0.2, SB, L(62, 60));
-    card(sc, 'M07', T(16, 2) - 0.2, P(18).t0 - 0.3, CB, { focus: [0.5, 0.4], zoom: [1.1, 1.16], from: 0, speed: 0.55 });
+    card(sc, 'M07', T(16, 2) - 0.2, P(18).t0 - 0.3, CB, { focus: [0.5, 0.4], zoom: [1.1, 1.16], from: 0, speed: 0.55, freeze: T(16, 2) + 7.5 });
     const PO = L([[1640, 470], [1330, 470], [1020, 470]], [[840, 1180], [540, 1180], [240, 1180]]);
     const cs = [['fa-wind', 'خد نفس', 7], ['fa-person-walking', 'خطوتين', 10], ['fa-clock', '«هرد كمان شوية»', 14]].map(([ic, tx, k], j) => cchip(sc, '<i class="fa-solid ' + ic + '"></i>' + tx, 'white', PO[j][0], PO[j][1], T(16, k) - 0.08, L(38, 34), j % 2 ? 2 : -2));
     fx('rise', T(16, 7), 0.3);
