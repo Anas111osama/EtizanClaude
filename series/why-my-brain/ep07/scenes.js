@@ -40,11 +40,11 @@ window.EPISODE = { n: 7, gaps: { 4: 3.0, 6: 0.5, 9: 0.4, 10: 0.3, 11: 0.3, 13: 1
     center(msg, L(1400, 540), L(300, 330)); rise(msg, T(1, 7) - 0.1, 30, 0.35, 'msg', 0.8);
     capWords(sc, 1, 7, 14, { ...CAP, hl: [11, 12, 14], end: P(2).t0 - 0.1 });
     // ٢: اليوم اتقلب… بتعيد الجملة في دماغك
-    foot(sc, 'M02', P(2).t0 - 0.12, P(3).t0 - 0.1, { from: 4, speed: 0.9, focus: L([0.45, 0.35], [0.4, 0.35]), zoom: [1.05, 1.12], fadeIn: 0.1, fadeOut: 0.1, shade: true }); fx('lowhit', P(2).t0, 0.6);
+    foot(sc, 'M12', P(2).t0 - 0.12, P(3).t0 - 0.1, { from: 1, speed: 0.9, focus: L([0.3, 0.35], [0.22, 0.35]), zoom: [1.05, 1.12], fadeIn: 0.1, fadeOut: 0.1, shade: true }); fx('lowhit', P(2).t0, 0.6);
     tl.to(msg, { scale: 0.85, opacity: 0.9, duration: 0.3 }, P(2).t0);
     capWords(sc, 2, 0, 3, { ...CAP, hl: [3], end: T(2, 4) - 0.1 });
     const echoes = [0, 1, 2].map(j => { const e = el('div', null, '«إنت نسيت تبعت الملف؟»', sc, { position: 'absolute', padding: '16px 28px', borderRadius: '28px', background: 'rgba(255,255,255,.75)', color: 'var(--ink)', fontWeight: 900, fontSize: px(L(34, 30)), opacity: 0, whiteSpace: 'nowrap' });
-      center(e, L(1400 - j * 60, 540 + (j - 1) * 40), L(420 + j * 90, 460 + j * 80)); tl.fromTo(e, { opacity: 0, scale: 0.8, rotation: (j - 1) * 4 }, { opacity: 0.85 - j * 0.2, scale: 1, rotation: (j - 1) * 4, duration: 0.3 }, T(2, 5) + j * 0.25); fx('swish', T(2, 5) + j * 0.25, 0.4); return e; });
+      center(e, L(1400 - j * 60, 540 + (j - 1) * 40), L(420 + j * 90, 980 + j * 80)); tl.fromTo(e, { opacity: 0, scale: 0.8, rotation: (j - 1) * 4 }, { opacity: 0.85 - j * 0.2, scale: 1, rotation: (j - 1) * 4, duration: 0.3 }, T(2, 5) + j * 0.25); fx('swish', T(2, 5) + j * 0.25, 0.4); return e; });
     capWords(sc, 2, 4, 12, { ...CAP, hl: [5, 6, 9], end: T(2, 13) - 0.1 });
     capWords(sc, 2, 13, 16, { ...CAP, hl: [13], end: P(3).t0 - 0.1 });
     tl.to([msg, ...echoes], { opacity: 0, duration: 0.25 }, P(3).t0 - 0.2);
@@ -164,7 +164,7 @@ window.EPISODE = { n: 7, gaps: { 4: 3.0, 6: 0.5, 9: 0.4, 10: 0.3, 11: 0.3, 13: 1
   // ١٤–١٥: سمّيها
   { const sc = scene(P(14).t0 - 0.1, P(16).t0 - 0.3);
     step(sc, 1, '<span class="hl">سمّيها</span>', P(14).t0 - 0.05, SB, L(66, 64));
-    card(sc, 'M02', T(14, 2) - 0.2, P(15).t0 - 0.2, CB, { focus: [0.42, 0.35], zoom: [1.3, 1.36], from: 9, fadeOut: 0.15 });
+    card(sc, 'M12', T(14, 2) - 0.2, P(15).t0 - 0.2, CB, { focus: [0.28, 0.4], zoom: [1.25, 1.3], from: 9, fadeOut: 0.15 });
     card(sc, 'M08', P(15).t0 - 0.15, P(16).t0 - 0.3, CB, { focus: [0.5, 0.5], zoom: [1.1, 1.14], from: 0.4, freeze: P(15).t0 + 4.6 }); fx('switch', P(15).t0 + 0.35, 0.8);
     const say = el('div', null, '<i class="fa-solid fa-comment" style="margin-left:14px;color:var(--blue-700)"></i>«أنا متضايق دلوقتي»', sc, { position: 'absolute', padding: '24px 36px', borderRadius: '34px 34px 34px 8px', background: '#DCF3FF', color: 'var(--ink)', fontWeight: 900, fontSize: px(L(48, 48)), boxShadow: 'var(--shadow-card)', opacity: 0, whiteSpace: 'nowrap' });
     center(say, RX, L(520, 1220)); rise(say, T(14, 5) - 0.1, 30, 0.4, 'pop', 0.7);
