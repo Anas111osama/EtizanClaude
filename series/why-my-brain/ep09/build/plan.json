@@ -1,0 +1,555 @@
+{
+ "duration": 169.1,
+ "sfx": [
+  {
+   "t": 0.3,
+   "name": "typing",
+   "gain": 0.4
+  },
+  {
+   "t": 0.98,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 2.26,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 2.36,
+   "name": "key",
+   "gain": 0.5
+  },
+  {
+   "t": 4.78,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 4.88,
+   "name": "ticktock",
+   "gain": 0.3
+  },
+  {
+   "t": 7.3,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 8.15,
+   "name": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "t": 9.5,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 11.48,
+   "name": "swish",
+   "gain": 0.25
+  },
+  {
+   "t": 11.796,
+   "name": "swish",
+   "gain": 0.25
+  },
+  {
+   "t": 12.112,
+   "name": "swish",
+   "gain": 0.25
+  },
+  {
+   "t": 12.428,
+   "name": "swish",
+   "gain": 0.25
+  },
+  {
+   "t": 12.744,
+   "name": "swish",
+   "gain": 0.25
+  },
+  {
+   "t": 14.2,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 16.16,
+   "name": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "t": 16.74,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 19.5,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 20.55,
+   "name": "swish",
+   "gain": 0.5
+  },
+  {
+   "t": 22.72,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 22.82,
+   "name": "ticktock",
+   "gain": 0.3
+  },
+  {
+   "t": 23.12,
+   "name": "reverse",
+   "gain": 0.5
+  },
+  {
+   "t": 23.82,
+   "name": "lowhit",
+   "gain": 0.8
+  },
+  {
+   "t": 24.12,
+   "name": "swish",
+   "gain": 0.5
+  },
+  {
+   "t": 27.68,
+   "name": "impact",
+   "gain": 0.9
+  },
+  {
+   "t": 30.12,
+   "name": "whoosh_big",
+   "gain": 0.8
+  },
+  {
+   "t": 32.28,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 33.34,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 34.86,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 37.14,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 39.74,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 40.92,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 46.12,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 47.5,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 49.06,
+   "name": "swish",
+   "gain": 0.4
+  },
+  {
+   "t": 52.86,
+   "name": "slap",
+   "gain": 0.5
+  },
+  {
+   "t": 54.28,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 58.04,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 61.92,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 62.34,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 63.58,
+   "name": "ticktock",
+   "gain": 0.4
+  },
+  {
+   "t": 66.88,
+   "name": "counter",
+   "gain": 0.4
+  },
+  {
+   "t": 69.22,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 72.02,
+   "name": "lowhit",
+   "gain": 0.6
+  },
+  {
+   "t": 73.2,
+   "name": "whoosh_big",
+   "gain": 0.6
+  },
+  {
+   "t": 74.6,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 77.18,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 78.04,
+   "name": "swish",
+   "gain": 0.4
+  },
+  {
+   "t": 83.08,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 84.3,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 88.86,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 93.08,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 94.4,
+   "name": "whoosh_big",
+   "gain": 0.8
+  },
+  {
+   "t": 94.7,
+   "name": "slap",
+   "gain": 0.6
+  },
+  {
+   "t": 95.45,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 96.3,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 96.5,
+   "name": "counter",
+   "gain": 0.4
+  },
+  {
+   "t": 98.38,
+   "name": "pop",
+   "gain": 0.5
+  },
+  {
+   "t": 99.16,
+   "name": "swish",
+   "gain": 0.5
+  },
+  {
+   "t": 103.7,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 105.76,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 106.11,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 106.86,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 107.96,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 110.08,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 112,
+   "name": "beep",
+   "gain": 0.4
+  },
+  {
+   "t": 114.52,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 115.81,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 118.08,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 118.6,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 120.46,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 121.56,
+   "name": "whoosh",
+   "gain": 0.8
+  },
+  {
+   "t": 123.06,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 125,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 126.67,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 128.08,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 129.92,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 130.64,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 131.58,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 132.77,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 133.82,
+   "name": "key",
+   "gain": 0.5
+  },
+  {
+   "t": 134.1,
+   "name": "impact",
+   "gain": 0.6
+  },
+  {
+   "t": 139.51,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 143.82,
+   "name": "pop",
+   "gain": 0.6
+  },
+  {
+   "t": 144.42,
+   "name": "marker",
+   "gain": 0.9
+  },
+  {
+   "t": 145.6,
+   "name": "paper",
+   "gain": 0.8
+  },
+  {
+   "t": 145.75,
+   "name": "slap",
+   "gain": 0.7
+  },
+  {
+   "t": 150.68,
+   "name": "impact",
+   "gain": 0.6
+  },
+  {
+   "t": 152.98,
+   "name": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "t": 153.75,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 153.9,
+   "name": "paper",
+   "gain": 0.6
+  },
+  {
+   "t": 154.38,
+   "name": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 154.88,
+   "name": "pop",
+   "gain": 0.7
+  }
+ ],
+ "cuts": [
+  {
+   "at": 27.695,
+   "gap": 3
+  },
+  {
+   "at": 39.295,
+   "gap": 0.5
+  },
+  {
+   "at": 52.64,
+   "gap": 0.3
+  },
+  {
+   "at": 61.97,
+   "gap": 0.4
+  },
+  {
+   "at": 68.62,
+   "gap": 0.4
+  },
+  {
+   "at": 75.67500000000001,
+   "gap": 0.3
+  },
+  {
+   "at": 89.28999999999999,
+   "gap": 1.1
+  },
+  {
+   "at": 100.35,
+   "gap": 0.3
+  },
+  {
+   "at": 115.13499999999999,
+   "gap": 0.3
+  },
+  {
+   "at": 132.56,
+   "gap": 0.6
+  },
+  {
+   "at": 140.6,
+   "gap": 0.3
+  },
+  {
+   "at": 154.15,
+   "gap": 7.5
+  }
+ ],
+ "worlds": [
+  {
+   "t": 0,
+   "w": "real"
+  },
+  {
+   "t": 24.66,
+   "w": "blue"
+  },
+  {
+   "t": 30.369999999999997,
+   "w": "light"
+  },
+  {
+   "t": 42.47,
+   "w": "blue"
+  },
+  {
+   "t": 73.1,
+   "w": "real"
+  },
+  {
+   "t": 94.4,
+   "w": "light"
+  },
+  {
+   "t": 139.56,
+   "w": "real"
+  },
+  {
+   "t": 147.98,
+   "w": "blue"
+  }
+ ],
+ "tailStart": 161.6
+}

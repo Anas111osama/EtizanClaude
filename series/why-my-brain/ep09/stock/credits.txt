@@ -1,0 +1,12 @@
+ID | Mixkit id | quality | description | paragraphs | source | license
+S01 | 17450 | 720p | hands typing on a laptop late at night (no screen shown) | 1 | https://mixkit.co/free-stock-video/-17450/ | Mixkit Free License (https://mixkit.co/license/)
+S02 | 11606 | 720p | man lying on his bed scrolling his phone (screen not visible) | 2 | https://mixkit.co/free-stock-video/-11606/ | Mixkit Free License (https://mixkit.co/license/)
+S03 | 45923 | 720p | man in a suit writing next to a tall stack of papers | 3 | https://mixkit.co/free-stock-video/-45923/ | Mixkit Free License (https://mixkit.co/license/)
+S04 | 29956 | 720p | man in silhouette by an office window, the day going by | 3, 4 | https://mixkit.co/free-stock-video/-29956/ | Mixkit Free License (https://mixkit.co/license/)
+S05 | 49341 | 720p | man comparing microwave ovens in a store | 11 | https://mixkit.co/free-stock-video/-49341/ | Mixkit Free License (https://mixkit.co/license/)
+S06 | 6102 | 720p | grocery shelves full of produce (too many options, no people) | 14, 15 | https://mixkit.co/free-stock-video/-6102/ | Mixkit Free License (https://mixkit.co/license/)
+S07 | 39823 | 2160p | phone countdown timer on a table (no people) | 16 | https://mixkit.co/free-stock-video/-39823/ | Mixkit Free License (https://mixkit.co/license/)
+S08 | 49889 | 2160p | chess clock on a marble board (no people) | 17 | https://mixkit.co/free-stock-video/-49889/ | Mixkit Free License (https://mixkit.co/license/)
+S09 | 5419 | 720p | businessman thinking by the window | 18 | https://mixkit.co/free-stock-video/-5419/ | Mixkit Free License (https://mixkit.co/license/)
+S10 | 5338 | 2160p | hand moving a chess piece (the decision) | 19 | https://mixkit.co/free-stock-video/-5338/ | Mixkit Free License (https://mixkit.co/license/)
+S11 | 45460 | 720p | man in a shemagh smiling at his laptop | 20 | https://mixkit.co/free-stock-video/-45460/ | Mixkit Free License (https://mixkit.co/license/)
